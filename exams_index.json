@@ -152,5 +152,27 @@
       "startTime": "2026-06-06T17:53:40.873Z",
       "endTime": "2026-06-06T18:53:40.873Z"
     }
+  },
+  {
+    "filename": "All_India_Mock_11.html",
+    "examId": "QWxsIEluZGlhXzEx",
+    "title": "All India Mock 11",
+    "mockNumber": "11",
+    "categoryPath": [
+      "Others"
+    ],
+    "type": "Live",
+    "visibility": "Listed",
+    "pricing": "Free",
+    "questionsCount": 100,
+    "duration": 90,
+    "fullMarks": 100,
+    "timestamp": "2026-06-26T19:04:50.761Z",
+    "unlockCode": "BIPUL",
+    "resultPublishTime": "2026-06-28T19:30",
+    "liveSchedule": {
+      "startTime": "2026-06-28T08:15",
+      "endTime": "2026-06-28T19:29"
+    }
   }
 ]
