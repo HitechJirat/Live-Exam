@@ -5,9 +5,9 @@
     "title": "All India Mock 9",
     "mockNumber": "9",
     "categoryPath": [
-      "Others"
+      "Live exam ended"
     ],
-    "type": "Regular",
+    "type": "Live",
     "visibility": "Listed",
     "pricing": "Free",
     "questionsCount": 100,
@@ -15,7 +15,11 @@
     "fullMarks": 100,
     "timestamp": "2026-06-12T18:03:05.317Z",
     "unlockCode": "",
-    "resultPublishTime": ""
+    "resultPublishTime": "",
+    "liveSchedule": {
+      "startTime": "2026-06-14T08:15",
+      "endTime": "2026-06-15T11:59"
+    }
   },
   {
     "filename": "wbcs_exam_2024_official_mock_1.html",
@@ -23,9 +27,9 @@
     "title": "WBCS EXAM 2024 OFFICIAL Mock 1",
     "mockNumber": "1",
     "categoryPath": [
-      "Others"
+      "Live exam ended"
     ],
-    "type": "Regular",
+    "type": "Live",
     "visibility": "Listed",
     "pricing": "Free",
     "questionsCount": 200,
@@ -33,7 +37,11 @@
     "fullMarks": 200,
     "timestamp": "2026-06-15T15:14:43.523Z",
     "unlockCode": "",
-    "resultPublishTime": ""
+    "resultPublishTime": "",
+    "liveSchedule": {
+      "startTime": "2026-06-15T13:14:43.523Z",
+      "endTime": "2026-06-15T14:14:43.523Z"
+    }
   },
   {
     "filename": "all_india_mock_10.html",
@@ -41,9 +49,9 @@
     "title": "All India Mock 10",
     "mockNumber": "10",
     "categoryPath": [
-      "Others"
+      "Live exam ended"
     ],
-    "type": "Regular",
+    "type": "Live",
     "visibility": "Listed",
     "pricing": "Free",
     "questionsCount": 100,
@@ -51,6 +59,98 @@
     "fullMarks": 100,
     "timestamp": "2026-06-20T13:53:31.103Z",
     "unlockCode": "",
-    "resultPublishTime": ""
+    "resultPublishTime": "",
+    "liveSchedule": {
+      "startTime": "2026-06-21T08:15",
+      "endTime": "2026-06-20T12:53:31.103Z"
+    }
+  },
+  {
+    "filename": "fj_coaching_mock_5.html",
+    "examId": "RkogQ29hY2hpbmdfNQ==",
+    "title": "FJ Coaching Mock 5",
+    "mockNumber": 5,
+    "categoryPath": [
+      "Live exam ended"
+    ],
+    "type": "Live",
+    "visibility": "Listed",
+    "pricing": "Free",
+    "questionsCount": 100,
+    "duration": 90,
+    "fullMarks": 100,
+    "timestamp": "2026-05-16T21:27:31.994Z",
+    "unlockCode": "",
+    "resultPublishTime": "",
+    "liveSchedule": {
+      "startTime": "2026-05-16T19:27:31.994Z",
+      "endTime": "2026-05-16T20:27:31.994Z"
+    }
+  },
+  {
+    "filename": "all_india_mock_6.html",
+    "examId": "QWxsIEluZGlhXzY=",
+    "title": "All India Mock 6",
+    "mockNumber": 6,
+    "categoryPath": [
+      "Live exam ended"
+    ],
+    "type": "Live",
+    "visibility": "Listed",
+    "pricing": "Free",
+    "questionsCount": 100,
+    "duration": 90,
+    "fullMarks": 100,
+    "timestamp": "2026-05-22T13:30:37.228Z",
+    "unlockCode": "",
+    "resultPublishTime": "",
+    "liveSchedule": {
+      "startTime": "2026-05-22T11:30:37.228Z",
+      "endTime": "2026-05-22T12:30:37.228Z"
+    }
+  },
+  {
+    "filename": "all_india_mock_7.html",
+    "examId": "QWxsIEluZGlhXzc=",
+    "title": "All India Mock 7",
+    "mockNumber": 7,
+    "categoryPath": [
+      "Live exam ended"
+    ],
+    "type": "Live",
+    "visibility": "Listed",
+    "pricing": "Free",
+    "questionsCount": 100,
+    "duration": 90,
+    "fullMarks": 100,
+    "timestamp": "2026-05-30T21:30:07.720Z",
+    "unlockCode": "",
+    "resultPublishTime": "",
+    "liveSchedule": {
+      "startTime": "2026-05-30T19:30:07.720Z",
+      "endTime": "2026-05-30T20:30:07.720Z"
+    }
+  },
+  {
+    "filename": "all_india_mock_8.html",
+    "examId": "QWxsIEluZGlhXzg=",
+    "title": "All India Mock 8",
+    "mockNumber": 8,
+    "categoryPath": [
+      "Live exam ended"
+    ],
+    "type": "Live",
+    "visibility": "Listed",
+    "pricing": "Free",
+    "questionsCount": 100,
+    "duration": 90,
+    "fullMarks": 100,
+    "timestamp": "2026-06-06T19:53:40.873Z",
+    "unlockCode": "",
+    "resultPublishTime": "",
+    "liveSchedule": {
+      "startTime": "2026-06-06T17:53:40.873Z",
+      "endTime": "2026-06-06T18:53:40.873Z"
+    }
   }
 ]
