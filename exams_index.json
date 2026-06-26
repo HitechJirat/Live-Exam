@@ -1,0 +1,56 @@
+[
+  {
+    "filename": "all_india_mock_9.html",
+    "examId": "QWxsIEluZGlhXzk=",
+    "title": "All India Mock 9",
+    "mockNumber": "9",
+    "categoryPath": [
+      "Others"
+    ],
+    "type": "Regular",
+    "visibility": "Listed",
+    "pricing": "Free",
+    "questionsCount": 100,
+    "duration": 90,
+    "fullMarks": 100,
+    "timestamp": "2026-06-12T18:03:05.317Z",
+    "unlockCode": "",
+    "resultPublishTime": ""
+  },
+  {
+    "filename": "wbcs_exam_2024_official_mock_1.html",
+    "examId": "V0JDUyBFWEFNIDIwMjQgT0ZGSUNJQUxfMQ==",
+    "title": "WBCS EXAM 2024 OFFICIAL Mock 1",
+    "mockNumber": "1",
+    "categoryPath": [
+      "Others"
+    ],
+    "type": "Regular",
+    "visibility": "Listed",
+    "pricing": "Free",
+    "questionsCount": 200,
+    "duration": 135,
+    "fullMarks": 200,
+    "timestamp": "2026-06-15T15:14:43.523Z",
+    "unlockCode": "",
+    "resultPublishTime": ""
+  },
+  {
+    "filename": "all_india_mock_10.html",
+    "examId": "QWxsIEluZGlhXzEw",
+    "title": "All India Mock 10",
+    "mockNumber": "10",
+    "categoryPath": [
+      "Others"
+    ],
+    "type": "Regular",
+    "visibility": "Listed",
+    "pricing": "Free",
+    "questionsCount": 100,
+    "duration": 90,
+    "fullMarks": 100,
+    "timestamp": "2026-06-20T13:53:31.103Z",
+    "unlockCode": "",
+    "resultPublishTime": ""
+  }
+]
