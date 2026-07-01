@@ -175,5 +175,25 @@
       "startTime": "2026-06-28T08:15",
       "endTime": "2026-06-28T19:29"
     }
+  },
+  {
+    "filename": "WBCS_EXAM_2024_OFFICIAL_Mock_1.html",
+    "examId": "V0JDUyBFWEFNIDIwMjQgUFJFVklPVVMgWUVBUiAxNFRIIEpVTkUgMjAyNl8=",
+    "title": "WBCS EXAM 2024 PREVIOUS YEAR 14TH JUNE 2026",
+    "mockNumber": 1,
+    "categoryPath": [
+      "WBPSC",
+      "WBCS",
+      "PREVIOUS YEAR"
+    ],
+    "type": "Regular",
+    "visibility": "Listed",
+    "pricing": "Free",
+    "questionsCount": 200,
+    "duration": 135,
+    "fullMarks": 200,
+    "timestamp": "2026-07-01T08:26:41.059Z",
+    "unlockCode": "",
+    "resultPublishTime": ""
   }
 ]
