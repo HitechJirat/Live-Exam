@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Results Checking Portal | Hitech Jirat</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@300;400;600;800;900&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', 'Hind Siliguri', sans-serif;
+            overflow-x: hidden;
+        }
+        .animated-gradient {
+            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #020617, #172554);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .float-anim { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Premium Particles */
+        .particle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatUp var(--duration) ease-in infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            50% { opacity: 0.3; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        /* Indian Flag Themed Hover Effect */
+        .flag-hover-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .flag-hover-card:hover {
+            background: linear-gradient(135deg, rgba(255, 153, 51, 0.15) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(19, 136, 8, 0.15) 100%) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            box-shadow: 0 20px 45px rgba(255, 153, 51, 0.08), 0 0 30px rgba(19, 136, 8, 0.05) !important;
+            transform: translateY(-4px);
+        }
+        
+        .result-pill {
+            backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+        }
+        .modal-enter {
+            animation: modalFadeIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.9) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+    </style>
+</head>
+<body class="animated-gradient min-h-screen text-slate-100 flex flex-col justify-between relative overflow-y-auto">
+
+    <!-- Glowing Orbs & Particles Background -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[130px] mix-blend-screen float-anim"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-emerald-600/15 rounded-full blur-[150px] mix-blend-screen float-anim" style="animation-delay: 2s;"></div>
+        <div class="absolute top-[45%] left-[55%] w-[400px] h-[400px] bg-purple-600/15 rounded-full blur-[110px] mix-blend-screen float-anim" style="animation-delay: 4s;"></div>
+        <div id="particles-container"></div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="w-full px-6 py-5 relative z-10 flex justify-between items-center border-b border-white/5 bg-slate-950/20 backdrop-blur-md">
+        <div class="flex items-center gap-4">
+            <a href="index.html" class="w-10 h-10 rounded-xl glass-panel border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:bg-white/5 transition active:scale-95 shrink-0">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <div class="w-11 h-11 rounded-xl border border-white/10 overflow-hidden shadow-lg bg-white flex items-center justify-center shrink-0">
+                <img src="assets/photos/software_logo.jpg" alt="Logo" class="w-full h-full object-cover">
+            </div>
+            <div>
+                <h2 class="text-lg font-black tracking-tight text-white uppercase">Hitech Jirat</h2>
+                <p class="text-[9px] font-black tracking-widest text-emerald-400 uppercase">Results Portal</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow flex flex-col items-center justify-center px-4 py-12 relative z-10">
+        
+        <!-- Notice Board (Premium Slider) -->
+        <div id="noticeBoard" class="w-full max-w-xl glass-panel rounded-[24px] p-5 border border-white/10 mb-6 relative overflow-hidden transition-all duration-500 shadow-2xl">
+            <!-- Glowing Background Effects inside Notice Board -->
+            <div class="absolute -top-12 -left-12 w-24 h-24 bg-amber-500/25 rounded-full blur-xl pointer-events-none"></div>
+            <div class="absolute -bottom-12 -right-12 w-24 h-24 bg-indigo-500/15 rounded-full blur-xl pointer-events-none"></div>
+            
+            <!-- Slider Viewport -->
+            <div class="relative w-full overflow-hidden">
+                <div id="noticeSliderTrack" class="w-full flex transition-transform duration-700 ease-in-out" style="transform: translateX(0%);">
+                    <!-- Default Premium Skeleton Loading Slide -->
+                    <div class="w-full flex-shrink-0 px-1 select-none animate-pulse">
+                        <div class="p-5 rounded-[20px] bg-slate-950/40 border border-white/5 flex flex-col justify-between min-h-[100px] relative overflow-hidden">
+                            <div class="flex justify-between items-center gap-4 mb-2.5">
+                                <div class="h-4 bg-white/10 w-24 rounded-full"></div>
+                                <div class="h-3 bg-white/10 w-20 rounded-full"></div>
+                            </div>
+                            <div class="h-5 bg-white/10 w-3/4 rounded-md mb-2"></div>
+                            <div class="h-3 bg-white/10 w-1/2 rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slider Dots Indicator -->
+            <div id="sliderDots" class="flex justify-center items-center gap-2 mt-4">
+                <!-- Dots will be injected here dynamically -->
+            </div>
+        </div>
+
+        <!-- SECTION 1: LOGIN PANEL -->
+        <div id="loginSection" class="w-full max-w-xl glass-panel rounded-[24px] md:rounded-[36px] p-5 md:p-10 border border-white/10 flag-hover-card">
+            
+            <div class="text-center mb-8">
+                <div class="inline-block p-4 rounded-full bg-blue-500/10 border border-blue-500/20 mb-4 shadow-inner">
+                    <i class="fa-solid fa-award text-4xl text-blue-400"></i>
+                </div>
+                <h1 class="text-2xl md:text-3xl font-black text-white tracking-tight uppercase">Check Exam Results</h1>
+                <p class="text-xs text-slate-400 font-bold mt-2 tracking-wide">Enter your credentials to download scorecard & answer keys</p>
+            </div>
+
+            <!-- Form -->
+            <div class="space-y-6">
+                <!-- Dropdown Selector -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-black text-slate-400 uppercase tracking-widest">Select Exam 📝</label>
+                    <div class="relative">
+                        <select id="examSelector" onchange="handleExamSelect()" class="w-full bg-slate-900/60 border border-white/10 rounded-2xl px-5 py-4 text-sm font-bold text-white outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all appearance-none cursor-pointer">
+                            <option value="">-- Fetching published exams... --</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-5 pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Time Lock Alert Banner -->
+                <div id="timeLockAlert" class="hidden p-4 rounded-2xl bg-yellow-500/10 border border-yellow-500/20 flex gap-3 text-yellow-400">
+                    <div class="text-lg"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <div>
+                        <p class="text-xs font-black uppercase tracking-wider">Results Locked 🔒</p>
+                        <p class="text-xs font-bold text-slate-300 mt-1" id="timeLockMsg">This result is scheduled to publish later.</p>
+                    </div>
+                </div>
+
+                <!-- Credentials Panel (Inputs) -->
+                <div id="credentialsForm" class="space-y-6">
+                    <div class="space-y-2">
+                        <label class="block text-xs font-black text-slate-400 uppercase tracking-widest">Student Name 👨‍🎓</label>
+                        <input type="text" id="studentNameInput" placeholder="e.g. BIPUL HALDER" class="w-full bg-slate-900/60 border border-white/10 rounded-2xl px-5 py-4 text-sm font-black text-white outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all placeholder:text-slate-600 placeholder:font-bold">
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block text-xs font-black text-slate-400 uppercase tracking-widest">Mobile Number / Password 📞</label>
+                        <input type="text" id="studentMobileInput" placeholder="e.g. 7584992853" class="w-full bg-slate-900/60 border border-white/10 rounded-2xl px-5 py-4 text-sm font-black text-white outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all placeholder:text-slate-600 placeholder:font-bold">
+                    </div>
+
+                    <!-- Secret Unlock Code Input (Hidden by default, shown if exam has unlockCode) -->
+                    <div id="unlockCodeContainer" class="space-y-2 hidden">
+                        <label class="block text-xs font-black text-amber-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <i class="fa-solid fa-lock text-amber-500"></i> Secret Result Passcode 🔑
+                        </label>
+                        <input type="password" id="unlockCodeInput" placeholder="Enter Secret Result Passcode" class="w-full bg-slate-900/60 border border-amber-500/30 focus:border-amber-500 focus:ring-2 focus:ring-amber-500 rounded-2xl px-5 py-4 text-sm font-black text-white outline-none transition-all placeholder:text-slate-600 placeholder:font-bold">
+                        <p class="text-[10px] font-bold text-amber-500/85">This exam's result is protected by the admin with a passcode.</p>
+                    </div>
+
+                    <!-- Fetch Button -->
+                    <button onclick="fetchResult()" id="btnSubmitLogin" class="w-full bg-gradient-to-r from-orange-500 via-indigo-600 to-emerald-600 hover:from-orange-400 hover:via-indigo-500 hover:to-emerald-500 text-white font-black text-sm md:text-base uppercase py-4 md:py-5 rounded-2xl transition-all duration-300 shadow-xl shadow-indigo-500/20 hover:shadow-indigo-500/35 hover:-translate-y-0.5 active:translate-y-0 active:scale-98 tracking-widest flex justify-center items-center gap-2">
+                        <i class="fa-solid fa-square-poll-vertical text-lg"></i> Check Result & Answer Key ➔
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: RESULTS VIEW DASHBOARD -->
+        <div id="dashboardSection" class="hidden w-full max-w-5xl glass-panel rounded-[24px] md:rounded-[40px] p-4 sm:p-6 md:p-10 border border-white/10 relative">
+            
+            <!-- Dashboard Top Navigation Bar -->
+            <div class="flex justify-between items-center mb-6 border-b border-white/5 pb-4">
+                <span class="text-[10px] font-black tracking-widest text-slate-500 uppercase flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Candidate Dashboard
+                </span>
+                <button onclick="logoutDashboard()" class="bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white font-extrabold text-xs uppercase px-5 py-3 rounded-2xl transition shadow-lg shadow-red-500/10 hover:shadow-red-500/20 active:scale-95 flex items-center gap-2">
+                    <i class="fa-solid fa-power-off"></i> Logout / Back
+                </button>
+            </div>
+
+            <!-- Dashboard Top Info Header -->
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-6 border-b border-white/10 pb-8 mb-8">
+                <div>
+                    <span id="dashboardInstName" class="text-[10px] font-black tracking-widest text-emerald-400 uppercase bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">Future Job Coaching</span>
+                    <h2 id="dashboardExamTitle" class="text-2xl md:text-3xl font-black text-white tracking-tight mt-4 uppercase">General Knowledge (Mock 1)</h2>
+                    <p class="text-xs text-slate-400 font-bold mt-2 flex items-center gap-2">
+                        <i class="fa-regular fa-calendar-check text-blue-400"></i> Date Taken: <span id="dashboardExamDate">20 June 2026</span>
+                    </p>
+                    <p id="examTimeContainer" class="text-xs text-slate-400 font-bold mt-1.5 flex items-center gap-2 hidden">
+                        <i class="fa-regular fa-clock text-indigo-400"></i> Time Spent: <span id="dashboardExamTime">N/A</span>
+                    </p>
+                </div>
+                
+                <!-- Status Badge, Score pill & Leaderboard -->
+                <div class="flex items-center gap-3 self-start md:self-auto flex-wrap">
+                    <button onclick="openLeaderboard()" class="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-extrabold text-xs uppercase px-5 py-3 rounded-2xl transition shadow-lg shadow-orange-500/20 hover:shadow-orange-500/35 active:scale-95 flex items-center gap-2">
+                        <i class="fa-solid fa-trophy"></i> Rank List / Leaderboard
+                    </button>
+                    <div id="dashboardPassBadge" class="px-5 py-3 rounded-2xl font-black text-xs tracking-widest uppercase text-center min-w-[120px]">
+                        Pass Status
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile & Score Card Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <!-- Left Details Card (Personal details) -->
+                <div class="md:col-span-1 bg-slate-950/40 border border-white/5 rounded-3xl p-6 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Candidate Profile</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <span class="text-[10px] font-bold text-slate-500 block uppercase">Name</span>
+                                <span id="resCandName" class="text-base font-black text-white break-words">BIPUL HALDER</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-bold text-slate-500 block uppercase">Mobile Number</span>
+                                <span id="resCandMobile" class="text-base font-black text-white">7584992853</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-bold text-slate-500 block uppercase">Marks Achieved</span>
+                                <span id="resMarksSummary" class="text-lg font-black text-blue-400">35 / 50 Pts</span>
+                            </div>
+                            <div class="border-t border-white/5 pt-3 mt-3">
+                                <span class="text-[10px] font-bold text-slate-500 block uppercase">Candidate Rank 🏆</span>
+                                <span id="resRankSummary" class="text-lg font-black text-amber-400">Rank: N/A</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Score metrics grid -->
+                <div class="md:col-span-3 grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Correct Ans -->
+                    <div class="bg-emerald-500/5 border border-emerald-500/10 rounded-2xl md:rounded-3xl p-4 sm:p-5 flex flex-col justify-between">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-[10px] font-black text-emerald-400 uppercase tracking-widest">Correct</span>
+                            <div class="w-8 h-8 rounded-full bg-emerald-500/10 flex justify-center items-center text-emerald-400 text-sm"><i class="fa-solid fa-circle-check"></i></div>
+                        </div>
+                        <div>
+                            <span id="resCorrectCount" class="text-2xl font-black text-emerald-400">35</span>
+                            <span class="text-slate-500 text-[10px] block font-bold mt-1 uppercase">Correct Answers</span>
+                        </div>
+                    </div>
+
+                    <!-- Wrong Ans -->
+                    <div class="bg-red-500/5 border border-red-500/10 rounded-2xl md:rounded-3xl p-4 sm:p-5 flex flex-col justify-between">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-[10px] font-black text-red-400 uppercase tracking-widest">Wrong</span>
+                            <div class="w-8 h-8 rounded-full bg-red-500/10 flex justify-center items-center text-red-400 text-sm"><i class="fa-solid fa-circle-xmark"></i></div>
+                        </div>
+                        <div>
+                            <span id="resWrongCount" class="text-2xl font-black text-red-400">5</span>
+                            <span class="text-slate-500 text-[10px] block font-bold mt-1 uppercase">Wrong Answers</span>
+                        </div>
+                    </div>
+
+                    <!-- Skipped Ans -->
+                    <div class="bg-slate-500/5 border border-white/5 rounded-2xl md:rounded-3xl p-4 sm:p-5 flex flex-col justify-between">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Skipped</span>
+                            <div class="w-8 h-8 rounded-full bg-white/5 flex justify-center items-center text-slate-400 text-sm"><i class="fa-solid fa-circle-minus"></i></div>
+                        </div>
+                        <div>
+                            <span id="resSkippedCount" class="text-2xl font-black text-slate-400">10</span>
+                            <span class="text-slate-500 text-[10px] block font-bold mt-1 uppercase">Skipped Answers</span>
+                        </div>
+                    </div>
+
+                    <!-- Cheating Events -->
+                    <div id="cheatingMetricCard" class="bg-amber-500/5 border border-amber-500/10 rounded-2xl md:rounded-3xl p-4 sm:p-5 flex flex-col justify-between">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-[10px] font-black text-amber-400 uppercase tracking-widest">Security alerts</span>
+                            <div id="resCheatingIcon" class="w-8 h-8 rounded-full bg-amber-500/10 flex justify-center items-center text-amber-400 text-sm"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        </div>
+                        <div>
+                            <span id="resCheatingCount" class="text-2xl font-black text-amber-400">0</span>
+                            <span class="text-slate-500 text-[10px] block font-bold mt-1 uppercase">Security Warnings</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exam Timing & Device Analytics Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <!-- Device Details Card -->
+                <div class="bg-slate-950/40 border border-white/5 rounded-3xl p-6">
+                    <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-1.5"><i class="fa-solid fa-display text-purple-400"></i> Device & Platform Info</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="p-4 bg-slate-900/60 border border-white/5 rounded-2xl flex items-center gap-3">
+                            <div id="deviceIconContainer" class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-base">
+                                <i class="fa-solid fa-laptop"></i>
+                            </div>
+                            <div>
+                                <span class="text-[9px] font-bold text-slate-500 block uppercase">Device Type</span>
+                                <span id="deviceTypeVal" class="text-xs font-black text-white">Desktop</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-slate-900/60 border border-white/5 rounded-2xl flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 text-base">
+                                <i class="fa-solid fa-window-maximize"></i>
+                            </div>
+                            <div>
+                                <span class="text-[9px] font-bold text-slate-500 block uppercase">Operating System</span>
+                                <span id="deviceOSVal" class="text-xs font-black text-white">Windows</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-3 bg-slate-950/60 border border-white/5 rounded-xl text-[10px] font-mono text-slate-400 break-all leading-normal" id="deviceFullAgent">
+                        N/A
+                    </div>
+                </div>
+
+                <!-- Timing Details Card -->
+                <div class="bg-slate-950/40 border border-white/5 rounded-3xl p-6">
+                    <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-1.5"><i class="fa-regular fa-clock text-sky-400"></i> Exam Session Timing</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center p-3 bg-slate-900/60 border border-white/5 rounded-2xl">
+                            <span class="text-xs font-bold text-slate-400 flex items-center gap-1.5"><i class="fa-solid fa-play text-emerald-400 text-[10px]"></i> Started At</span>
+                            <span id="examStartVal" class="text-xs font-black text-white">N/A</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-slate-900/60 border border-white/5 rounded-2xl">
+                            <span class="text-xs font-bold text-slate-400 flex items-center gap-1.5"><i class="fa-solid fa-stop text-red-400 text-[10px]"></i> Submitted At</span>
+                            <span id="examSubmitVal" class="text-xs font-black text-white">N/A</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-slate-900/60 border border-white/5 rounded-2xl">
+                            <span class="text-xs font-bold text-slate-400 flex items-center gap-1.5"><i class="fa-solid fa-hourglass-half text-sky-400 text-[10px]"></i> Total Duration</span>
+                            <span id="examDurationVal" class="text-xs font-black text-sky-400">N/A</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Log & Cheating Details Section -->
+            <div id="securityLogSection" class="bg-slate-950/40 border border-white/5 rounded-3xl p-6 mb-8">
+                <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-red-400"></i> Security Warnings & Cheating Logs</h3>
+                <div id="cheatingLogsList" class="max-h-[160px] overflow-y-auto space-y-2 pr-2">
+                    <!-- Logs list rendered dynamically -->
+                </div>
+            </div>
+
+            <!-- Printing Action Buttons (Moved above Sectional Breakdown) -->
+            <div class="bg-slate-950/50 border border-white/10 rounded-3xl p-6 mb-8">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div>
+                        <h4 class="text-sm font-black text-white uppercase tracking-wider"><i class="fa-solid fa-print text-indigo-400 mr-1.5"></i> Verification Reports & Answer Keys</h4>
+                        <p class="text-[11px] text-slate-500 font-bold mt-1.5">Review answers, scores, cheating logs, and print official verified scorecard PDF documents.</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap gap-2.5">
+                        <button onclick="triggerPrint('KEY')" class="bg-blue-600 hover:bg-blue-500 text-white font-black text-xs uppercase px-4 py-3.5 rounded-xl transition flex items-center justify-center gap-1.5 shadow-lg shadow-blue-900/20 active:scale-95 w-full lg:w-auto">
+                            <i class="fa-solid fa-list-check"></i> TCS Style Key ➔
+                        </button>
+                        <button onclick="triggerPrint('MODERN')" class="bg-teal-600 hover:bg-teal-500 text-white font-black text-xs uppercase px-4 py-3.5 rounded-xl transition flex items-center justify-center gap-1.5 shadow-lg shadow-teal-900/20 active:scale-95 w-full lg:w-auto">
+                            <i class="fa-solid fa-receipt"></i> Modern Key ➔
+                        </button>
+                        <button onclick="triggerPrint('RANK')" class="bg-amber-600 hover:bg-amber-500 text-white font-black text-xs uppercase px-4 py-3.5 rounded-xl transition flex items-center justify-center gap-1.5 shadow-lg shadow-amber-900/20 active:scale-95 w-full lg:w-auto">
+                            <i class="fa-solid fa-id-card"></i> Rank Card ➔
+                        </button>
+                        <button onclick="triggerPrint('ANALYTICS')" class="bg-indigo-600 hover:bg-indigo-500 text-white font-black text-xs uppercase px-4 py-3.5 rounded-xl transition flex items-center justify-center gap-1.5 shadow-lg shadow-indigo-900/20 active:scale-95 w-full lg:w-auto">
+                            <i class="fa-solid fa-chart-line"></i> Analytics Report ➔
+                        </button>
+                        <button onclick="openShareModal()" class="bg-green-600 hover:bg-green-500 text-white font-black text-xs uppercase px-4 py-3.5 rounded-xl transition flex items-center justify-center gap-1.5 shadow-lg shadow-green-950/20 hover:shadow-green-500/30 active:scale-95 w-full lg:w-auto col-span-1 sm:col-span-2 lg:col-span-auto">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Share Result ➔
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subject-wise performance sections -->
+            <div id="topicAnalyticsSection" class="mb-4">
+                <!-- Topic cards rendered dynamically -->
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- WhatsApp Share Modal -->
+    <div id="shareModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+        <div class="w-full max-w-md glass-panel rounded-[32px] p-6 md:p-8 border border-white/10 modal-enter relative shadow-2xl">
+            <!-- Close Button -->
+            <button onclick="closeShareModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            
+            <div class="text-center mb-6">
+                <div class="inline-block p-3.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-3 shadow-inner">
+                    <i class="fa-brands fa-whatsapp text-3xl text-emerald-400"></i>
+                </div>
+                <h3 class="text-xl font-black text-white tracking-tight uppercase">Share Result</h3>
+                <p class="text-[11px] text-slate-400 font-bold mt-1 tracking-wide">Select where you want to share your scorecard</p>
+            </div>
+            
+            <div class="space-y-3">
+                <button onclick="shareToWhatsApp('group')" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-white font-black text-xs uppercase py-4 rounded-2xl transition-all shadow-lg shadow-emerald-500/10 hover:shadow-emerald-500/25 active:scale-98 tracking-widest flex justify-center items-center gap-2">
+                    <i class="fa-solid fa-users text-sm"></i> 📱 Study Group
+                </button>
+                <button onclick="shareToWhatsApp('teachers')" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-black text-xs uppercase py-4 rounded-2xl transition-all shadow-lg shadow-emerald-500/10 hover:shadow-emerald-500/25 active:scale-98 tracking-widest flex justify-center items-center gap-2">
+                    <i class="fa-solid fa-chalkboard-user text-sm"></i> 👨‍🏫 Share with Teachers
+                </button>
+                <button onclick="shareToWhatsApp('admin')" class="w-full bg-gradient-to-r from-teal-500 to-indigo-600 hover:from-teal-400 hover:to-indigo-500 text-white font-black text-xs uppercase py-4 rounded-2xl transition-all shadow-lg shadow-teal-500/10 hover:shadow-teal-500/25 active:scale-98 tracking-widest flex justify-center items-center gap-2">
+                    <i class="fa-solid fa-user-tie text-sm"></i> 👑 Share with Admin
+                </button>
+            </div>
+            
+            <button onclick="closeShareModal()" class="w-full bg-slate-900 hover:bg-slate-800 border border-white/5 text-slate-300 font-extrabold text-xs uppercase py-3.5 rounded-2xl transition mt-5 tracking-widest active:scale-98">
+                Cancel
+            </button>
+        </div>
+    </div>
+
+    <!-- Leaderboard / Rank List Modal -->
+    <div id="leaderboardModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+        <div class="w-full max-w-6xl glass-panel rounded-[32px] p-6 md:p-8 border border-white/10 modal-enter relative shadow-2xl flex flex-col max-h-[95vh]">
+            <!-- Close Button -->
+            <button onclick="closeLeaderboard()" class="absolute top-5 right-5 text-slate-400 hover:text-white transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            
+            <div class="text-center mb-6 flex-shrink-0">
+                <div class="inline-block p-3.5 rounded-full bg-amber-500/10 border border-amber-500/20 mb-3 shadow-inner">
+                    <i class="fa-solid fa-trophy text-3xl text-amber-400"></i>
+                </div>
+                <h3 class="text-lg font-black text-white tracking-tight uppercase">Exam Leaderboard / Rank List 🏆</h3>
+                <p id="leaderboardExamTitle" class="text-[10px] text-emerald-400 font-bold mt-1 tracking-wide uppercase">Exam Title</p>
+                <button onclick="refreshLeaderboardData()" class="mt-3 inline-flex items-center gap-1.5 px-3 py-1 bg-slate-900 hover:bg-slate-800 border border-white/10 rounded-full text-[10px] font-black text-slate-300 hover:text-amber-400 transition active:scale-95">
+                    <i class="fa-solid fa-arrows-rotate"></i> Refresh / Sync Data
+                </button>
+            </div>
+            
+            <!-- Rank list container -->
+            <div class="flex-grow overflow-y-auto pr-2 grid grid-cols-1 md:grid-cols-2 gap-3 min-h-[300px]" id="leaderboardContainer">
+                <!-- Leaderboard rows rendered dynamically -->
+            </div>
+            
+            <button onclick="closeLeaderboard()" class="w-full bg-slate-900 hover:bg-slate-800 border border-white/5 text-slate-300 font-extrabold text-xs uppercase py-3.5 rounded-2xl transition mt-5 tracking-widest active:scale-98 flex-shrink-0">
+                Close Leaderboard
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w-full text-center py-6 border-t border-white/5 relative z-10 text-[10px] font-bold tracking-widest text-slate-500 uppercase">©️ @All Rights Reserved by <a href="https://hitechjirat.blogspot.com/" target="_blank" class="underline hover:text-white transition">Hitech Jirat</a> Online Examination Software <script>document.write(new Date().getFullYear())</script>@ ©️</footer>
+
+    <!-- Floating WhatsApp Widget -->
+    <div id="whatsappFloatingWidget" class="fixed bottom-6 right-6 z-[99999] flex flex-col items-end gap-3 no-print">
+        <!-- Admin Contact Card Dropdown (Hidden initially) -->
+        <div id="adminHeaderContactCard" class="hidden glass-panel p-5 rounded-[28px] flex items-center gap-4 shadow-2xl border-white/10 w-[330px] transition-all duration-300 scale-95 opacity-0 origin-bottom-right">
+            <!-- Glowing Avatar Frame -->
+            <div class="relative flex-shrink-0">
+                <div class="absolute -inset-0.5 bg-gradient-to-tr from-green-500 to-emerald-500 rounded-full blur opacity-75 animate-pulse"></div>
+                <div class="relative w-16 h-16 rounded-full p-0.5 bg-slate-900 border border-white/15 flex items-center justify-center overflow-hidden">
+                    <img src="assets/photos/admin.jpg" class="w-full h-full object-cover rounded-full" alt="Admin" onerror="this.style.display='none'; document.getElementById('adminHeaderFallbackIcon').style.display='flex';">
+                    <div id="adminHeaderFallbackIcon" class="w-full h-full bg-slate-800 hidden items-center justify-center">
+                        <i class="fa-solid fa-user-tie text-2xl text-green-400"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="transition-all flex-1 min-w-0 text-left">
+                <p class="text-emerald-400 text-[9px] font-black tracking-wide mb-1 uppercase truncate">Technical Support</p>
+                <h4 class="text-white font-black text-sm leading-tight mb-1">Bipul Halder</h4>
+                <p class="text-slate-300 text-[10px] font-bold mb-0.5 truncate" title="mailtobipulhalder@gmail.com"><i class="fa-solid fa-envelope text-blue-400 mr-1.5"></i>mailtobipulhalder@gmail.com</p>
+                <p class="text-slate-300 text-[10px] font-bold mb-0.5 truncate"><i class="fa-solid fa-phone text-indigo-400 mr-1.5"></i>MOB: 7584992853</p>
+                <p class="text-slate-400 text-[9px] truncate">Jirat, Hooghly, West Bengal</p>
+            </div>
+            <a href="https://wa.me/917584992853" target="_blank" class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white hover:bg-green-400 hover:scale-110 transition shadow-lg flex-shrink-0">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+            </a>
+        </div>
+
+        <button id="whatsappHeaderBtn" class="w-14 h-14 rounded-full bg-green-500 hover:bg-green-400 text-white flex items-center justify-center shadow-lg hover:shadow-green-500/20 transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer">
+            <i class="fa-brands fa-whatsapp text-3xl"></i>
+        </button>
+    </div>
+
+    <!-- Result script engine dependencies -->
+    <script src="student/print-engine.js"></script>
+
+    <!-- Custom Frontend controller -->
+    <script>
+        const GOOGLE_APP_URL = "https://script.google.com/macros/s/AKfycbwWkO2hhc3zty2WJm868Zs-MK5XjceCJ2UNrAVb_GuuMNRI31sow3G46hUXFdGEX_IZ8A/exec";
+        const GITHUB_USERNAME = "HitechJirat";
+        const GITHUB_REPO = "Live-Exam";
+        const INDEX_URL = `https://${GITHUB_USERNAME}.github.io/${GITHUB_REPO}/exams_index.json`;
+        
+        let publishedExams = [];
+        let selectedExam = null;
+
+        // Create background floating particles
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('particles-container');
+            if (container) {
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    const size = Math.random() * 6 + 2;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${Math.random() * 100}vw`;
+                    particle.style.setProperty('--duration', `${Math.random() * 8 + 4}s`);
+                    particle.style.animationDelay = `${Math.random() * 5}s`;
+                    container.appendChild(particle);
+                }
+            }
+            fetchPublishedExamsList();
+
+            // Session persistence check on page refresh
+            let savedResult = sessionStorage.getItem('currentLoadedResult');
+            if (savedResult) {
+                try {
+                    let parsedData = JSON.parse(savedResult);
+                    loadResultDashboard(parsedData);
+                } catch(e) {
+                    sessionStorage.removeItem('currentLoadedResult');
+                }
+            }
+        });
+
+        const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
+        const CACHE_KEY = "published_exams_cache_data_v3";
+        const CACHE_TIME_KEY = "published_exams_cache_timestamp_v3";
+
+        function formatExamDate(dateStr) {
+            if (!dateStr) return "";
+            try {
+                const d = new Date(dateStr);
+                if (isNaN(d.getTime())) return "";
+                const day = d.getDate();
+                const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                const month = monthNames[d.getMonth()];
+                const year = d.getFullYear();
+                
+                let suffix = "th";
+                if (day === 1 || day === 21 || day === 31) suffix = "st";
+                else if (day === 2 || day === 22) suffix = "nd";
+                else if (day === 3 || day === 23) suffix = "rd";
+                
+                return `${day}${suffix} ${month} ${year}`;
+            } catch(e) {
+                return "";
+            }
+        }
+
+        function renderExamsDropdown(exams) {
+            const selector = document.getElementById('examSelector');
+            if (!selector) return;
+            selector.innerHTML = '';
+            
+            if (exams && exams.length > 0) {
+                // Clone and sort descending by mock number (or default order if non-numeric)
+                let sortedExams = [...exams].sort((a, b) => {
+                    let mockA = parseInt(a.mockNumber) || 0;
+                    let mockB = parseInt(b.mockNumber) || 0;
+                    if (mockB !== mockA) return mockB - mockA;
+                    
+                    let dateA = a.resultPublishTime ? new Date(a.resultPublishTime) : new Date(0);
+                    let dateB = b.resultPublishTime ? new Date(b.resultPublishTime) : new Date(0);
+                    return dateB - dateA;
+                });
+                
+                // Limit to last 20
+                let top20 = sortedExams.slice(0, 20);
+                
+                selector.innerHTML += '<option value="">-- Choose your exam --</option>';
+                top20.forEach(exam => {
+                    const datePart = formatExamDate(exam.resultPublishTime);
+                    const displayName = datePart ? `${exam.title} (${datePart})` : `${exam.title} (Mock #${exam.mockNumber})`;
+                    selector.innerHTML += `<option value="${exam.examId}">${displayName}</option>`;
+                });
+            } else {
+                selector.innerHTML = '<option value="">-- No published exams found --</option>';
+            }
+        }
+
+        let currentSlideIndex = 0;
+        let totalSlides = 0;
+        let sliderInterval = null;
+
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            const track = document.getElementById('noticeSliderTrack');
+            if (!track) return;
+            
+            track.style.transform = `translateX(-${index * 100}%)`;
+            
+            // Update dots styling
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.getElementById(`slider-dot-${i}`);
+                if (dot) {
+                    if (i === index) {
+                        dot.className = "w-4 h-1.5 rounded-full bg-amber-400 transition-all duration-300";
+                    } else {
+                        dot.className = "w-1.5 h-1.5 rounded-full bg-white/30 hover:bg-white/50 transition-all duration-300";
+                    }
+                }
+            }
+        }
+
+        function startNoticeSlider() {
+            stopNoticeSlider();
+            if (totalSlides <= 1) return;
+            sliderInterval = setInterval(() => {
+                let nextIndex = (currentSlideIndex + 1) % totalSlides;
+                goToSlide(nextIndex);
+            }, 4500); // Auto slide every 4.5 seconds
+        }
+
+        function stopNoticeSlider() {
+            if (sliderInterval) {
+                clearInterval(sliderInterval);
+                sliderInterval = null;
+            }
+        }
+
+        function displayNoticeBoard(exams) {
+            const noticeBoard = document.getElementById('noticeBoard');
+            const noticeSliderTrack = document.getElementById('noticeSliderTrack');
+            const sliderDots = document.getElementById('sliderDots');
+            if (!noticeBoard || !noticeSliderTrack || !sliderDots) return;
+
+            // If dashboard is open, hide the notice board and stop slider
+            const dashboardSection = document.getElementById('dashboardSection');
+            if (dashboardSection && !dashboardSection.classList.contains('hidden')) {
+                noticeBoard.classList.add('hidden');
+                stopNoticeSlider();
+                return;
+            }
+
+            const now = new Date();
+            let activeExams = (exams || []).filter(exam => {
+                if (!exam.resultPublishTime) return true;
+                return now >= new Date(exam.resultPublishTime);
+            });
+
+            if (activeExams.length === 0) {
+                noticeBoard.classList.add('hidden');
+                stopNoticeSlider();
+                return;
+            }
+
+            // Sort by publish time descending (latest first)
+            activeExams.sort((a, b) => {
+                let dateA = a.resultPublishTime ? new Date(a.resultPublishTime) : new Date(0);
+                let dateB = b.resultPublishTime ? new Date(b.resultPublishTime) : new Date(0);
+                return dateB - dateA;
+            });
+
+            // Take top 5
+            let top5 = activeExams.slice(0, 5);
+            totalSlides = top5.length;
+            currentSlideIndex = 0;
+
+            let slidesHtml = '';
+            let dotsHtml = '';
+
+            top5.forEach((exam, index) => {
+                let pubDate = "N/A";
+                if (exam.resultPublishTime) {
+                    try {
+                        let d = new Date(exam.resultPublishTime);
+                        pubDate = d.toLocaleString('en-GB', {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: true
+                        });
+                    } catch(e) {}
+                } else {
+                    pubDate = "Immediate";
+                }
+
+                // Latest exam has extra premium styling (index === 0 is the latest)
+                let cardClass = "";
+                let badgeHtml = "";
+                let textClass = "";
+                let glowEffect = "";
+                
+                if (index === 0) {
+                    // Latest slide - Golden Glow & VIP look
+                    cardClass = "bg-gradient-to-r from-amber-500/15 via-orange-500/5 to-slate-900/60 border border-amber-500/30";
+                    badgeHtml = `
+                        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-500 text-slate-950 shadow-lg shadow-amber-500/20 animate-pulse">
+                            🔥 LATEST RESULT
+                        </span>
+                    `;
+                    textClass = "text-amber-300 font-extrabold";
+                    glowEffect = `<div class="absolute -right-8 -top-8 w-20 h-20 bg-amber-500/10 rounded-full blur-xl pointer-events-none animate-pulse"></div>`;
+                } else {
+                    // Normal slide
+                    cardClass = "bg-slate-950/40 border border-white/5";
+                    badgeHtml = `
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-slate-900 text-slate-400 border border-white/10">
+                            📢 NEW RESULT
+                        </span>
+                    `;
+                    textClass = "text-slate-200 font-bold";
+                }
+
+                let datePart = "";
+                if (exam.resultPublishTime) {
+                    try {
+                        let d = new Date(exam.resultPublishTime);
+                        datePart = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+                    } catch(e) {}
+                }
+
+                // Premium Bengali copy with emojis
+                let bengaliMsg = `🎯 <b>${exam.title} (Mock #${exam.mockNumber}) [Date: ${datePart}]</b> এর রেজাল্ট প্রকাশিত হয়েছে! জলদি চেক করো! 🏃‍♂️⚡`;
+                if (index === 0) {
+                    bengaliMsg = `🏆 <b>${exam.title} (Mock #${exam.mockNumber}) [Date: ${datePart}]</b> এর রেজাল্ট এইমাত্র প্রকাশিত হয়েছে! তোমার স্কোর জলদি চেক করো! 🚀🔥`;
+                }
+
+                slidesHtml += `
+                    <div class="w-full flex-shrink-0 px-1 select-none">
+                        <div class="p-5 rounded-[20px] ${cardClass} flex flex-col justify-between min-h-[100px] relative overflow-hidden transition-all duration-300">
+                            ${glowEffect}
+                            <div class="flex justify-between items-center gap-4 mb-2.5 relative z-10">
+                                ${badgeHtml}
+                                <span class="text-[9px] font-bold text-slate-500 flex items-center gap-1"><i class="fa-regular fa-calendar-check text-[10px]"></i> ${pubDate}</span>
+                            </div>
+                            <p class="text-xs sm:text-sm leading-relaxed ${textClass} text-left relative z-10">
+                                ${bengaliMsg}
+                            </p>
+                        </div>
+                    </div>
+                `;
+                
+                dotsHtml += `
+                    <span onclick="goToSlide(${index})" class="cursor-pointer transition-all duration-300 ${index === 0 ? 'w-4 h-1.5 rounded-full bg-amber-400' : 'w-1.5 h-1.5 rounded-full bg-white/30 hover:bg-white/50'}" id="slider-dot-${index}"></span>
+                `;
+            });
+
+            noticeSliderTrack.innerHTML = slidesHtml;
+            sliderDots.innerHTML = dotsHtml;
+            
+            // Set initial position
+            goToSlide(0);
+
+            // Show notice board
+            noticeBoard.classList.remove('hidden');
+            
+            // Start automatic slide interval
+            startNoticeSlider();
+        }
+
+        function fetchPublishedExamsList() {
+            const selector = document.getElementById('examSelector');
+            selector.innerHTML = '<option value="">-- Loading published exams... --</option>';
+
+            const cachedDataStr = sessionStorage.getItem(CACHE_KEY);
+            const cachedTimeStr = sessionStorage.getItem(CACHE_TIME_KEY);
+            const now = Date.now();
+
+            if (cachedDataStr && cachedTimeStr) {
+                const age = now - parseInt(cachedTimeStr);
+                if (age < CACHE_DURATION) {
+                    try {
+                        const exams = JSON.parse(cachedDataStr);
+                        publishedExams = exams;
+                        renderExamsDropdown(exams);
+                        displayNoticeBoard(exams);
+                        console.log(`Loaded published exams list from cache (Age: ${Math.round(age / 1000)}s)`);
+                        
+                        // Revalidate in background
+                        setTimeout(() => {
+                            revalidateExamsList(true);
+                        }, 500);
+                        return;
+                    } catch (e) {
+                        sessionStorage.removeItem(CACHE_KEY);
+                        sessionStorage.removeItem(CACHE_TIME_KEY);
+                    }
+                }
+            }
+
+            revalidateExamsList(false);
+        }
+
+        function revalidateExamsList(isBackground = false) {
+            const selector = document.getElementById('examSelector');
+            const now = Date.now();
+
+            let pAppsScript = fetch(GOOGLE_APP_URL + "?action=getPublishedExams")
+                .then(res => res.json())
+                .catch(err => {
+                    console.error("Apps Script fetch failed:", err);
+                    return { status: "error", data: [] };
+                });
+
+            let pGithub = fetch(INDEX_URL + "?t=" + now)
+                .then(res => res.json())
+                .catch(err => {
+                    console.error("GitHub index fetch failed:", err);
+                    return [];
+                });
+
+            Promise.all([pAppsScript, pGithub])
+                .then(([appsRes, githubExams]) => {
+                    let apiExams = [];
+                    if (appsRes && appsRes.status === "success" && appsRes.data) {
+                        apiExams = appsRes.data;
+                    }
+                    
+                    let autoPublishedExams = [];
+                    if (Array.isArray(githubExams)) {
+                        githubExams.forEach(exam => {
+                            if (exam.type === "Live") {
+                                let publishTime = exam.resultPublishTime || (exam.liveSchedule && exam.liveSchedule.endTime);
+                                if (publishTime) {
+                                    let publishDate = new Date(publishTime);
+                                    let currentDate = new Date();
+                                    if (currentDate >= publishDate) {
+                                        autoPublishedExams.push({
+                                            examId: exam.examId,
+                                            title: exam.title,
+                                            mockNumber: exam.mockNumber || "1",
+                                            resultPublishTime: exam.resultPublishTime || "",
+                                            unlockCode: exam.unlockCode || ""
+                                        });
+                                    }
+                                }
+                            }
+                        });
+                    }
+
+                    // Merge: avoid duplicates by matching examId
+                    let mergedMap = new Map();
+                    apiExams.forEach(e => {
+                        mergedMap.set(e.examId, e);
+                    });
+                    
+                    autoPublishedExams.forEach(e => {
+                        mergedMap.set(e.examId, e);
+                    });
+
+                    // Add unlockCode from github list if present
+                    if (Array.isArray(githubExams)) {
+                        mergedMap.forEach((val, key) => {
+                            let gitExam = githubExams.find(ge => ge.examId === key);
+                            if (gitExam && gitExam.unlockCode) {
+                                val.unlockCode = gitExam.unlockCode;
+                            }
+                        });
+                    }
+
+                    const CUTOFF_DATE = new Date("2026-06-28T00:00:00+05:30");
+                    const mergedExams = Array.from(mergedMap.values()).filter(exam => {
+                        let publishTimeStr = exam.resultPublishTime || (exam.liveSchedule && exam.liveSchedule.endTime);
+                        if (publishTimeStr) {
+                            let publishDate = new Date(publishTimeStr);
+                            if (publishDate < CUTOFF_DATE) {
+                                return false; // Hide older exams before 28th June 2026
+                            }
+                        } else {
+                            let mockNum = parseInt(exam.mockNumber);
+                            if (!isNaN(mockNum) && mockNum < 11) {
+                                return false; // Hide Mock 10 and below
+                            }
+                        }
+                        return true;
+                    });
+                    const dataChanged = JSON.stringify(mergedExams) !== JSON.stringify(publishedExams);
+                    
+                    if (dataChanged || !isBackground) {
+                        publishedExams = mergedExams;
+                        
+                        sessionStorage.setItem(CACHE_KEY, JSON.stringify(publishedExams));
+                        sessionStorage.setItem(CACHE_TIME_KEY, now.toString());
+                        
+                        const prevSelected = selector.value;
+                        renderExamsDropdown(publishedExams);
+                        displayNoticeBoard(publishedExams);
+                        
+                        if (prevSelected && publishedExams.some(e => e.examId === prevSelected)) {
+                            selector.value = prevSelected;
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.error("Failed to load published exams:", err);
+                    if (!isBackground) {
+                        selector.innerHTML = '<option value="">-- Failed to connect to server --</option>';
+                    }
+                });
+        }
+
+        function handleExamSelect() {
+            const selector = document.getElementById('examSelector');
+            const examId = selector.value;
+            const timeAlert = document.getElementById('timeLockAlert');
+            const form = document.getElementById('credentialsForm');
+            const unlockContainer = document.getElementById('unlockCodeContainer');
+
+            timeAlert.classList.add('hidden');
+            form.classList.remove('opacity-50', 'pointer-events-none');
+            if (unlockContainer) {
+                unlockContainer.classList.add('hidden');
+                document.getElementById('unlockCodeInput').value = '';
+            }
+            selectedExam = null;
+
+            if (!examId) return;
+
+            selectedExam = publishedExams.find(e => e.examId === examId);
+            
+
+
+            if (selectedExam && selectedExam.resultPublishTime) {
+                let publishDate = new Date(selectedExam.resultPublishTime);
+                let now = new Date();
+
+                if (now < publishDate) {
+                    timeAlert.classList.remove('hidden');
+                    document.getElementById('timeLockMsg').innerText = `Results are locked. Results will be published on: ${publishDate.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}.`;
+                    form.classList.add('opacity-50', 'pointer-events-none');
+                }
+            }
+        }
+
+        function fetchResult() {
+            const selector = document.getElementById('examSelector');
+            const examId = selector.value;
+            const name = document.getElementById('studentNameInput').value.trim();
+            const mobile = document.getElementById('studentMobileInput').value.trim();
+
+            if (!examId) return alert("Please select an exam first.");
+            if (!name) return alert("Please enter your name.");
+            if (!mobile) return alert("Please enter your Mobile number / Password.");
+
+            const btn = document.getElementById('btnSubmitLogin');
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Authenticating...';
+            btn.disabled = true;
+
+            // Local Cache Validation to prevent API limit exhaustion
+            const cacheKey = `result_cache_${examId}_${mobile.replace(/\s+/g, '_')}`;
+            const cachedResult = sessionStorage.getItem(cacheKey);
+            if (cachedResult) {
+                try {
+                    const parsed = JSON.parse(cachedResult);
+                    console.log("Loading result from local session cache to prevent API limit usage");
+                    setTimeout(() => {
+                        btn.innerHTML = originalHtml;
+                        btn.disabled = false;
+                        loadResultDashboard(parsed);
+                    }, 500);
+                    return;
+                } catch(e) {
+                    sessionStorage.removeItem(cacheKey);
+                }
+            }
+
+            const url = `${GOOGLE_APP_URL}?action=checkStudentResult&examId=${examId}&name=${encodeURIComponent(name)}&mobile=${encodeURIComponent(mobile)}`;
+
+            fetch(url)
+                .then(res => res.json())
+                .then(response => {
+                    if (response.status === "success" && response.data) {
+                        sessionStorage.setItem(cacheKey, JSON.stringify(response.data));
+                        // Enforce a 3-second cooldown before button becomes active again
+                        setTimeout(() => {
+                            btn.innerHTML = originalHtml;
+                            btn.disabled = false;
+                        }, 3000);
+                        loadResultDashboard(response.data);
+                    } else {
+                        setTimeout(() => {
+                            btn.innerHTML = originalHtml;
+                            btn.disabled = false;
+                        }, 3000);
+                        alert(response.message || "Failed to load result.");
+                    }
+                })
+                .catch(err => {
+                    console.error("Result Fetch Error:", err);
+                    setTimeout(() => {
+                        btn.innerHTML = originalHtml;
+                        btn.disabled = false;
+                    }, 3000);
+                    alert("❌ Connection timed out or server error. Please check your internet connection.");
+                });
+        }
+
+        function loadResultDashboard(data) {
+            // Save result session for refresh persistence
+            sessionStorage.setItem('currentLoadedResult', JSON.stringify(data));
+
+            let resultObj = {};
+            let detailedObj = {};
+            let configObj = {};
+
+            try { resultObj = JSON.parse(data.ResultJSON || "{}"); } catch(e){}
+            try { detailedObj = JSON.parse(data.DetailedJSON || "{}"); } catch(e){}
+            try { configObj = JSON.parse(data.ExamConfigJSON || "{}"); } catch(e){}
+
+            // Map variables globally for print-engine.js compatibility
+            let minPass = parseFloat(configObj.minPassPercent || 50);
+            let percent = data.TotalMarks > 0 ? (data.Score / data.TotalMarks) * 100 : 0;
+            let passStatus = percent >= minPass ? 'PASS' : 'FAIL';
+
+            window.myResults = [ {
+                RowId: 1,
+                ExamID: data.ExamID,
+                StudentID: data.StudentID,
+                StudentName: data.StudentName,
+                StudentMobile: data.Identifier,
+                Identifier: data.Identifier,
+                TotalMarks: data.TotalMarks,
+                TotalMarksObtained: data.Score,
+                Score: data.Score,
+                FullMarks: data.TotalMarks,
+                Timestamp: data.Timestamp,
+                Percentage: percent,
+                ResultJSON: data.ResultJSON,
+                detailed: data.DetailedJSON,
+                CheatingWarnings: detailedObj.cheatingLogs ? detailedObj.cheatingLogs.filter(log => log.type !== 'info').length : 0,
+                TimeTaken: resultObj.timeTaken || detailedObj.timeTaken || detailedObj.totalTime || "N/A",
+                deviceInfo: resultObj.deviceInfo || detailedObj.deviceInfo || "N/A",
+                Date: data.Timestamp,
+                ExamName: configObj.title || resultObj.examName || "Exam",
+                CorrectAns: resultObj.correct !== undefined ? resultObj.correct : 0,
+                WrongAns: resultObj.wrong !== undefined ? resultObj.wrong : 0,
+                Rank: data.Rank !== undefined ? data.Rank : "N/A",
+                TotalCandidates: data.TotalCandidates !== undefined ? data.TotalCandidates : "N/A",
+                passStatus: passStatus
+            } ];
+
+            window.currentStudent = {
+                Name: data.StudentName,
+                Mobile: data.Identifier,
+                Institute: resultObj.instName || configObj.instName || "Hitech Jirat"
+            };
+
+            window.globalExamHistory = [ {
+                "Exam Title": configObj.title || "Exam",
+                "Mock No": configObj.mockNumber || "1",
+                ConfigJSON: data.ExamConfigJSON
+            } ];
+
+            window.currentExamConfig = configObj;
+            window.currentResultData = resultObj;
+            window.currentDetailedData = detailedObj;
+
+            // Update UI elements
+            document.getElementById('dashboardInstName').innerText = resultObj.instName || configObj.instName || "Future Job Coaching";
+            document.getElementById('dashboardExamTitle').innerText = (configObj.title || "Assessment") + " (Mock #" + (configObj.mockNumber || "1") + ")";
+            
+            let dateVal = data.Timestamp || new Date().toLocaleString();
+            try { dateVal = new Date(dateVal).toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'}); } catch(e){}
+            document.getElementById('dashboardExamDate').innerText = dateVal;
+
+            let timeVal = resultObj.timeTaken || detailedObj.timeTaken || detailedObj.totalTime;
+            let formattedTime = "";
+            if (timeVal) {
+                if (typeof timeVal === 'number') {
+                    formattedTime = formatDurationSec(timeVal);
+                } else {
+                    formattedTime = timeVal;
+                }
+            }
+            const timeContainer = document.getElementById('examTimeContainer');
+            const timeEl = document.getElementById('dashboardExamTime');
+            if (timeVal && timeEl && timeContainer) {
+                timeEl.innerText = formattedTime;
+                timeContainer.classList.remove('hidden');
+            } else if (timeContainer) {
+                timeContainer.classList.add('hidden');
+            }
+
+            // Personal Stats
+            document.getElementById('resCandName').innerText = data.StudentName;
+            document.getElementById('resCandMobile').innerText = data.Identifier;
+            document.getElementById('resMarksSummary').innerText = `${parseFloat(data.Score).toFixed(2)} / ${data.TotalMarks} Pts`;
+
+            // Populate Rank
+            const rankVal = data.Rank !== undefined ? data.Rank : "N/A";
+            const totalVal = data.TotalCandidates !== undefined ? data.TotalCandidates : "N/A";
+            document.getElementById('resRankSummary').innerText = `Rank: ${rankVal} / ${totalVal}`;
+
+            // Performance Stats
+            document.getElementById('resCorrectCount').innerText = resultObj.correct !== undefined ? resultObj.correct : 0;
+            document.getElementById('resWrongCount').innerText = resultObj.wrong !== undefined ? resultObj.wrong : 0;
+            document.getElementById('resSkippedCount').innerText = resultObj.unattempted !== undefined ? resultObj.unattempted : 0;
+            
+            // Warnings Card
+            let violationLogs = (detailedObj.cheatingLogs || []).filter(log => log.type !== 'info');
+            let cheatCount = violationLogs.length;
+            document.getElementById('resCheatingCount').innerText = cheatCount;
+            const cheatingCard = document.getElementById('cheatingMetricCard');
+            const cheatIcon = document.getElementById('resCheatingIcon');
+            
+            if (cheatCount > 0) {
+                cheatingCard.className = "bg-red-500/10 border border-red-500/20 rounded-3xl p-5 flex flex-col justify-between";
+                cheatIcon.className = "w-8 h-8 rounded-full bg-red-500/20 flex justify-center items-center text-red-400 text-sm";
+            } else {
+                cheatingCard.className = "bg-emerald-500/5 border border-emerald-500/10 rounded-3xl p-5 flex flex-col justify-between";
+                cheatIcon.className = "w-8 h-8 rounded-full bg-emerald-500/10 flex justify-center items-center text-emerald-400 text-sm";
+            }
+
+            // Pass Status Pill
+            let passBadge = document.getElementById('dashboardPassBadge');
+            
+            if (percent >= minPass) {
+                passBadge.innerText = "QUALIFIED ✅";
+                passBadge.className = "px-5 py-3 rounded-2xl font-black text-xs tracking-widest uppercase text-center min-w-[120px] bg-emerald-500/10 border border-emerald-500/20 text-emerald-400";
+            } else {
+                passBadge.innerText = "FAILED ❌";
+                passBadge.className = "px-5 py-3 rounded-2xl font-black text-xs tracking-widest uppercase text-center min-w-[120px] bg-red-500/10 border border-red-500/20 text-red-400";
+            }
+
+            // Populate Device Platform Info
+            let deviceInfo = resultObj.deviceInfo || detailedObj.deviceInfo || "N/A";
+            document.getElementById('deviceFullAgent').innerText = deviceInfo;
+            let isMobile = /Mobi|Android|iPhone|iPad/i.test(deviceInfo);
+            
+            let devType = "Desktop";
+            let devIcon = '<i class="fa-solid fa-laptop text-base"></i>';
+            if (isMobile) {
+                devType = "Mobile / Tablet";
+                devIcon = '<i class="fa-solid fa-mobile-screen-button text-base"></i>';
+            }
+            document.getElementById('deviceTypeVal').innerText = devType;
+            document.getElementById('deviceIconContainer').innerHTML = devIcon;
+
+            let os = "Unknown OS";
+            if (deviceInfo.includes("Windows")) os = "Windows OS";
+            else if (deviceInfo.includes("Macintosh") || deviceInfo.includes("Mac OS")) os = "macOS";
+            else if (deviceInfo.includes("Android")) os = "Android OS";
+            else if (deviceInfo.includes("iPhone") || deviceInfo.includes("iPad")) os = "iOS";
+            else if (deviceInfo.includes("Linux")) os = "Linux OS";
+            else if (deviceInfo.toLowerCase().includes("mobile")) os = "Mobile OS (Android/iOS)";
+            else if (deviceInfo.toLowerCase().includes("desktop")) os = "Desktop OS (Windows/macOS/Linux)";
+            document.getElementById('deviceOSVal').innerText = os;
+
+            // Populate Timing details
+            let startVal = detailedObj.startTime || "N/A";
+            if (startVal === "N/A" && detailedObj.cheatingLogs && Array.isArray(detailedObj.cheatingLogs)) {
+                let startLog = detailedObj.cheatingLogs.find(log => log.title && log.title.toLowerCase().includes("started"));
+                if (startLog) {
+                    startVal = startLog.time || "N/A";
+                }
+            }
+            let submitVal = detailedObj.submitTime || data.Timestamp || "N/A";
+            
+            function formatDateStr(val) {
+                if (!val || val === "N/A") return "N/A";
+                try {
+                    let d = new Date(val);
+                    if (isNaN(d.getTime())) return val;
+                    return d.toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit'});
+                } catch(e) {
+                    return val;
+                }
+            }
+            document.getElementById('examStartVal').innerText = formatDateStr(startVal);
+            document.getElementById('examSubmitVal').innerText = formatDateStr(submitVal);
+
+            let durationText = resultObj.timeTaken || detailedObj.timeTaken || "N/A";
+            if (durationText === "N/A" && startVal && startVal !== "N/A" && submitVal && submitVal !== "N/A") {
+                try {
+                    let diffMs = new Date(submitVal) - new Date(startVal);
+                    if (!isNaN(diffMs) && diffMs > 0) {
+                        let diffSecs = Math.floor(diffMs / 1000);
+                        let mins = Math.floor(diffSecs / 60);
+                        let secs = diffSecs % 60;
+                        durationText = `${mins} Mins ${secs} Secs`;
+                    }
+                } catch(e){}
+            }
+            document.getElementById('examDurationVal').innerText = durationText;
+
+            // Populate Cheating warnings list
+            const cheatContainer = document.getElementById('cheatingLogsList');
+            cheatContainer.innerHTML = '';
+            let logs = (detailedObj.cheatingLogs || []).filter(log => log.type !== 'info');
+            if (logs.length > 0) {
+                logs.forEach(log => {
+                    let logTime = log.time || log.timestamp || "";
+                    try {
+                        if (logTime) {
+                            let dateObj = new Date(logTime);
+                            if (!isNaN(dateObj.getTime())) {
+                                logTime = dateObj.toLocaleTimeString('en-GB');
+                            }
+                        }
+                    } catch(e){}
+                    
+                    let item = document.createElement('div');
+                    item.className = "flex justify-between items-center p-3 bg-red-500/5 border border-red-500/10 rounded-xl text-xs text-red-400 font-bold";
+                    item.innerHTML = `
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-exclamation"></i> ${log.title || "Tab Focus Lost / Tab Switch"}</span>
+                        <span class="text-[10px] font-black opacity-80">${logTime}</span>
+                    `;
+                    cheatContainer.appendChild(item);
+                });
+            } else {
+                cheatContainer.innerHTML = `
+                    <div class="flex items-center gap-2 p-4 bg-emerald-500/5 border border-emerald-500/10 rounded-2xl text-emerald-400 text-xs font-bold">
+                        <i class="fa-solid fa-circle-check text-base"></i> No security violations detected. Excellent exam integrity maintained!
+                    </div>
+                `;
+            }
+
+            // Render Topic analytics
+            renderTopicAnalytics(detailedObj.topicSummary, detailedObj, configObj.title || resultObj.examName || "Exam", data.ExamID);
+
+            // Switch Screen views
+            document.getElementById('loginSection').classList.add('hidden');
+            document.getElementById('noticeBoard').classList.add('hidden');
+            if (typeof stopNoticeSlider === 'function') stopNoticeSlider();
+            document.getElementById('dashboardSection').classList.remove('hidden');
+        }
+
+        window.toggleTopicCollapse = function(topicId) {
+            const el = document.getElementById(topicId + '_collapse');
+            const icon = document.getElementById(topicId + '_icon');
+            if (el) {
+                el.classList.toggle('hidden');
+                if (icon) {
+                    if (el.classList.contains('hidden')) {
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                }
+            }
+        };
+
+        function renderTopicAnalytics(summary, detailedObj, examName, examId) {
+            const container = document.getElementById('topicAnalyticsSection');
+            container.innerHTML = '';
+
+            if (!summary || Object.keys(summary).length === 0) {
+                container.innerHTML = '<div class="p-6 bg-white/5 border border-white/5 rounded-3xl text-center text-xs font-bold text-slate-500 uppercase tracking-wider">No topic-specific analytics available</div>';
+                return;
+            }
+
+            let examPaperData = detailedObj ? detailedObj.examPaperData : null;
+            if ((!examPaperData || examPaperData.length === 0) && typeof window.getExamPaperDataFromHistory === 'function') {
+                examPaperData = window.getExamPaperDataFromHistory(examId, examName);
+            }
+
+            let studentAnswers = detailedObj ? detailedObj.studentAnswers : null;
+            let questionGroups = {};
+            if (examPaperData && examPaperData.length > 0 && studentAnswers) {
+                examPaperData.forEach((q, index) => {
+                    let sub = q.subject || "General";
+                    if (!questionGroups[sub]) questionGroups[sub] = [];
+                    
+                    let givenAnsId = studentAnswers[index];
+                    let correctIds = q.correct || [];
+                    let isSkipped = givenAnsId === null || givenAnsId === undefined;
+                    let isCorrect = !isSkipped && correctIds.includes(givenAnsId);
+                    
+                    let status = isSkipped ? 'skipped' : (isCorrect ? 'correct' : 'wrong');
+                    questionGroups[sub].push({
+                        qNum: index + 1,
+                        status: status
+                    });
+                });
+            }
+
+            let html = `
+                <div class="bg-slate-950/40 border border-white/5 rounded-3xl p-6">
+                    <h3 class="text-sm font-black text-white uppercase tracking-wider mb-4"><i class="fa-solid fa-chart-simple text-blue-500 mr-1.5"></i> Sectional breakdown & accuracy</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            `;
+
+            Object.keys(summary).forEach(topic => {
+                let st = summary[topic];
+                let perc = st.total > 0 ? (st.correct / st.total) * 100 : 0;
+                let colorClass = perc >= 80 ? "text-emerald-400" : (perc >= 50 ? "text-amber-400" : "text-red-400");
+                let barColor = perc >= 80 ? "bg-emerald-500" : (perc >= 50 ? "bg-amber-500" : "bg-red-500");
+
+                let topicId = 'topic_' + topic.replace(/[^a-zA-Z0-9]/g, '_');
+                let qListHtml = '';
+                if (questionGroups[topic] && questionGroups[topic].length > 0) {
+                    qListHtml = `
+                        <div id="${topicId}_collapse" class="hidden mt-4 pt-4 border-t border-white/5">
+                            <div class="text-[10px] uppercase tracking-widest text-slate-500 font-extrabold mb-2.5">Questions Breakdown</div>
+                            <div class="flex flex-wrap gap-1.5">
+                    `;
+                    questionGroups[topic].forEach(item => {
+                        let badgeColor = '';
+                        let icon = '';
+                        if (item.status === 'correct') {
+                            badgeColor = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+                            icon = '<i class="fa-solid fa-check mr-0.5"></i>';
+                        } else if (item.status === 'wrong') {
+                            badgeColor = 'bg-rose-500/10 text-rose-400 border-rose-500/20';
+                            icon = '<i class="fa-solid fa-xmark mr-0.5"></i>';
+                        } else {
+                            badgeColor = 'bg-slate-500/10 text-slate-400 border-slate-500/20';
+                            icon = '<i class="fa-solid fa-minus mr-0.5"></i>';
+                        }
+                        qListHtml += `<span class="px-2.5 py-1 rounded-lg text-xs font-black border flex items-center gap-0.5 ${badgeColor}">${icon}Q${item.qNum}</span>`;
+                    });
+                    qListHtml += `</div></div>`;
+                }
+
+                html += `
+                    <div class="p-4 bg-slate-900/60 border border-white/5 rounded-2xl cursor-pointer hover:border-white/10 transition group" onclick="toggleTopicCollapse('${topicId}')">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold text-slate-300 flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-down text-slate-500 group-hover:text-slate-300 transition-transform duration-300" id="${topicId}_icon"></i>
+                                ${topic}
+                            </span>
+                            <span class="text-xs font-black ${colorClass}">${perc.toFixed(1)}%</span>
+                        </div>
+                        <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                            <div class="${barColor} h-full" style="width: ${perc}%"></div>
+                        </div>
+                        <div class="flex justify-between items-center text-[10px] font-bold text-slate-500 mt-2">
+                            <span>Correct: ${st.correct}/${st.total}</span>
+                            <span>Attempted: ${st.attempted || 0}</span>
+                        </div>
+                        ${qListHtml}
+                    </div>
+                `;
+            });
+
+            html += `</div></div>`;
+            container.innerHTML = html;
+        }
+
+        function triggerPrint(type) {
+            if (typeof printReport === 'function') {
+                printReport(type, 1);
+            } else {
+                alert("Print engine script not fully initialized. Please refresh the page and try again.");
+            }
+        }
+
+        function logoutDashboard() {
+            // Clear result session
+            sessionStorage.removeItem('currentLoadedResult');
+
+            // Clear credentials inputs
+            document.getElementById('studentNameInput').value = '';
+            document.getElementById('studentMobileInput').value = '';
+            
+            // Switch views back to login panel
+            document.getElementById('dashboardSection').classList.add('hidden');
+            document.getElementById('loginSection').classList.remove('hidden');
+            
+            // Clear cached leaderboard data on logout
+            window.cachedLeaderboardData = null;
+
+            // Re-fetch dropdown list
+            fetchPublishedExamsList();
+        }
+
+        function openShareModal() {
+            document.getElementById('shareModal').classList.remove('hidden');
+        }
+
+        function closeShareModal() {
+            document.getElementById('shareModal').classList.add('hidden');
+        }
+
+        function formatDurationSec(seconds) {
+            if (isNaN(seconds) || seconds <= 0) return "0s";
+            let mins = Math.floor(seconds / 60);
+            let secs = seconds % 60;
+            return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
+        }
+
+        function shareToWhatsApp(target) {
+            if (!window.myResults || !window.myResults[0]) {
+                alert("No result loaded to share!");
+                return;
+            }
+            
+            let resultObj = window.currentResultData || {};
+            let detailedObj = window.currentDetailedData || {};
+            let configObj = window.currentExamConfig || {};
+            let studentObj = window.currentStudent || {};
+            
+            let cleanNumber = configObj.contactNumber ? configObj.contactNumber.replace(/\D/g, '') : "917584992853";
+            if (cleanNumber.length === 10) cleanNumber = "91" + cleanNumber;
+            let teachersNumber = cleanNumber; 
+            let adminNumber = "917584992853"; 
+
+            let studentName = studentObj.Name || "Student";
+            let score = parseFloat(window.myResults[0].Score).toFixed(2);
+            let totalMaxMarks = window.myResults[0].TotalMarks || 0;
+            let examDate = document.getElementById('dashboardExamDate').innerText || "N/A";
+            
+            // Format Exam Timing (stStr - endStr (Total: durationStr))
+            let startVal = detailedObj.startTime || "N/A";
+            let submitVal = detailedObj.submitTime || window.myResults[0].Timestamp || "N/A";
+            let durationText = window.myResults[0].TimeTaken || "N/A";
+            
+            function formatTime(val) {
+                if (!val || val === "N/A") return "";
+                try {
+                    let d = new Date(val);
+                    if (isNaN(d.getTime())) return val;
+                    return d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+                } catch(e) { return val; }
+            }
+            
+            let stStr = formatTime(startVal);
+            let endStr = formatTime(submitVal);
+            let examTiming = (stStr && endStr) ? `${stStr} - ${endStr} (Total: ${durationText})` : durationText;
+            
+            let correct = resultObj.correct !== undefined ? resultObj.correct : 0;
+            let wrong = resultObj.wrong !== undefined ? resultObj.wrong : 0;
+            let skipped = resultObj.unattempted !== undefined ? resultObj.unattempted : 0;
+            let totalQs = correct + wrong + skipped;
+            let attempted = resultObj.attempted !== undefined ? resultObj.attempted : 0;
+            
+            // Sum up blur time and internet duration from logs
+            let appMinTimeSec = 0;
+            let netOnTimeSec = 0;
+            if (detailedObj.cheatingLogs && Array.isArray(detailedObj.cheatingLogs)) {
+                detailedObj.cheatingLogs.forEach(log => {
+                    let title = log.title || "";
+                    let duration = parseInt(log.duration) || 0;
+                    if (title.includes("App Minimized") || title.includes("Focus Lost")) {
+                        appMinTimeSec += duration;
+                    }
+                    if (title.includes("Internet ON") || title.includes("Internet Connection")) {
+                        netOnTimeSec += duration;
+                    }
+                });
+            }
+            
+            let appMinTime = formatDurationSec(appMinTimeSec);
+            let netOnTime = formatDurationSec(netOnTimeSec);
+            
+            let totalStrikes = resultObj.strikes !== undefined ? resultObj.strikes : (detailedObj.cheatingLogs ? detailedObj.cheatingLogs.filter(log => log.duration >= 3).length : 0);
+            let autoPauses = resultObj.autoPauses !== undefined ? resultObj.autoPauses : 0;
+            
+            let percent = totalMaxMarks > 0 ? (score / totalMaxMarks) * 100 : 0;
+            let minPass = parseFloat(configObj.minPassPercent || 50);
+            let statusMsg = "";
+            if (percent >= minPass) {
+                statusMsg = "✅ *Result Status: PASSED* 🎓🎉";
+            } else {
+                statusMsg = "❌ *Result Status: FAILED* ⚠️";
+            }
+
+            let instNameUpper = (resultObj.instName || configObj.instName || "Future Job Coaching").toUpperCase();
+
+            // --- 💎 PREMIUM MESSAGE DESIGN ---
+            let textMsg = "🏆 *OFFICIAL EXAM SCORECARD* 🏆\n" +
+                          "━━━━━━━━━━━━━━━━━━━━\n\n" +
+                          "👤 *CANDIDATE DETAILS*\n" +
+                          "▪️ *Name:* " + studentName + "\n" +
+                          "▪️ *Mobile:* " + (studentObj.Mobile || "N/A") + "\n\n" +
+                          
+                          "📝 *EXAM INFORMATION*\n" +
+                          "▪️ *Paper:* " + (configObj.title || "Assessment") + " (Mock " + (configObj.mockNumber || "1") + ")\n" +
+                          "▪️ *Date:* " + examDate + "\n" +
+                          "▪️ *Time:* " + examTiming + "\n\n" +
+                          
+                          "📊 *PERFORMANCE METRICS*\n" +
+                          "❓ Total Questions: " + totalQs + "\n" +
+                          "🖋️ Attempted: " + attempted + "\n" +
+                          "⚪ Unattempted: " + skipped + "\n" +
+                          "✅ Right Answers: " + correct + "\n" +
+                          "❌ Wrong Answers: " + wrong + "\n" +
+                          "🎯 *TOTAL SCORE: " + score + " / " + totalMaxMarks + "*\n\n" +
+                          
+                          "🛡️ *SECURITY & INTEGRITY REPORT*\n" +
+                          "🚫 *Total Strikes Issued:* " + totalStrikes + "\n" +
+                          "📉 *App Minimized Time:* " + appMinTime + "\n" +
+                          "📶 *Internet ON Duration:* " + netOnTime + "\n" +
+                          "⚠️ *Auto-Pause Events:* " + autoPauses + "\n\n" +
+                          
+                          "━━━━━━━━━━━━━━━━━━━━\n" +
+                          statusMsg + "\n" +
+                          "━━━━━━━━━━━━━━━━━━━━\n\n" +
+                          "🏢 *" + instNameUpper + "*\n" +
+                          "🎯 _Your Gateway to Success_";
+            
+            let url = "";
+            if (target === 'group') {
+                url = "https://wa.me/?text=" + encodeURIComponent(textMsg);
+            } else if (target === 'teachers') {
+                url = "https://wa.me/" + teachersNumber + "?text=" + encodeURIComponent(textMsg);
+            } else if (target === 'admin') {
+                url = "https://wa.me/" + adminNumber + "?text=" + encodeURIComponent(textMsg);
+            }
+
+            window.open(url, "_blank");
+        }
+
+        function openLeaderboard() {
+            if (!myResults || !myResults[0]) return;
+            const examId = myResults[0].ExamID;
+            const examTitle = document.getElementById('dashboardExamTitle').innerText;
+            
+            document.getElementById('leaderboardExamTitle').innerText = examTitle;
+            document.getElementById('leaderboardModal').classList.remove('hidden');
+            
+            // Lock background body scroll
+            document.body.style.overflow = 'hidden';
+            
+            // Check if cached data exists
+            if (window.cachedLeaderboardData && window.cachedLeaderboardData.examId === examId) {
+                renderLeaderboard(window.cachedLeaderboardData.list);
+                return;
+            }
+
+            const container = document.getElementById('leaderboardContainer');
+            container.innerHTML = `
+                <div class="p-12 text-center text-xs font-bold text-slate-400 flex flex-col items-center justify-center gap-3">
+                    <i class="fa-solid fa-spinner fa-spin text-xl text-amber-400"></i> Fetching Rank List...
+                </div>
+            `;
+            
+            const url = `${GOOGLE_APP_URL}?action=getExamLeaderboard&examId=${examId}`;
+            fetch(url)
+                .then(res => res.json())
+                .then(response => {
+                    if (response.status === "success" && response.leaderboard) {
+                        // Store in cache memory
+                        window.cachedLeaderboardData = {
+                            examId: examId,
+                            list: response.leaderboard
+                        };
+                        renderLeaderboard(response.leaderboard);
+                    } else {
+                        container.innerHTML = `<div class="p-6 text-center text-xs font-bold text-red-400 uppercase">${response.message || "Failed to load leaderboard"}</div>`;
+                    }
+                })
+                .catch(err => {
+                    console.error("Leaderboard error:", err);
+                    container.innerHTML = `<div class="p-6 text-center text-xs font-bold text-red-400 uppercase">❌ Connection Error</div>`;
+                });
+        }
+
+        function closeLeaderboard() {
+            document.getElementById('leaderboardModal').classList.add('hidden');
+            
+            // Restore background body scroll
+            document.body.style.overflow = '';
+        }
+
+        function refreshLeaderboardData() {
+            window.cachedLeaderboardData = null;
+            openLeaderboard();
+        }
+
+        function renderLeaderboard(list) {
+            const container = document.getElementById('leaderboardContainer');
+            container.innerHTML = '';
+            
+            if (list.length === 0) {
+                container.innerHTML = `<div class="p-6 text-center text-xs font-bold text-slate-500 uppercase">No rank list data available</div>`;
+                return;
+            }
+            
+            list.forEach(item => {
+                let rankClass = "bg-slate-800 border-white/10 text-slate-300";
+                let rankBadge = `${item.rank}`;
+                let containerClass = "bg-slate-900/60 border border-white/5";
+                
+                if (item.rank === 1) {
+                    rankClass = "bg-gradient-to-r from-yellow-500 to-amber-600 border-yellow-400/50 text-white shadow-lg shadow-yellow-500/20";
+                    rankBadge = `🥇 Rank 1`;
+                    containerClass = "bg-gradient-to-r from-amber-500/10 via-yellow-500/5 to-slate-900/60 border border-yellow-500/20";
+                } else if (item.rank === 2) {
+                    rankClass = "bg-gradient-to-r from-slate-300 to-slate-400 border-slate-200/50 text-slate-900";
+                    rankBadge = `🥈 Rank 2`;
+                    containerClass = "bg-gradient-to-r from-slate-300/10 to-slate-900/60 border border-slate-300/20";
+                } else if (item.rank === 3) {
+                    rankClass = "bg-gradient-to-r from-amber-600 to-orange-700 border-orange-500/50 text-white shadow-lg shadow-orange-500/20";
+                    rankBadge = `🥉 Rank 3`;
+                    containerClass = "bg-gradient-to-r from-amber-700/10 to-slate-900/60 border border-amber-600/20";
+                }
+                
+                let scorePercent = item.totalMarks > 0 ? (item.score / item.totalMarks) * 100 : 0;
+                
+                const row = document.createElement('div');
+                row.className = `p-4 rounded-2xl flex items-center justify-between gap-4 transition hover:bg-slate-800/40 ${containerClass}`;
+                row.innerHTML = `
+                    <div class="flex items-center gap-3 min-w-0">
+                        <span class="px-3 py-1 text-[10px] font-black tracking-widest uppercase rounded-lg border ${rankClass} flex-shrink-0">
+                            ${rankBadge}
+                        </span>
+                        <div class="min-w-0">
+                            <span class="text-xs font-black text-white block truncate uppercase">${item.studentName}</span>
+                            <span class="text-[9px] font-bold text-slate-500 flex items-center gap-1 mt-0.5">
+                                <i class="fa-regular fa-clock"></i> Time: ${item.timeTaken}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 flex-shrink-0">
+                        <div class="hidden sm:flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 text-[8px] font-black border border-emerald-500/10">✔ ${item.correct}</span>
+                            <span class="px-2 py-0.5 rounded bg-red-500/10 text-red-400 text-[8px] font-black border border-red-500/10">✖ ${item.wrong}</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs font-black text-amber-400 block">${parseFloat(item.score).toFixed(2)} / ${item.totalMarks}</span>
+                            <span class="text-[9px] font-bold text-slate-500 block uppercase">${scorePercent.toFixed(1)}% Acc</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        // WhatsApp Floating Widget Interaction
+        document.addEventListener('DOMContentLoaded', () => {
+            const headerWidget = document.getElementById('whatsappFloatingWidget');
+            const headerCard = document.getElementById('adminHeaderContactCard');
+            const headerBtn = document.getElementById('whatsappHeaderBtn');
+
+            let headerHideTimeout;
+
+            function showHeaderCard() {
+                clearTimeout(headerHideTimeout);
+                if (headerCard.classList.contains('hidden')) {
+                    headerCard.classList.remove('hidden');
+                    headerCard.offsetHeight; // force reflow
+                }
+                headerCard.style.transform = 'scale(1)';
+                headerCard.style.opacity = '1';
+                headerBtn.style.transform = 'scale(0)';
+                headerBtn.style.opacity = '0';
+                headerBtn.style.pointerEvents = 'none';
+            }
+
+            function hideHeaderCard() {
+                headerCard.style.transform = 'scale(0.95)';
+                headerCard.style.opacity = '0';
+                headerBtn.style.transform = 'scale(1)';
+                headerBtn.style.opacity = '1';
+                headerBtn.style.pointerEvents = 'auto';
+                setTimeout(() => {
+                    if (headerCard.style.opacity === '0') {
+                        headerCard.classList.add('hidden');
+                    }
+                }, 300);
+            }
+
+            headerBtn.addEventListener('mouseenter', showHeaderCard);
+            headerBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (headerCard.classList.contains('hidden') || headerCard.style.opacity === '0') {
+                    showHeaderCard();
+                } else {
+                    hideHeaderCard();
+                }
+            });
+
+            headerWidget.addEventListener('mouseleave', () => {
+                headerHideTimeout = setTimeout(hideHeaderCard, 1500);
+            });
+
+            headerCard.addEventListener('mouseenter', () => {
+                clearTimeout(headerHideTimeout);
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!headerWidget.contains(e.target)) {
+                    hideHeaderCard();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

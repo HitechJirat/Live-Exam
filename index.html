@@ -1,0 +1,3186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome | Hitech Jirat Premium Examination Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        blue: {
+                            50: 'rgba(var(--theme-accent-rgb), 0.05)',
+                            100: 'rgba(var(--theme-accent-rgb), 0.1)',
+                            200: 'rgba(var(--theme-accent-rgb), 0.2)',
+                            300: 'rgba(var(--theme-accent-rgb), 0.3)',
+                            400: 'var(--theme-accent-text)',
+                            500: 'rgb(var(--theme-accent-rgb))',
+                            600: 'var(--theme-accent-dark)',
+                            700: 'var(--theme-accent-darker)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Page Prefetching for Ultra-Fast Loading -->
+    <link rel="prefetch" href="online_exams.html">
+    <link rel="prefetch" href="result.html">
+    <link rel="prefetch" href="Ai_Exam_Practice.html">
+    <style>
+        :root {
+            /* Default Space Dusk Theme variables */
+            --theme-bg-1: #090d16;
+            --theme-bg-2: #121026;
+            --theme-bg-3: #06111e;
+            --theme-bg-4: #0e1e38;
+            --theme-accent-rgb: 59, 130, 246;
+            --theme-accent-text: #60a5fa;
+            --theme-accent-dark: #2563eb;
+            --theme-accent-darker: #1d4ed8;
+            --theme-glow: rgba(59, 130, 246, 0.15);
+        }
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            overflow-x: hidden; 
+            background: var(--theme-bg-1) !important;
+            transition: background 0.5s ease;
+        }
+        .animated-gradient {
+            background: linear-gradient(-45deg, var(--theme-bg-1), var(--theme-bg-2), var(--theme-bg-3), var(--theme-bg-4)) !important;
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            transition: background 0.5s ease;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+        .glass-panel-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-panel-hover:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px var(--theme-glow);
+            transform: translateY(-5px);
+        }
+        .float-anim { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* News Ticker Scroll */
+        @keyframes tickerScroll {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+        .ticker-wrap {
+            overflow: hidden;
+            width: 100%;
+        }
+        .ticker-content {
+            display: inline-flex;
+            white-space: nowrap;
+            animation: tickerScroll 20s linear infinite;
+        }
+        .ticker-content:hover {
+            animation-play-state: paused;
+        }
+
+        /* Particles */
+        .particle { 
+            position: absolute; 
+            background: rgba(255, 255, 255, 0.4); 
+            border-radius: 50%; 
+            opacity: 0; 
+            animation: floatUp var(--duration) ease-in infinite; 
+            pointer-events: none;
+            user-select: none;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(105vh) scale(0); opacity: 0; }
+            30% { opacity: 0.75; }
+            80% { opacity: 0.75; }
+            100% { transform: translateY(-10vh) scale(1.1); opacity: 0; }
+        }
+        
+        /* Floating branding letter particles */
+        .letter-particle {
+            position: absolute;
+            font-weight: 900;
+            font-size: var(--font-size);
+            color: var(--color);
+            opacity: 0;
+            animation: floatUp var(--duration) ease-in infinite;
+            pointer-events: none;
+            user-select: none;
+            text-shadow: 0 0 12px var(--color), 0 0 24px var(--color);
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        .indian-flag-hover {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .indian-flag-hover:hover {
+            background: linear-gradient(135deg, rgba(255, 153, 51, 0.2) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(19, 136, 8, 0.2) 100%) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            box-shadow: 0 20px 40px rgba(255, 153, 51, 0.1), 0 0 30px rgba(19, 136, 8, 0.05) !important;
+            transform: translateY(-5px);
+        }
+
+        /* Carousel Styles */
+        .carousel-slide {
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+        }
+
+        /* Settings Popover Transition */
+        .settings-popover {
+            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+        }
+
+        /* Tour Spotlight CSS */
+        .tour-spotlight {
+            position: relative !important;
+            z-index: 10001 !important;
+            box-shadow: 0 0 0 9999px rgba(2, 6, 23, 0.85) !important;
+            outline: 2.5px solid var(--theme-accent-text, #3b82f6) !important;
+            outline-offset: 4px;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            background: #0b0f19 !important;
+        }
+
+        /* Active status pulse */
+        .live-pulse {
+            position: relative;
+        }
+        .live-pulse::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: inherit;
+            border-radius: inherit;
+            animation: pulse-ring 1.5s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            100% { transform: scale(1.8); opacity: 0; }
+        }
+
+        /* Hide scrollbars */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* CSS Confetti Styles */
+        .confetti-particle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            pointer-events: none;
+            z-index: 99999;
+            animation: confetti-fall 2.5s ease-out forwards;
+        }
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-20px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) translateX(var(--drift)) rotate(var(--rotation));
+                opacity: 0;
+            }
+        }
+
+        /* 3D Glass Card & Holographic effects */
+        .glass-panel-3d {
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: transform 0.15s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .holographic-shine {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(125deg, transparent 20%, rgba(255, 255, 255, 0.05) 30%, rgba(255, 255, 255, 0.12) 40%, transparent 60%);
+            background-size: 200% 200%;
+            background-position: 0% 0%;
+            pointer-events: none;
+            mix-blend-mode: overlay;
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.3s ease, background-position 0.15s ease;
+        }
+        .glass-panel-3d:hover .holographic-shine {
+            opacity: 1;
+        }
+
+        /* Circular Progress Ring */
+        .progress-ring {
+            position: relative;
+            width: 76px;
+            height: 76px;
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.6));
+        }
+
+        /* Light Theme variables override */
+        body.light-theme {
+            --theme-bg-1: #f8fafc;
+            --theme-bg-2: #f1f5f9;
+            --theme-bg-3: #e2e8f0;
+            --theme-bg-4: #cbd5e1;
+            color: #0f172a !important;
+        }
+
+        /* Multilingual Switch CSS Rules */
+        body.lang-en .lang-txt-bn,
+        body.lang-en .lang-block-bn {
+            display: none !important;
+        }
+        body.lang-en .lang-txt-en {
+            display: inline !important;
+        }
+        body.lang-en .lang-block-en {
+            display: block !important;
+        }
+
+        body.lang-bn .lang-txt-en,
+        body.lang-bn .lang-block-en {
+            display: none !important;
+        }
+        body.lang-bn .lang-txt-bn {
+            display: inline !important;
+        }
+        body.lang-bn .lang-block-bn {
+            display: block !important;
+        }
+        body.light-theme .glass-panel {
+            background: rgba(255, 255, 255, 0.85) !important;
+            backdrop-filter: blur(25px) !important;
+            border: 1px solid rgba(15, 23, 42, 0.08) !important;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05) !important;
+        }
+        body.light-theme .glass-panel h1,
+        body.light-theme .glass-panel h2,
+        body.light-theme .glass-panel h3,
+        body.light-theme .glass-panel h4,
+        body.light-theme .glass-panel p,
+        body.light-theme .glass-panel span,
+        body.light-theme .glass-panel a,
+        body.light-theme .text-white,
+        body.light-theme #instNameDisplay,
+        body.light-theme #instNameDisplayLarge {
+            color: #0f172a !important;
+        }
+        body.light-theme .text-slate-200,
+        body.light-theme .text-slate-300,
+        body.light-theme .text-slate-400 {
+            color: #334155 !important;
+        }
+        body.light-theme .text-slate-350,
+        body.light-theme .text-slate-500 {
+            color: #475569 !important;
+        }
+        body.light-theme .ticker-wrap,
+        body.light-theme .ticker-wrap span {
+            color: #0f172a !important;
+        }
+        body.light-theme input, 
+        body.light-theme select {
+            color: #0f172a !important;
+            background: rgba(15, 23, 42, 0.05) !important;
+            border: 1px solid rgba(15, 23, 42, 0.1) !important;
+        }
+
+        /* Toast Notifications */
+        .toast-notification {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 100000;
+            animation: toast-slide-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            max-width: 340px;
+        }
+        .toast-notification.hide {
+            animation: toast-slide-out 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes toast-slide-in {
+            0% { transform: translateY(100px) scale(0.9); opacity: 0; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+        @keyframes toast-slide-out {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(100px) scale(0.9); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="animated-gradient min-h-screen text-slate-100 flex flex-col justify-between pb-24 md:pb-0">
+    
+    <!-- Glowing Orbs & Particles Background -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[130px] mix-blend-screen float-anim"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-indigo-600/15 rounded-full blur-[160px] mix-blend-screen float-anim" style="animation-delay: 2s;"></div>
+        <div class="absolute top-[30%] left-[50%] w-[450px] h-[450px] bg-purple-600/15 rounded-full blur-[120px] mix-blend-screen float-anim" style="animation-delay: 4s;"></div>
+        <div id="particles-container"></div>
+    </div>
+
+    <!-- Live Announcement Ticker Bar -->
+    <div class="w-full bg-slate-950/60 backdrop-blur-md border-b border-white/5 py-2 relative z-20">
+        <div class="max-w-7xl mx-auto px-6 flex items-center gap-3">
+            <span class="bg-red-500/15 text-red-400 text-[10px] font-black tracking-wider uppercase px-2.5 py-1 rounded border border-red-500/25 flex items-center gap-1.5 flex-shrink-0 animate-pulse">
+                <span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span> Live Updates
+            </span>
+            <div class="ticker-wrap w-full text-xs font-semibold text-slate-300">
+                <div class="ticker-content gap-16" id="ticker-content">
+                    <span>📢 লোড হচ্ছে... অনুগ্রহ করে অপেক্ষা করুন... ⚡</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="w-full px-6 py-4 relative z-50 flex justify-between items-center">
+        <!-- Left Brand & Clock Group -->
+        <div class="flex items-center gap-6">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl border border-white/10 overflow-hidden shadow-lg bg-white flex items-center justify-center">
+                    <img src="assets/photos/software_logo.jpg" alt="Logo" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h2 class="text-xl font-extrabold tracking-tight text-white uppercase" id="instNameDisplay">Hitech Jirat</h2>
+                    <p class="text-[9px] font-bold tracking-widest text-blue-400 uppercase">Online Examination Software</p>
+                </div>
+            </div>
+            
+            <!-- Live Date & Time Capsule -->
+            <div id="liveClockCapsule" class="hidden lg:flex items-center gap-3 glass-panel px-4 py-2 rounded-full border border-white/5 text-xs font-bold text-slate-200 shadow-md">
+                <span class="flex items-center gap-1.5 text-blue-400">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span id="liveDate">Loading Date...</span>
+                </span>
+                <span class="w-0.5 h-3 bg-white/20 rounded-full"></span>
+                <span class="flex items-center gap-1.5 text-emerald-400">
+                    <i class="fa-regular fa-clock"></i>
+                    <span id="liveTime" class="font-mono">00:00:00 PM</span>
+                </span>
+                <span class="w-0.5 h-3 bg-white/20 rounded-full"></span>
+                <span class="flex items-center gap-1">
+                    <span id="connectionDot" class="w-2.5 h-2.5 rounded-full bg-emerald-500 live-pulse" title="Internet Connected"></span>
+                    <span id="connectionText" class="text-[9px] uppercase tracking-wider text-slate-400">Online</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- Right Navigation Menu (Desktop) & settings controls -->
+        <div class="flex items-center gap-3">
+            <nav class="hidden md:flex items-center gap-1 glass-panel p-1 rounded-full border border-white/5 shadow-2xl">
+                <a href="online_exams.html" class="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-white/5 active:scale-95 transition-all duration-200 flex items-center gap-1.5">
+                    <i class="fa-solid fa-laptop-code text-blue-400"></i> Online Exams
+                </a>
+                <a href="result.html" class="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-white/5 active:scale-95 transition-all duration-200 flex items-center gap-1.5">
+                    <i class="fa-solid fa-award text-yellow-400"></i> Results
+                </a>
+                <a href="student/student_login.html" class="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-white/5 active:scale-95 transition-all duration-200 flex items-center gap-1.5">
+                    <i class="fa-solid fa-user-graduate text-emerald-400"></i> Student Login
+                </a>
+                <a href="teachers/teacher_login.html" class="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-white/5 active:scale-95 transition-all duration-200 flex items-center gap-1.5">
+                    <i class="fa-solid fa-chalkboard-user text-purple-400"></i> Teachers Login
+                </a>
+                <a href="contact.html" class="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-white/5 active:scale-95 transition-all duration-200 flex items-center gap-1.5">
+                    <i class="fa-solid fa-envelope-open-text text-pink-400"></i> Contact Us
+                </a>
+            </nav>
+
+            <!-- Settings & Mobile Dot Group -->
+            <div class="flex items-center gap-2">
+                <!-- Mobile Connection Dot Indicator -->
+                <span class="lg:hidden flex items-center justify-center w-8 h-8 rounded-full glass-panel border border-white/10">
+                    <span id="mobileConnectionDot" class="w-2 h-2 rounded-full bg-emerald-500 live-pulse" title="Internet Connected"></span>
+                </span>
+
+                <!-- Language Selector Button -->
+                <button id="langToggleBtn" onclick="toggleLanguage()" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center border border-white/10 hover:bg-white/5 active:scale-95 transition-all text-[10px] font-black text-slate-200" title="Switch Language / ভাষা পরিবর্তন">
+                    EN
+                </button>
+
+                <!-- Tour Guide Info Button -->
+                <button onclick="startPortalTour()" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center border border-white/10 hover:bg-white/5 active:scale-95 transition-all text-slate-200" title="Start Portal Tour">
+                    <i class="fa-solid fa-circle-info text-base"></i>
+                </button>
+
+                <!-- Settings Gear Button -->
+                <div class="relative">
+                    <button id="homeSettingsBtn" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center border border-white/10 hover:bg-white/5 active:scale-95 transition-all text-slate-200" title="Settings">
+                        <i class="fa-solid fa-cog text-base"></i>
+                    </button>
+                    <!-- Home Settings Popover (Glow & Theme Selection) -->
+                    <div id="homeSettingsPopover" class="absolute right-0 mt-3 w-64 glass-panel border border-white/10 p-4 rounded-2xl shadow-2xl hidden z-50 settings-popover transform scale-95 opacity-0 origin-top-right">
+                        <h4 class="text-xs font-black uppercase text-blue-400 tracking-wider mb-3">Settings Panel ⚙️</h4>
+                        
+                        <!-- Glow Intensity Section -->
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center mb-1.5">
+                                <span class="text-[10px] font-bold text-slate-300 uppercase tracking-wide">নিয়ন গ্লো (Neon Glow)</span>
+                                <span id="homeGlowValText" class="text-[10px] font-black text-blue-400">100%</span>
+                            </div>
+                            <input type="range" id="homeGlowSlider" min="0" max="200" value="100" class="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-blue-500" oninput="updateHomeGlowIntensity(this.value)">
+                        </div>
+
+                        <!-- Light/Dark Neon Theme Toggle Section -->
+                        <div class="mb-4 border-t border-white/5 pt-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-[10px] font-bold text-slate-300 uppercase tracking-wide">নিয়ন মোড (Neon Mode)</span>
+                                <button id="lightThemeToggleBtn" onclick="toggleLightTheme()" class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-[9px] font-black uppercase text-slate-300 hover:text-white transition">
+                                    <i class="fa-solid fa-moon mr-1"></i> Dark Mode
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Theme Selection Section -->
+                        <div class="border-t border-white/5 pt-3">
+                            <span class="text-[10px] font-bold text-slate-300 uppercase tracking-wide block mb-2">থিম ডিজাইন (Theme Select)</span>
+                            <div class="grid grid-cols-4 gap-2 text-center" id="homeThemeGrid">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Toggle Button -->
+                <button id="mobileMenuToggle" class="md:hidden w-10 h-10 rounded-full glass-panel flex items-center justify-center border border-white/10 hover:bg-white/5 active:scale-95 transition-all text-slate-200">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="flex-1 flex flex-col items-center justify-center px-6 py-6 relative z-10 w-full max-w-7xl mx-auto my-auto gap-8">
+        
+        <!-- Hero Title Section -->
+        <div class="text-center max-w-4xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-bold text-blue-400 mb-6 uppercase tracking-wider shadow-inner">
+                <i class="fa-solid fa-sparkles animate-spin text-[10px] duration-1000"></i> Next-Gen Examination System ⚡
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
+                Evaluate. Learn. Achieve. 🏆<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 drop-shadow-[0_0_35px_rgba(99,102,241,0.25)]" id="instNameDisplayLarge">Hitech Jirat</span>
+            </h1>
+            
+            <p class="text-sm md:text-base font-light text-slate-350 max-w-3xl mx-auto mb-6 leading-relaxed">
+                একটি প্রিমিয়াম অনলাইন অ্যাসেসমেন্ট প্ল্যাটফর্ম যা Railway (RRB), SSC, Police, WBPSC এবং State Govt Jobs সহ বিভিন্ন প্রতিযোগিতামূলক পরীক্ষার প্রস্তুতিতে শিক্ষার্থীদের স্বয়ংক্রিয় মূল্যায়ন ও গতিশীল ট্র্যাকিংয়ের মাধ্যমে সফলতার শীর্ষে নিয়ে যেতে সাহায্য করে। 🎯
+            </p>
+
+            <!-- Welcome Panel & Progress Ring -->
+            <div id="welcomeDashboardCard" class="glass-panel glass-panel-3d p-4 rounded-3xl border-white/5 max-w-xl mx-auto mb-8 flex items-center justify-between gap-4 text-left relative overflow-hidden">
+                <div class="holographic-shine"></div>
+                <div class="flex items-center gap-3 relative z-10">
+                    <div class="w-12 h-12 rounded-full border border-white/10 overflow-hidden bg-slate-800 flex items-center justify-center flex-shrink-0">
+                        <img id="userWelcomeAvatar" src="assets/photos/software_logo.jpg" class="w-full h-full object-cover hidden" alt="Avatar">
+                        <i id="userWelcomeIcon" class="fa-solid fa-user-graduate text-slate-300 text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="text-[9px] font-black uppercase text-blue-400 tracking-wider block" id="welcomeTextSub">
+                            <span class="lang-txt-en">Student Portal</span>
+                            <span class="lang-txt-bn">স্টুডেন্ট পোর্টাল</span>
+                        </span>
+                        <h4 class="text-xs font-black text-white uppercase tracking-wider" id="welcomeTextMain">স্বাগতম, শিক্ষার্থী! 👋</h4>
+                        <p class="text-[9px] text-slate-400 font-bold mt-0.5" id="welcomeLastMockText">শেষ মক পরীক্ষা: কোনো রেকর্ড পাওয়া যায়নি 📋</p>
+                    </div>
+                </div>
+                <!-- Circular Syllabus Progress Bar -->
+                <div class="flex items-center gap-2 relative z-10">
+                    <div class="progress-ring">
+                        <svg class="w-full h-full">
+                            <circle class="text-white/5 stroke-current" stroke-width="4" fill="transparent" r="28" cx="38" cy="38"/>
+                            <circle id="syllabusProgressRing" class="text-blue-500 stroke-current progress-ring-circle" stroke-width="4" stroke-linecap="round" fill="transparent" r="28" cx="38" cy="38" stroke-dasharray="175.9" stroke-dashoffset="175.9"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span id="syllabusProgressText" class="text-[10px] font-black text-white">0%</span>
+                        </div>
+                    </div>
+                    <div class="hidden sm:block text-left">
+                        <span class="text-[8px] font-black uppercase text-slate-400 block">Syllabus Progress</span>
+                        <span class="text-[9px] font-bold text-slate-200" id="syllabusProgressDesc">সিলেবাস কভারেজ 🎓</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action CTAs -->
+            <div class="flex flex-wrap justify-center gap-4 mb-6">
+                <a href="online_exams.html" id="startExamHeroCta" class="px-6 py-3.5 rounded-full text-sm font-bold uppercase tracking-wider text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 active:scale-95 hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] transition-all duration-300 flex items-center gap-2.5">
+                    <i class="fa-solid fa-play"></i> Start Examination 🚀
+                </a>
+                
+                <a href="Ai_Exam_Practice.html" id="aiPracticeGenCta" class="px-6 py-3.5 rounded-full text-sm font-bold uppercase tracking-wider text-white bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 active:scale-95 hover:shadow-[0_0_25px_rgba(147,51,234,0.5)] transition-all duration-300 flex items-center gap-2.5">
+                    <i class="fa-solid fa-robot"></i> AI Practice Generator 🧠
+                </a>
+                
+                <a href="result.html" id="viewScorecardCta" class="px-6 py-3.5 rounded-full text-sm font-bold uppercase tracking-wider text-slate-300 hover:text-white glass-panel border border-white/10 hover:bg-white/10 active:scale-95 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all duration-300 flex items-center gap-2.5">
+                    <i class="fa-solid fa-award text-yellow-400"></i> View Scorecards 🏆
+                </a>
+            </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mx-auto mb-4">
+            <!-- Stats Card 1 -->
+            <div class="glass-panel p-6 rounded-2xl text-center border-white/5 relative overflow-hidden group">
+                <div class="absolute -top-12 -left-12 w-24 h-24 bg-blue-500/10 rounded-full blur-xl group-hover:bg-blue-500/20 transition-all duration-500"></div>
+                <h3 class="text-3xl font-black text-blue-400 mb-1" id="statCard1Val">50+ 📚</h3>
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                    <span class="lang-txt-en">Active Mock Tests</span>
+                    <span class="lang-txt-bn">সক্রিয় মক টেস্ট</span>
+                </p>
+                <p class="text-[10px] text-slate-500 mt-1.5">
+                    <span class="lang-txt-en">Practice syllabus for 17 competitive exams supported 📝</span>
+                    <span class="lang-txt-bn">১৭টি সরকারি পরীক্ষার প্র্যাকটিস সিলেবাস সমর্থিত 📝</span>
+                </p>
+            </div>
+            
+            <!-- Stats Card 2 -->
+            <div class="glass-panel p-6 rounded-2xl text-center border-white/5 relative overflow-hidden group">
+                <div class="absolute -top-12 -left-12 w-24 h-24 bg-indigo-500/10 rounded-full blur-xl group-hover:bg-indigo-500/20 transition-all duration-500"></div>
+                <h3 class="text-3xl font-black text-indigo-400 mb-1" id="statCard2Val">100% 🛡️</h3>
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                    <span class="lang-txt-en">Secure Examination</span>
+                    <span class="lang-txt-bn">নিরাপদ পরীক্ষা ব্যবস্থা</span>
+                </p>
+                <p class="text-[10px] text-slate-500 mt-1.5">
+                    <span class="lang-txt-en">Real-time cloud backup & safe data tracking 🔒</span>
+                    <span class="lang-txt-bn">রিয়েল-টাইম ক্লাউড ব্যাকআপ এবং সেফ ডেটা ট্র্যাকিং 🔒</span>
+                </p>
+            </div>
+
+            <!-- Stats Card 3 -->
+            <div class="glass-panel p-6 rounded-2xl text-center border-white/5 relative overflow-hidden group">
+                <div class="absolute -top-12 -left-12 w-24 h-24 bg-purple-500/10 rounded-full blur-xl group-hover:bg-purple-500/20 transition-all duration-500"></div>
+                <h3 class="text-3xl font-black text-purple-400 mb-1" id="statCard3Val">Instant ⚡</h3>
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                    <span class="lang-txt-en">Digital Scorecard</span>
+                    <span class="lang-txt-bn">ডিজিটাল স্কোরকার্ড</span>
+                </p>
+                <p class="text-[10px] text-slate-500 mt-1.5">
+                    <span class="lang-txt-en">Premium reports with online & PDF sharing options 📊</span>
+                    <span class="lang-txt-bn">অনলাইন ও পিডিএফ শেয়ারিং সুবিধাসহ প্রিমিয়াম রিপোর্ট 📊</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Interactive Portal Section Grid (2 Columns on Desktop, 1 on Mobile/Tablet) -->
+        <div class="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 mt-2 text-left" id="interactivePortalSection">
+            
+            <!-- LEFT COLUMN (Span 7) -->
+            <div class="lg:col-span-7 flex flex-col gap-8 w-full">
+                <!-- Achievements Cabinet -->
+                <div class="glass-panel glass-panel-3d p-6 rounded-3xl border-white/5 relative overflow-hidden flex flex-col justify-between" id="homeAchievementsPanel">
+                    <div class="holographic-shine"></div>
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-sm font-black uppercase tracking-wider text-blue-400 flex items-center gap-2">
+                                <i class="fa-solid fa-trophy text-yellow-400"></i> <span class="lang-txt-en">Achievements</span><span class="lang-txt-bn">অর্জিত ব্যাজসমূহ</span>
+                            </h3>
+                            <span id="homeAchievementScore" class="text-[9px] font-black uppercase px-2.5 py-1 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400">0/6</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 mb-4 leading-normal lang-txt-en">Complete mock tests to unlock premium badges!</p>
+                        <p class="text-[10px] text-slate-400 mb-4 leading-normal lang-txt-bn">মক পরীক্ষা সম্পন্ন করে প্রিমিয়াম মেডেল আনলক করুন! 🏆</p>
+                    </div>
+                    
+                    <div class="overflow-x-auto no-scrollbar pb-2 relative z-10" style="scrollbar-width: none;">
+                        <div class="flex gap-3 min-w-max justify-around py-2" id="homeAchievementsGrid">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Weekly Leaderboard Widget -->
+                <div class="glass-panel glass-panel-3d p-6 rounded-3xl border-white/5 relative overflow-hidden flex flex-col justify-between" id="homeLeaderboardPanel">
+                    <div class="holographic-shine"></div>
+                    <div class="relative z-10 w-full">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-sm font-black uppercase tracking-wider text-yellow-400 flex items-center gap-2">
+                                <i class="fa-solid fa-crown text-yellow-400"></i> <span class="lang-txt-en">Leaderboard</span><span class="lang-txt-bn">সাপ্তাহিক লিডারবোর্ড</span>
+                            </h3>
+                            <span class="text-[8px] font-black uppercase px-2 py-0.5 rounded bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 animate-pulse">Top 3 👑</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 mb-4 leading-normal lang-txt-en">Top performers of the week based on test activities.</p>
+                        <p class="text-[10px] text-slate-400 mb-4 leading-normal lang-txt-bn">পরীক্ষার ফলাফলের ভিত্তিতে এ সপ্তাহের সেরা ৩ জন শিক্ষার্থী।</p>
+                        
+                        <!-- Rankings List -->
+                        <div class="flex flex-col gap-2.5" id="homeLeaderboardList">
+                            <!-- Populated dynamically by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Assessment Quiz -->
+                <div class="glass-panel glass-panel-3d p-6 rounded-3xl border-white/5 relative overflow-hidden flex flex-col justify-between" id="dailyQuizCardWrapper">
+                    <div class="holographic-shine"></div>
+                    <div class="absolute right-0 top-0 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-sm font-black uppercase tracking-wider text-purple-400 flex items-center gap-2">
+                                <i class="fa-solid fa-brain text-purple-400"></i> <span class="lang-txt-en">Daily Assessment</span><span class="lang-txt-bn">দৈনিক মূল্যায়ন কুইজ</span>
+                            </h3>
+                            <span class="text-[9px] font-black uppercase px-2.5 py-1 rounded bg-purple-500/10 border border-purple-500/20 text-purple-400 animate-pulse">Quiz ⚡</span>
+                        </div>
+                        
+                        <!-- Question Container -->
+                        <div class="mb-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span id="quizSubjectBadge" class="text-[8px] font-black uppercase px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400">Subject</span>
+                                <span id="quizLevelBadge" class="text-[8px] font-black uppercase px-2 py-0.5 rounded bg-yellow-500/10 border border-yellow-500/20 text-yellow-400">Moderate</span>
+                            </div>
+                            <p id="quizQuestionText" class="text-xs font-semibold text-slate-200 leading-relaxed mb-3">...</p>
+                            
+                            <!-- Options list -->
+                            <div class="flex flex-col gap-2" id="quizOptionsContainer">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Explanation/Result footer -->
+                    <div id="quizResultFooter" class="border-t border-white/5 pt-3 mt-2 hidden text-left relative z-10">
+                        <p id="quizExplanationText" class="text-[10px] text-slate-400 leading-normal"></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RIGHT COLUMN (Span 5) -->
+            <div class="lg:col-span-5 flex flex-col gap-8 w-full">
+                <!-- Upcoming Exam Countdown Widget -->
+                <div class="glass-panel glass-panel-3d p-6 rounded-3xl border-white/5 relative overflow-hidden flex flex-col justify-between" id="homeCountdownPanel">
+                    <div class="holographic-shine"></div>
+                    <div class="relative z-10 w-full">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-sm font-black uppercase tracking-wider text-emerald-400 flex items-center gap-2">
+                                <i class="fa-solid fa-clock-rotate-left"></i> <span class="lang-txt-en">Countdown Timer</span><span class="lang-txt-bn">পরীক্ষার কাউন্টডাউন</span>
+                            </h3>
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 live-pulse"></span>
+                        </div>
+                        <span id="countdownExamBadge" class="text-[8px] font-black uppercase px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 block w-max mb-2">Live / Upcoming</span>
+                        <h4 id="countdownExamTitle" class="text-xs font-black text-white mb-3 uppercase truncate">Loading Schedule...</h4>
+                        
+                        <!-- Ticking Countdown digits -->
+                        <div class="grid grid-cols-3 gap-2 text-center">
+                            <div class="bg-white/5 border border-white/5 p-2 rounded-xl">
+                                <span id="countdownHours" class="text-lg font-black text-emerald-400 font-mono">00</span>
+                                <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest block mt-0.5 lang-txt-en">Hours</span>
+                                <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest block mt-0.5 lang-txt-bn">ঘণ্টা</span>
+                            </div>
+                            <div class="bg-white/5 border border-white/5 p-2 rounded-xl">
+                                <span id="countdownMins" class="text-lg font-black text-emerald-400 font-mono">00</span>
+                                <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest block mt-0.5 lang-txt-en">Mins</span>
+                                <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest block mt-0.5 lang-txt-bn">মিনিট</span>
+                            </div>
+                            <div class="bg-white/5 border border-white/5 p-2 rounded-xl">
+                                <span id="countdownSecs" class="text-lg font-black text-emerald-400 font-mono">00</span>
+                                <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest block mt-0.5 lang-txt-en">Secs</span>
+                                <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest block mt-0.5 lang-txt-bn">সেকেন্ড</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Pomodoro Study Timer -->
+                <div class="glass-panel glass-panel-3d p-6 rounded-3xl border-white/5 relative overflow-hidden flex flex-col justify-between" id="homePomodoroPanel">
+                    <div class="holographic-shine"></div>
+                    <div class="relative z-10 w-full flex flex-col justify-between h-full">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <h3 class="text-sm font-black uppercase tracking-wider text-pink-400 flex items-center gap-2">
+                                    <i class="fa-solid fa-hourglass-start"></i> <span class="lang-txt-en">Study Timer</span><span class="lang-txt-bn">পড়াশোনার টাইমার</span>
+                                </h3>
+                                <span class="text-[8px] font-black uppercase px-2 py-0.5 rounded bg-pink-500/10 border border-pink-500/20 text-pink-400">Focus 🎯</span>
+                            </div>
+                            <p class="text-[10px] text-slate-400 mb-4 leading-normal lang-txt-en">Custom-set your target study hours and minutes to start tracking your session.</p>
+                            <p class="text-[10px] text-slate-400 mb-4 leading-normal lang-txt-bn">পড়াশোনা শুরুর আগে আপনার কাঙ্ক্ষিত সময় সেট করে স্টপওয়াচ চালু করুন।</p>
+                        </div>
+                        
+                        <!-- Settings / Inputs for Hours & Minutes -->
+                        <div class="flex items-center justify-center gap-2 mb-4" id="pomodoroInputControls">
+                            <div class="flex flex-col items-center">
+                                <label class="text-[8px] font-black uppercase text-slate-400 mb-1 lang-txt-en">Hours</label>
+                                <label class="text-[8px] font-black uppercase text-slate-400 mb-1 lang-txt-bn">ঘণ্টা</label>
+                                <select id="pomodoroHours" class="bg-slate-900 border border-white/10 text-white text-xs font-bold rounded-lg p-1.5 focus:outline-none focus:border-pink-500">
+                                    <option value="0">00</option>
+                                    <option value="1">01</option>
+                                    <option value="2">02</option>
+                                    <option value="3">03</option>
+                                    <option value="4">04</option>
+                                </select>
+                            </div>
+                            <span class="text-slate-500 font-bold self-end mb-1">:</span>
+                            <div class="flex flex-col items-center">
+                                <label class="text-[8px] font-black uppercase text-slate-400 mb-1 lang-txt-en">Minutes</label>
+                                <label class="text-[8px] font-black uppercase text-slate-400 mb-1 lang-txt-bn">মিনিট</label>
+                                <select id="pomodoroMinutes" class="bg-slate-900 border border-white/10 text-white text-xs font-bold rounded-lg p-1.5 focus:outline-none focus:border-pink-500">
+                                    <option value="0">00</option>
+                                    <option value="5">05</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25" selected>25</option>
+                                    <option value="30">30</option>
+                                    <option value="35">35</option>
+                                    <option value="40">40</option>
+                                    <option value="45">45</option>
+                                    <option value="50">50</option>
+                                    <option value="55">55</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Ticking countdown text display -->
+                        <div class="text-center mb-4 hidden" id="pomodoroTimeDisplay">
+                            <span id="pomodoroDigits" class="text-3xl font-black text-pink-400 font-mono tracking-wider">00:25:00</span>
+                        </div>
+
+                        <!-- Timer Controls -->
+                        <div class="flex gap-2">
+                            <button id="pomodoroStartBtn" onclick="startPomodoroTimer()" class="flex-1 py-2 rounded-xl bg-pink-600 hover:bg-pink-500 text-white text-[9px] font-black uppercase tracking-wider transition active:scale-95 shadow-lg shadow-pink-500/20 flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-play"></i> <span class="lang-txt-en">Start</span><span class="lang-txt-bn">শুরু</span>
+                            </button>
+                            <button id="pomodoroPauseBtn" onclick="pausePomodoroTimer()" class="flex-1 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 text-[9px] font-black uppercase tracking-wider transition active:scale-95 hidden flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-pause"></i> <span class="lang-txt-en">Pause</span><span class="lang-txt-bn">থামুন</span>
+                            </button>
+                            <button id="pomodoroResetBtn" onclick="resetPomodoroTimer()" class="px-3 py-2 rounded-xl bg-slate-900 border border-white/10 hover:border-white/20 text-slate-400 hover:text-white text-[9px] font-black uppercase tracking-wider transition active:scale-95 flex items-center justify-center">
+                                <i class="fa-solid fa-rotate-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Feature Slider / Showcase Carousel -->
+        <div class="w-full max-w-4xl mx-auto relative glass-panel p-6 md:p-8 rounded-3xl border-white/5 shadow-2xl overflow-hidden mt-2">
+            <!-- Background Glow inside slider -->
+            <div class="absolute right-0 top-0 w-64 h-64 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="relative w-full h-[290px] sm:h-[220px] md:h-[180px] overflow-hidden">
+                <!-- Slide 1 -->
+                <div class="carousel-slide absolute inset-0 opacity-100 flex flex-col md:flex-row items-center gap-6" id="slide-0">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 text-2xl flex-shrink-0">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <div class="text-left">
+                        <span class="text-[9px] font-black tracking-widest text-blue-400 uppercase">Core Feature 01 💡</span>
+                        <h3 class="text-lg font-bold text-white mt-1">🧠 AI-Powered Practice Exam Generator</h3>
+                        <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                            Railway, SSC, UPSC, WBPSC, WB Police এবং অন্যান্য ১৭টি জনপ্রিয় সরকারি পরীক্ষার ধরণ ও সিলেবাস অনুযায়ী অটোমেটিক কাস্টম প্র্যাকটিস পরীক্ষা তৈরি ও অনুশীলন করুন। 🧠
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-slide absolute inset-0 opacity-0 pointer-events-none flex flex-col md:flex-row items-center gap-6" id="slide-1">
+                    <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-2xl flex-shrink-0">
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </div>
+                    <div class="text-left">
+                        <span class="text-[9px] font-black tracking-widest text-indigo-400 uppercase">Core Feature 02 📊</span>
+                        <h3 class="text-lg font-bold text-white mt-1">📊 Digital Scorecard & PDF Share</h3>
+                        <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                            পরীক্ষা শেষ করার সাথে সাথেই আপনার পার্সোনালাইজড প্রিমিয়াম রেজাল্ট কার্ডটি কাস্টমাইজড পিডিএফে কনভার্ট করতে পারবেন এবং সরাসরি হোয়াটসঅ্যাপ বা ইমেলে বন্ধুদের সাথে শেয়ার করতে পারবেন। 🚀
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-slide absolute inset-0 opacity-0 pointer-events-none flex flex-col md:flex-row items-center gap-6" id="slide-2">
+                    <div class="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-2xl flex-shrink-0">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+                    <div class="text-left">
+                        <span class="text-[9px] font-black tracking-widest text-purple-400 uppercase">Core Feature 03 🎓</span>
+                        <h3 class="text-lg font-bold text-white mt-1">🎓 Flexible Student & Teacher Portal</h3>
+                        <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                            শিক্ষার্থীদের ড্যাশবোর্ড এবং মোবাইল ফ্রেন্ডলি পোর্টাল। শিক্ষকদের জন্য ক্লাউড ডেটা ট্র্যাকিং এবং পরীক্ষা বিশ্লেষণ করার আধুনিক অ্যাডমিন প্যানেল। 🌐
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel Controls -->
+            <div class="flex items-center justify-between border-t border-white/5 pt-4 mt-4">
+                <div class="flex gap-1.5">
+                    <button class="w-2.5 h-2.5 rounded-full bg-blue-500 transition-all duration-300 slider-dot" onclick="goToSlide(0)"></button>
+                    <button class="w-2.5 h-2.5 rounded-full bg-white/20 transition-all duration-300 slider-dot" onclick="goToSlide(1)"></button>
+                    <button class="w-2.5 h-2.5 rounded-full bg-white/20 transition-all duration-300 slider-dot" onclick="goToSlide(2)"></button>
+                </div>
+                
+                <div class="flex gap-2">
+                    <button class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 flex items-center justify-center text-xs border border-white/5 active:scale-90 transition-all" onclick="prevSlide()">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 flex items-center justify-center text-xs border border-white/5 active:scale-90 transition-all" onclick="nextSlide()">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Daily Motivational Quote Widget (Moved & Styled Centered) -->
+        <div class="glass-panel glass-panel-3d px-8 py-6 rounded-3xl max-w-2xl w-full mx-auto border-white/5 text-center relative mt-4 overflow-hidden" id="homeQuotePanel">
+            <div class="holographic-shine"></div>
+            <i class="fa-solid fa-quote-left text-blue-500/10 text-4xl absolute left-6 top-4"></i>
+            <h3 class="text-xs font-black uppercase tracking-wider text-blue-400 flex items-center justify-center gap-2 mb-3 relative z-10">
+                <i class="fa-solid fa-quote-left"></i> <span class="lang-txt-en">Quote of the Day</span><span class="lang-txt-bn">আজকের উক্তি</span>
+                <i class="fa-solid fa-lightbulb text-yellow-400 text-xs animate-pulse"></i>
+            </h3>
+            
+            <!-- Quote Content -->
+            <div class="my-3 relative z-10 px-6">
+                <p id="homeQuoteText" class="text-xs font-bold text-slate-200 italic leading-relaxed">...</p>
+                <p id="homeQuoteAuthor" class="text-[9px] font-black text-blue-400 mt-2 text-right uppercase tracking-wider">— Loading...</p>
+            </div>
+            
+            <!-- Actions -->
+            <button onclick="shareQuoteToWhatsapp()" class="w-full max-w-xs mx-auto py-2 rounded-xl bg-green-600 hover:bg-green-500 text-white text-[9px] font-black uppercase tracking-wider transition active:scale-95 shadow-lg shadow-green-500/20 flex items-center justify-center gap-1.5 relative z-10 mt-3 border border-green-500/15">
+                <i class="fa-brands fa-whatsapp text-xs"></i> <span class="lang-txt-en">Share on WhatsApp</span><span class="lang-txt-bn">হোয়াটসঅ্যাপে শেয়ার</span>
+            </button>
+        </div>
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full text-center py-6 border-t border-white/5 relative z-10 text-[9px] font-bold tracking-widest text-slate-500 uppercase mt-8">
+        ©️ @All Rights Reserved by <a href="https://hitechjirat.blogspot.com/" target="_blank" class="underline hover:text-white transition">Hitech Jirat</a> Online Examination Software <script>document.write(new Date().getFullYear())</script>@ ©️
+    </footer>
+
+    <!-- Floating Admin Contact & WhatsApp Section (Bottom Left) -->
+    <div class="fixed bottom-24 md:bottom-6 left-6 z-20 flex flex-col items-start gap-3" id="adminContactContainer">
+        <!-- Detailed Admin Card (Hidden by default, slides/fades in) -->
+        <div id="adminDetailCard" class="glass-panel p-4 rounded-[24px] flex items-center gap-4 shadow-2xl border-white/10 indian-flag-hover transition-all duration-300 transform scale-95 opacity-0 pointer-events-none absolute bottom-0 left-0 origin-bottom-left z-20">
+            <!-- Glowing Avatar Frame -->
+            <div class="relative flex-shrink-0">
+                <div class="absolute -inset-0.5 bg-gradient-to-tr from-green-500 to-emerald-500 rounded-full blur opacity-75 animate-pulse"></div>
+                <div class="relative w-16 h-16 rounded-full p-0.5 bg-slate-900 border border-white/15 flex items-center justify-center overflow-hidden">
+                    <img src="assets/photos/admin.jpg" id="adminAvatar" class="w-full h-full object-cover rounded-full" alt="Admin" onerror="this.style.display='none'; document.getElementById('adminFallbackIcon').style.display='flex';">
+                    <div id="adminFallbackIcon" class="w-full h-full bg-slate-800 hidden items-center justify-center">
+                        <i class="fa-solid fa-user-tie text-2xl text-green-400"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="transition-all flex-1 min-w-[180px] max-w-[240px]">
+                <p class="text-emerald-400 text-[9px] font-black tracking-wide mb-1 uppercase truncate">কোনো সমস্যার জন্য যোগাযোগ করুন 💬</p>
+                <h4 class="text-white font-black text-sm leading-tight mb-1" id="adminNameDisplay">Bipul Halder</h4>
+                <a href="mailto:mailtobipulhalder@gmail.com" class="block text-slate-300 text-[10px] font-semibold mb-0.5 truncate hover:text-blue-400"><i class="fa-solid fa-envelope text-blue-400 mr-1.5"></i>mailtobipulhalder@gmail.com</a>
+                <a href="tel:7584992853" class="block text-slate-300 text-[10px] font-semibold mb-0.5 truncate hover:text-indigo-400"><i class="fa-solid fa-phone text-indigo-400 mr-1.5"></i>7584992853</a>
+                <p class="text-slate-400 text-[9px] truncate" id="adminAddressDisplay">Jirat, Hooghly, West Bengal 🇮🇳</p>
+            </div>
+            <a href="https://wa.me/917584992853" target="_blank" class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white hover:bg-green-400 hover:scale-110 transition shadow-lg flex-shrink-0">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+            </a>
+        </div>
+
+        <!-- Small WhatsApp Floating Button (Visible by default) -->
+        <button id="whatsappTriggerBtn" class="w-14 h-14 rounded-full bg-green-500 flex items-center justify-center text-white hover:bg-green-400 hover:scale-110 transition duration-300 shadow-[0_8px_30px_rgba(34,197,94,0.4)] border border-green-400/20 relative z-30">
+<i class="fa-brands fa-whatsapp text-2xl animate-[pulse_2s_infinite]"></i>
+        </button>
+    </div>
+
+    <!-- Mobile-First Glassmorphic Fixed Bottom Navigation TabBar (iOS Style) -->
+    <nav class="md:hidden fixed bottom-4 left-4 right-4 z-40 bg-slate-950/70 backdrop-blur-xl border border-white/10 py-3 rounded-2xl flex justify-around items-center shadow-[0_12px_40px_rgba(0,0,0,0.5)]">
+        <a href="index.html" class="flex flex-col items-center gap-1.5 text-blue-400">
+            <i class="fa-solid fa-home text-lg"></i>
+            <span class="text-[9px] font-bold uppercase tracking-wider">Home</span>
+        </a>
+        <a href="online_exams.html" class="flex flex-col items-center gap-1.5 text-slate-400 hover:text-slate-200">
+            <i class="fa-solid fa-laptop-code text-lg"></i>
+            <span class="text-[9px] font-bold uppercase tracking-wider">Exams</span>
+        </a>
+        <a href="result.html" class="flex flex-col items-center gap-1.5 text-slate-400 hover:text-slate-200">
+            <i class="fa-solid fa-award text-lg"></i>
+            <span class="text-[9px] font-bold uppercase tracking-wider">Results</span>
+        </a>
+        <a href="Ai_Exam_Practice.html" class="flex flex-col items-center gap-1.5 text-slate-400 hover:text-slate-200">
+            <i class="fa-solid fa-robot text-lg"></i>
+            <span class="text-[9px] font-bold uppercase tracking-wider">Ai Generator</span>
+        </a>
+        <a href="contact.html" class="flex flex-col items-center gap-1.5 text-slate-400 hover:text-slate-200">
+            <i class="fa-solid fa-envelope-open-text text-lg"></i>
+            <span class="text-[9px] font-bold uppercase tracking-wider">Contact</span>
+        </a>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileDrawer" class="fixed inset-0 z-[100] bg-slate-950 flex flex-col justify-center items-center gap-8 opacity-0 pointer-events-none transition-all duration-300 md:hidden">
+        <!-- Close Button -->
+        <button id="mobileMenuClose" class="absolute top-6 right-6 w-12 h-12 rounded-full glass-panel flex items-center justify-center border border-white/15 hover:bg-white/5 active:scale-95 text-slate-200 text-xl transition-all">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        
+        <div class="flex flex-col items-center gap-6 text-center px-6">
+            <div class="w-16 h-16 rounded-2xl border border-white/10 overflow-hidden bg-white flex items-center justify-center mb-2">
+                <img src="assets/photos/software_logo.jpg" alt="Logo" class="w-full h-full object-cover">
+            </div>
+            <h3 class="text-xs font-black tracking-widest text-blue-400 uppercase">Hitech Jirat Menu ⚡</h3>
+            <a href="online_exams.html" class="text-xl font-bold uppercase tracking-wider text-slate-300 hover:text-white transition-all flex items-center gap-3">
+                <i class="fa-solid fa-laptop-code text-blue-400"></i> Online Exams
+            </a>
+            <a href="result.html" class="text-xl font-bold uppercase tracking-wider text-slate-300 hover:text-white transition-all flex items-center gap-3">
+                <i class="fa-solid fa-award text-yellow-400"></i> Results
+            </a>
+            <a href="student/student_login.html" class="text-xl font-bold uppercase tracking-wider text-slate-300 hover:text-white transition-all flex items-center gap-3">
+                <i class="fa-solid fa-user-graduate text-emerald-400"></i> Student Login
+            </a>
+            <a href="teachers/teacher_login.html" class="text-xl font-bold uppercase tracking-wider text-slate-300 hover:text-white transition-all flex items-center gap-3">
+                <i class="fa-solid fa-chalkboard-user text-purple-400"></i> Teachers Login
+            </a>
+            <a href="contact.html" class="text-xl font-bold uppercase tracking-wider text-slate-300 hover:text-white transition-all flex items-center gap-3">
+                <i class="fa-solid fa-envelope-open-text text-pink-400"></i> Contact Us
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let toggleMobileMenu;
+        let currentSlide = 0;
+        const totalSlides = 3;
+        const GOOGLE_APP_URL = "https://script.google.com/macros/s/AKfycbwWkO2hhc3zty2WJm868Zs-MK5XjceCJ2UNrAVb_GuuMNRI31sow3G46hUXFdGEX_IZ8A/exec";
+
+        // Web Audio API Click Synthesizer (Runs offline, no asset loading)
+        let audioCtx = null;
+        function playClickSound(freq = 600, duration = 0.08) {
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
+
+        // Haptic Vibration for Mobile Devices
+        function triggerHaptic(duration = 30) {
+            if (navigator.vibrate) {
+                try { navigator.vibrate(duration); } catch(e) {}
+            }
+        }
+
+        // 100+ Offline Motivational Quotes Database (Rotates Daily)
+        const MOTIVATIONAL_QUOTES = [
+            { text: "সাফল্য কোনো দুর্ঘটনা নয়, এটি হলো কঠিন পরিশ্রম ও অধ্যাবসায়।", author: "Pele" },
+            { text: "আজকের অলসতা আগামীকালের দুর্বলতা তৈরি করে।", author: "Socrates" },
+            { text: "ধৈর্যই সাফল্যের স্বর্ণদ্বারে পৌঁছানোর একমাত্র চাবিকাঠি।", author: "Hazrat Ali" },
+            { text: "উদ্যোগ আর আত্মবিশ্বাসই আপনার সবচেয়ে বড় সম্পদ।", author: "Swami Vivekananda" },
+            { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+            { text: "Believe you can and you're halfway there.", author: "T. Roosevelt" },
+            { text: "যদি আপনি স্বপ্ন দেখতে পারেন, তবে আপনি তা অর্জনও করতে পারবেন।", author: "Walt Disney" },
+            { text: "কষ্ট না করলে কেষ্ট মেলে না। অধ্যাবসায়ই আসল শক্তি।", author: "Indian Proverb" },
+            { text: "আমাদের অলসতা আমাদের সবচেয়ে বড় শত্রু।", author: "Rabindranath Tagore" },
+            { text: "Success is not final; failure is not fatal: It is the courage to continue.", author: "W. Churchill" },
+            { text: "প্রতিটি কঠিন কাজই সহজ মনে হয় যদি তা নিয়মিত অনুশীলন করা হয়।", author: "Chanakya" },
+            { text: "নিজের প্রতি বিশ্বাস রাখো, তুমি যেকোনো বাধা পেরিয়ে যাবে।", author: "APJ Abdul Kalam" },
+            { text: "The future depends on what you do today.", author: "Mahatma Gandhi" },
+            { text: "তোমার ভেতরের অনন্ত শক্তিকে জাগিয়ে তোলো।", author: "Swami Vivekananda" },
+            { text: "একটি ভুল মানে এটি নয় যে তুমি শেষ, বরং এটি আরেকটি সুযোগ।", author: "Unknown" },
+            { text: "Don't count the days, make the days count.", author: "Muhammad Ali" },
+            { text: "কঠোর শ্রম কখনোই বৃথা যায় না।", author: "Lao Tzu" },
+            { text: "লক্ষ্য যখন স্থির, পথ তখন নিশ্চিত হবেই।", author: "Netaji Subhas Chandra Bose" },
+            { text: "Act as if what you do makes a difference. It does.", author: "William James" },
+            { text: "ব্যর্থতাই হলো ঘুরে দাঁড়ানোর নতুন শক্তি।", author: "Albert Einstein" },
+            { text: "প্রতিটি সূর্যোদয় আমাদের একটি নতুন সুযোগ এনে দেয়।", author: "Unknown" },
+            { text: "Quality is not an act, it is a habit.", author: "Aristotle" },
+            { text: "যে নিজের মনকে জয় করেছে, সে বিশ্বকে জয় করেছে।", author: "Buddha" },
+            { text: "চেষ্টা কখনো বৃথা যায় না, তা কিছু না কিছু শেখায়।", author: "Kazi Nazrul Islam" },
+            { text: "Your limit is only your imagination.", author: "Unknown" },
+            { text: "কখনো হাল ছেড়ো না, জয় তোমার আসবেই।", author: "Ishwar Chandra Vidyasagar" },
+            { text: "Dream big and dare to fail.", author: "Norman Vaughan" },
+            { text: "সময়কে অপচয় করো না, সময় তোমাকে অপচয় করবে।", author: "William Shakespeare" },
+            { text: "সুযোগের জন্য অপেক্ষা করো না, নিজেই সুযোগ তৈরি করো।", author: "Chris Grosser" },
+            { text: "It always seems impossible until it's done.", author: "Nelson Mandela" },
+            { text: "বিজয়ীরা কখনো হার মানে না, আর হার মানা মানুষেরা কখনো জেতে না।", author: "Vince Lombardi" },
+            { text: "তোমার আজকের পরিশ্রমই তোমার আগামীকালের সাফল্য।", author: "Unknown" },
+            { text: "পড়াশোনাকে বোঝা ভেবো না, এটি জীবনের চাবিকাঠি।", author: "Dr. B.R. Ambedkar" },
+            { text: "You must do the things you think you cannot do.", author: "Eleanor Roosevelt" },
+            { text: "সাফল্যের পথ কখনো সোজা নয়, তবে গন্তব্য অনেক সুন্দর।", author: "Unknown" },
+            { text: "পরাজয় তোমাকে ধ্বংস করতে পারে না যদি তুমি হার স্বীকার না করো।", author: "Ernest Hemingway" },
+            { text: "Focus on being productive instead of busy.", author: "Tim Ferriss" },
+            { text: "জ্ঞানই একমাত্র সম্পদ যা কেউ কেড়ে নিতে পারে না।", author: "Indian Proverb" },
+            { text: "কঠোর সাধনা ছাড়া অসাধারণ কিছু অর্জন করা যায় না।", author: "Sister Nivedita" },
+            { text: "Do what you can, with what you have, where you are.", author: "Theodore Roosevelt" },
+            { text: "সাফল্য হলো প্রতিদিনের ছোট ছোট চেষ্টার যোগফল।", author: "Robert Collier" },
+            { text: "মনকে শান্ত রাখো, সব সমস্যার সমাধান পেয়ে যাবে।", author: "Forest Zen" },
+            { text: "The secret of getting ahead is getting started.", author: "Mark Twain" },
+            { text: "যা হারিয়েছ তা অতীত, যা সামনে আছে তা ভবিষ্যৎ।", author: "Unknown" },
+            { text: "উদ্দেশ্য যদি সৎ হয়, তবে ঈশ্বর সহায় হবেন।", author: "Indian Proverb" },
+            { text: "Don't watch the clock; do what it does. Keep going.", author: "Sam Levenson" },
+            { text: "কখনো না পড়ে যাওয়ার চেয়ে পড়ে গিয়ে আবার দাঁড়ানোই কৃতিত্ব।", author: "Confucius" },
+            { text: "নিজের যোগ্যতার ওপর সন্দেহ কোরো না।", author: "Unknown" },
+            { text: "Hardships often prepare ordinary people for an extraordinary destiny.", author: "C.S. Lewis" },
+            { text: "এক সেকেন্ডের চেষ্টাও তোমার লক্ষ্যকে এগিয়ে দেয়।", author: "Unknown" },
+            { text: "জ্ঞানের চেয়ে বড় কোনো বন্ধু নেই।", author: "Chanakya" },
+            { text: "Believe in yourself and all that you are.", author: "Christian D. Larson" },
+            { text: "তোমার চিন্তা সৎ হলে কাজও সফল হবে।", author: "Mahatma Gandhi" },
+            { text: "Everything you've ever wanted is on the other side of fear.", author: "George Addair" },
+            { text: "সাফল্যের সিঁড়ি নিজেই বানাতে হয়।", author: "Unknown" },
+            { text: "ধৈর্যের ফল সর্বদা মিষ্টি হয়।", author: "Bengali Proverb" },
+            { text: "Begin anywhere. Just begin.", author: "John Cage" },
+            { text: "তোমার ইচ্ছাশক্তিই তোমার ভাগ্য নির্ধারণ করবে।", author: "Swami Vivekananda" },
+            { text: "Failure is success if we learn from it.", author: "Malcolm Forbes" },
+            { text: "তুমি ছাড়া তোমার জীবনকে অন্য কেউ বদলাতে পারবে না।", author: "Unknown" },
+            { text: "বইয়ের মতো ভালো বন্ধু আর কেউ হতে পারে না।", author: "Rabindranath Tagore" },
+            { text: "If opportunity doesn't knock, build a door.", author: "Milton Berle" },
+            { text: "লক্ষ্যের দিকে ধাবিত হও, একদিন চূড়ায় পৌঁছাবেই।", author: "APJ Abdul Kalam" },
+            { text: "প্রতিটি নতুন দিন একটি নতুন সুযোগ।", author: "Unknown" },
+            { text: "Action is the foundational key to all success.", author: "Pablo Picasso" },
+            { text: "অধ্যয়ন মানুষকে পূর্ণতা দেয়।", author: "Francis Bacon" },
+            { text: "তোমার মনকে দুর্বল হতে দিও না।", author: "Swami Vivekananda" },
+            { text: "You only live once, but if you do it right, once is enough.", author: "Mae West" },
+            { text: "সাফল্যের প্রথম ধাপ হলো শুরু করা।", author: "Mark Twain" },
+            { text: "কষ্ট ছাড়া বড় কিছু হাসিল করা যায় না।", author: "Kazi Nazrul Islam" },
+            { text: "It is never too late to be what you might have been.", author: "George Eliot" },
+            { text: "মনোযোগই হলো সফলতার মূল গোপন সূত্র।", author: "Unknown" },
+            { text: "ধৈর্য ধরো, সঠিক সময়ে সঠিক ফল পাবে।", author: "Hazrat Ali" },
+            { text: "Strive not to be a success, but rather to be of value.", author: "Albert Einstein" },
+            { text: "ব্যর্থতাকে ডরো না, চেষ্টা না করাকে ডরো।", author: "Unknown" },
+            { text: "পরিশ্রম কখনো ধোঁকা দেয় না।", author: "Unknown" },
+            { text: "Never give up on a dream just because of the time it will take.", author: "Earl Nightingale" },
+            { text: "তোমার কাজই তোমার পরিচয়।", author: "Swami Vivekananda" },
+            { text: "সহজ পথের যাত্রা দীর্ঘস্থায়ী হয় না।", author: "Unknown" },
+            { text: "The only limit to our realization of tomorrow is our doubts of today.", author: "F.D. Roosevelt" },
+            { text: "তোমার স্বপ্ন সত্যি করার দায়িত্ব তোমারই।", author: "Unknown" },
+            { text: "আজকের কষ্ট আগামীকালের মিষ্টি জয়।", author: "Unknown" },
+            { text: "Energy and persistence conquer all things.", author: "Benjamin Franklin" },
+            { text: "জ্ঞান অর্জনের কোনো শেষ নেই।", author: "Socrates" },
+            { text: "তোমার একাগ্রতাই তোমাকে বিজয়ী করবে।", author: "Netaji Subhas Chandra Bose" },
+            { text: "There are no shortcuts to any place worth going.", author: "Beverly Sills" },
+            { text: "ব্যর্থতাই প্রমাণ করে চেষ্টা মন দিয়ে হয়েছিল।", author: "APJ Abdul Kalam" },
+            { text: "যেখানে সৎ ইচ্ছা আছে, সেখানে পথ বেরবেই।", author: "English Proverb" },
+            { text: "Happiness is not something ready made. It comes from your own actions.", author: "Dalai Lama" },
+            { text: "তুমি আজ যা বীজ রোপণ করবে, কাল তারই ফল পাবে।", author: "Unknown" },
+            { text: "পরিকল্পনা ছাড়া কাজ অন্ধের মতো পথ হাঁটা।", author: "Unknown" },
+            { text: "Well begun is half done.", author: "Aristotle" },
+            { text: "তুমি নিজেই নিজের আলো হও।", author: "Buddha" },
+            { text: "প্রতিটি জয় আমাদের নতুন করে লড়াই করতে শেখায়।", author: "Unknown" },
+            { text: "Either you run the day or the day runs you.", author: "Jim Rohn" },
+            { text: "তোমার জীবনের প্রতিটি দিনকে উৎসব করো।", author: "Rabindranath Tagore" },
+            { text: "বাধা আসবেই, কিন্তু তোমাকে এগিয়ে যেতে হবে।", author: "Swami Vivekananda" },
+            { text: "You can if you think you can.", author: "George Allen" },
+            { text: "সাফল্য তাদেরই খোঁজে যারা অলস বসে থাকে না।", author: "Unknown" },
+            { text: "এক বিন্দু পরিশ্রমও তোমাকে অনেক দূর নিয়ে যায়।", author: "Unknown" }
+        ];
+
+        // Global Theme Definitions
+        const PORTAL_THEMES = {
+            space: {
+                name: "Space Dusk",
+                bg1: "#090d16", bg2: "#121026", bg3: "#06111e", bg4: "#0e1e38",
+                accentRgb: "59, 130, 246",
+                accentText: "#60a5fa",
+                accentDark: "#2563eb",
+                accentDarker: "#1d4ed8"
+            },
+            aurora: {
+                name: "Aurora Borealis",
+                bg1: "#040d0a", bg2: "#071c14", bg3: "#030f0f", bg4: "#0c2b1e",
+                accentRgb: "16, 185, 129",
+                accentText: "#34d399",
+                accentDark: "#059669",
+                accentDarker: "#047857"
+            },
+            cyberpunk: {
+                name: "Cyberpunk Neon",
+                bg1: "#0a050f", bg2: "#1a0826", bg3: "#05020c", bg4: "#240433",
+                accentRgb: "236, 72, 153",
+                accentText: "#f472b6",
+                accentDark: "#db2777",
+                accentDarker: "#be185d"
+            },
+            sunset: {
+                name: "Sunset Glow",
+                bg1: "#120606", bg2: "#260e0a", bg3: "#0c0303", bg4: "#38140c",
+                accentRgb: "249, 115, 22",
+                accentText: "#fb923c",
+                accentDark: "#ea580c",
+                accentDarker: "#c2410c"
+            },
+            ocean: {
+                name: "Ocean Abyssal",
+                bg1: "#030b14", bg2: "#051829", bg3: "#020810", bg4: "#0a263d",
+                accentRgb: "6, 182, 212",
+                accentText: "#22d3ee",
+                accentDark: "#0891b2",
+                accentDarker: "#0e7490"
+            },
+            gold: {
+                name: "Royal Gold",
+                bg1: "#0c0a05", bg2: "#1c170a", bg3: "#080703", bg4: "#2a220e",
+                accentRgb: "245, 158, 11",
+                accentText: "#fbbf24",
+                accentDark: "#d97706",
+                accentDarker: "#b45309"
+            },
+            forest: {
+                name: "Forest Zen",
+                bg1: "#050a06", bg2: "#0f1a11", bg3: "#030604", bg4: "#192d1d",
+                accentRgb: "34, 197, 94",
+                accentText: "#4ade80",
+                accentDark: "#16a34a",
+                accentDarker: "#15803d"
+            },
+            ruby: {
+                name: "Ruby Crimson",
+                bg1: "#0f0305", bg2: "#24060b", bg3: "#0a0102", bg4: "#330810",
+                accentRgb: "239, 68, 68",
+                accentText: "#f87171",
+                accentDark: "#dc2626",
+                accentDarker: "#b91c1c"
+            }
+        };
+
+        const THEME_EMOJIS = {
+            space: "🌌",
+            aurora: "✨",
+            cyberpunk: "🔮",
+            sunset: "🌅",
+            ocean: "🌊",
+            gold: "👑",
+            forest: "🍃",
+            ruby: "🔴"
+        };
+
+        let activeThemeKey = 'space';
+
+        // Global Translation Lookup Maps (English <-> Bengali)
+        let activeLanguage = localStorage.getItem('studentPortalLang') || 'bn';
+        const TRANSLATION_MAPS = {
+            en: {
+                brand: "Hitech Jirat",
+                tagline: "Online Examination Software",
+                ticker_prefix: "📢 Live Updates",
+                ticker_loading: "📢 Loading live exam notices... Please wait...",
+                menu_exams: "Online Exams",
+                menu_results: "Results",
+                menu_student: "Student Login",
+                menu_teacher: "Teachers Login",
+                menu_contact: "Contact Us",
+                start_btn: "Start Examination 🚀",
+                ai_btn: "AI Practice Generator 🧠",
+                score_btn: "View Scorecards 🏆",
+                stat_tests: "Active Mock Tests",
+                stat_tests_sub: "17+ competitive syllabuses supported 📝",
+                stat_secure: "Secure Examination",
+                stat_secure_sub: "Real-time cloud backup & data safety 🔒",
+                stat_instant: "Digital Scorecard",
+                stat_instant_sub: "Premium report with sharing features 📊",
+                admin_help: "Contact Admin for issues 💬",
+                footer_copyright: "©️ @All Rights Reserved by Hitech Jirat Online Examination Software ©️"
+            },
+            bn: {
+                brand: "Hitech Jirat",
+                tagline: "Online Examination Software",
+                ticker_prefix: "📢 লাইভ আপডেট",
+                ticker_loading: "📢 লোড হচ্ছে... অনুগ্রহ করে অপেক্ষা করুন... ⚡",
+                menu_exams: "অনলাইন এক্সাম",
+                menu_results: "ফলাফল",
+                menu_student: "স্টুডেন্ট লগইন",
+                menu_teacher: "শিক্ষক পোর্টাল",
+                menu_contact: "যোগাযোগ",
+                start_btn: "Start Examination 🚀",
+                ai_btn: "AI Practice Generator 🧠",
+                score_btn: "View Scorecards 🏆",
+                stat_tests: "Active Mock Tests",
+                stat_tests_sub: "১৭টি সরকারি পরীক্ষার প্র্যাকটিস সিলেবাস সমর্থিত 📝",
+                stat_secure: "Secure Examination",
+                stat_secure_sub: "রিয়েল-টাইম ক্লাউড ব্যাকআপ এবং সেফ ডেটা ট্র্যাকিং 🔒",
+                stat_instant: "Digital Scorecard",
+                stat_instant_sub: "অনলাইন ও পিডিএফ শেয়ারিং সুবিধাসহ প্রিমিয়াম রিপোর্ট 📊",
+                admin_help: "কোনো সমস্যার জন্য যোগাযোগ করুন 💬",
+                footer_copyright: "©️ @All Rights Reserved by Hitech Jirat Online Examination Software ©️"
+            }
+        };
+
+        // Expanded 10-Step Onboarding spotlight tour configuration
+        const tourSteps = [
+            {
+                elementId: 'liveClockCapsule',
+                title: 'লাইভ সংযোগ ও সময় ⏰🟢',
+                desc: 'এখানে আপনি লাইভ ডেট ও টাইম দেখতে পাবেন। ইন্ডিকেটর ডটটি রিয়েল-টাইমে আপনার ইন্টারনেট সংযোগ নির্দেশ করে (অনলাইন থাকলে সবুজ, অফলাইন থাকলে লাল)।'
+            },
+            {
+                elementId: 'langToggleBtn',
+                title: 'ভাষা পরিবর্তন বাটন (Language Switcher) 🌐',
+                desc: 'এই বোতামটিতে ক্লিক করে আপনি রিফ্রেশ ছাড়াই পুরো হোমপেজটিকে বাংলা অথবা ইংরেজিতে কনভার্ট করতে পারবেন।'
+            },
+            {
+                elementId: 'homeSettingsBtn',
+                title: 'প্রিমিয়াম নিয়ন ও থিম সেটিংস ⚙️🔮',
+                desc: 'এই গিয়ার আইকনে ক্লিক করে আপনি হোমপেজের নিয়ন লাইটের উজ্জ্বলতা কমাতে/বাড়াতে পারবেন এবং ৮টি চমৎকার ডার্ক নিয়ন থিমের মধ্যে যেকোনো থিম সিলেক্ট করতে পারবেন।'
+            },
+            {
+                elementId: 'welcomeDashboardCard',
+                title: 'ব্যক্তিগত স্বাগতম ড্যাশবোর্ড 🎓👋',
+                desc: 'এখানে আপনার প্রোফাইল বিবরণ, শেষ মক পরীক্ষার স্কোর এবং আপনার সিলেবাস সম্পূর্ণ করার প্রোগ্রেস রিং লাইভ দেখতে পাবেন।'
+            },
+            {
+                elementId: 'startExamHeroCta',
+                title: 'অনলাইন মক টেস্ট পোর্টাল 🚀',
+                desc: 'এই বোতামটিতে ক্লিক করে আপনি সরাসরি আমাদের অনলাইন মক টেস্ট ড্যাশবোর্ডে প্রবেশ করতে পারবেন এবং পরীক্ষার তালিকা দেখতে পারবেন।'
+            },
+            {
+                elementId: 'aiPracticeGenCta',
+                title: 'এআই প্র্যাকটিস এক্সাম জেনারেটর 🧠',
+                desc: 'আপনার সিলেবাস অনুযায়ী কৃত্রিম বুদ্ধিমত্তা দিয়ে সেকেন্ডের মধ্যে কাস্টম পরীক্ষা তৈরি ও প্র্যাকটিস করুন।'
+            },
+            {
+                elementId: 'viewScorecardCta',
+                title: 'ডিজিটাল স্কোরকার্ড ও রেজাল্ট 🏆',
+                desc: 'আপনার রোল নম্বর ইনপুট দিয়ে পরীক্ষার প্রিমিয়াম পিডিএফ স্কোরকার্ড এবং আনসার কী ডাউনলোড করুন।'
+            },
+            {
+                elementId: 'homeAchievementsPanel',
+                title: 'পারফরম্যান্স মেডেল ক্যাবিনেট 🏆🏅',
+                desc: 'পরীক্ষা দেওয়া এবং প্র্যাকটিস করার মাধ্যমে আপনি ৬টি চমৎকার নিয়ন মেডেল আনলক করতে পারবেন যা আপনার কৃতিত্ব নির্দেশ করবে।'
+            },
+            {
+                elementId: 'homeLeaderboardPanel',
+                title: 'সাপ্তাহিক লিডারবোর্ড র‍্যাঙ্কিং 👑',
+                desc: 'এ সপ্তাহের সেরা ৩ জন শিক্ষার্থীর র‍্যাঙ্ক, স্কোর ও মক পরীক্ষার রিয়েল-টাইম হিসাব এখানে দেখতে পাবেন। এটি দিনে একবার রিলোড হয়।'
+            },
+            {
+                elementId: 'dailyQuizCardWrapper',
+                title: 'দৈনিক মূল্যায়ন কুইজ (Daily Quiz) 🧠⚡',
+                desc: 'প্রতিদিন আপনার ব্রাউজারের কোয়েশ্চেন ব্যাংক থেকে একটি নতুন প্রশ্ন এখানে আসবে। সঠিক উত্তর দিলে সুন্দর কনফেটি বিস্ফোরণ হবে!'
+            },
+            {
+                elementId: 'homeCountdownPanel',
+                title: 'পরীক্ষার কাউন্টডাউন টাইমার ⏳',
+                desc: 'পরবর্তী লাইভ মক পরীক্ষা শুরু হওয়ার লাইভ কাউন্টডাউন টাইমার এটি। সময়ের আগেই প্রস্তুতি নিয়ে নিন!'
+            },
+            {
+                elementId: 'homePomodoroPanel',
+                title: 'স্টাডি ফোকাস টাইমার ⏳🎯',
+                desc: 'পড়াশোনা করার সময় ঘণ্টা ও মিনিট সিলেক্ট করে আপনি নিজের মতো করে প্রিমিয়াম পোমোডোরো টাইমার শুরু করতে পারবেন।'
+            },
+            {
+                elementId: 'homeQuotePanel',
+                title: 'দৈনিক অনুপ্রেরণামূলক উক্তি 💡',
+                desc: 'প্রতিদিন সকালে এখানে একটি নতুন মোটিভেশনাল উক্তি আসবে যা আপনি চাইলে এক ক্লিকে হোয়াটসঅ্যাপে বন্ধুদের সাথে শেয়ার করতে পারবেন।'
+            },
+            {
+                elementId: 'homeFaqPanel',
+                title: 'সাধারণ জিজ্ঞাসা ও প্রশ্নোত্তর (FAQs) 💬',
+                desc: 'পরীক্ষা শুরু করা, পিডিএফ স্কোরকার্ড এবং অফলাইন পরীক্ষা দেওয়া সংক্রান্ত বিভিন্ন সচরাচর জিজ্ঞাসার সমাধান পাবেন এই প্যানেলে।'
+            }
+        ];
+
+        let currentTourStep = 0;
+
+        window.startPortalTour = function() {
+            currentTourStep = 0;
+            playClickSound(900, 0.1);
+            
+            // Dynamically filter active steps based on element existence and visibility
+            window.activeTourSteps = tourSteps.filter(step => {
+                const el = document.getElementById(step.elementId);
+                return el && !el.classList.contains('hidden') && el.offsetParent !== null;
+            });
+            
+            if (window.activeTourSteps.length === 0) return;
+            
+            // Create backdrop overlay if it doesn't exist
+            let overlay = document.getElementById('tourBackdrop');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.id = 'tourBackdrop';
+                overlay.className = 'fixed inset-0 bg-black/10 z-[10000] transition-opacity duration-300';
+                overlay.onclick = skipPortalTour;
+                document.body.appendChild(overlay);
+            }
+            
+            // Create popover card if it doesn't exist
+            let popover = document.getElementById('tourPopover');
+            if (!popover) {
+                popover = document.createElement('div');
+                popover.id = 'tourPopover';
+                popover.className = 'fixed z-[10002] bg-slate-950/95 border border-white/10 p-5 rounded-[24px] shadow-2xl flex flex-col gap-3 transition-all duration-300 text-left';
+                document.body.appendChild(popover);
+            }
+            
+            showTourStep(0);
+        };
+
+        window.showTourStep = function(stepIndex) {
+            currentTourStep = stepIndex;
+            const steps = window.activeTourSteps || tourSteps;
+            const step = steps[stepIndex];
+            const popover = document.getElementById('tourPopover');
+            if (!step || !popover) return;
+            
+            // Remove previous spotlight class
+            document.querySelectorAll('.tour-spotlight').forEach(el => {
+                el.classList.remove('tour-spotlight');
+            });
+            
+            const targetEl = document.getElementById(step.elementId);
+            if (targetEl) {
+                targetEl.classList.add('tour-spotlight');
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            // Render Popover Content
+            popover.innerHTML = `
+                <div class="flex justify-between items-center">
+                    <span class="text-[8px] font-black text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 rounded-full uppercase tracking-wider">Step ${stepIndex + 1} of ${steps.length}</span>
+                    <button onclick="skipPortalTour()" class="text-[9px] font-black uppercase text-slate-500 hover:text-white transition tracking-wider">Skip</button>
+                </div>
+                <div>
+                    <h4 class="text-xs font-black text-white uppercase tracking-wider mb-1 flex items-center gap-1.5"><i class="fa-solid fa-circle-play text-blue-400"></i> ${step.title}</h4>
+                    <p class="text-[10px] text-slate-400 font-bold leading-relaxed">${step.desc}</p>
+                </div>
+                <div class="flex justify-between items-center border-t border-white/5 pt-3 mt-1">
+                    <button ${stepIndex === 0 ? 'disabled' : ''} onclick="prevTourStep()" class="px-3 py-1.5 rounded-lg border border-white/10 text-[9px] font-black uppercase tracking-wider text-slate-400 hover:text-white hover:bg-white/5 transition active:scale-95 disabled:opacity-30 disabled:pointer-events-none">Back</button>
+                    <button onclick="nextTourStep()" class="px-4 py-1.5 rounded-lg bg-blue-600 text-white text-[9px] font-black uppercase tracking-wider hover:bg-blue-500 transition active:scale-95 shadow-lg shadow-blue-500/20">
+                        ${stepIndex === steps.length - 1 ? 'Finish' : 'Next'}
+                    </button>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                if (targetEl) {
+                    positionPopover(targetEl);
+                } else {
+                    popover.style.top = '50%';
+                    popover.style.left = '50%';
+                    popover.style.transform = 'translate(-50%, -50%)';
+                    popover.style.position = 'fixed';
+                    popover.style.width = '320px';
+                }
+            }, 300);
+        };
+
+        window.prevTourStep = function() {
+            playClickSound(500, 0.08);
+            if (currentTourStep > 0) {
+                showTourStep(currentTourStep - 1);
+            }
+        };
+
+        window.nextTourStep = function() {
+            playClickSound(700, 0.08);
+            const steps = window.activeTourSteps || tourSteps;
+            if (currentTourStep < steps.length - 1) {
+                showTourStep(currentTourStep + 1);
+            } else {
+                skipPortalTour();
+            }
+        };
+
+        window.skipPortalTour = function() {
+            playClickSound(1000, 0.12);
+            document.querySelectorAll('.tour-spotlight').forEach(el => {
+                el.classList.remove('tour-spotlight');
+            });
+            const overlay = document.getElementById('tourBackdrop');
+            if (overlay) overlay.remove();
+            const popover = document.getElementById('tourPopover');
+            if (popover) popover.remove();
+        };
+
+        window.positionPopover = function(element) {
+            const popover = document.getElementById('tourPopover');
+            if (!popover) return;
+            
+            if (window.innerWidth < 768) {
+                popover.style.top = 'auto';
+                popover.style.bottom = '5.5rem';
+                popover.style.left = '50%';
+                popover.style.transform = 'translateX(-50%)';
+                popover.style.position = 'fixed';
+                popover.style.width = 'calc(100% - 2rem)';
+                popover.style.maxWidth = '360px';
+                return;
+            }
+            
+            const rect = element.getBoundingClientRect();
+            const scrollY = window.scrollY || window.pageYOffset;
+            const scrollX = window.scrollX || window.pageXOffset;
+            
+            popover.style.transform = 'none';
+            popover.style.position = 'absolute';
+            popover.style.width = '320px';
+            popover.style.maxWidth = 'none';
+            
+            let top = rect.bottom + scrollY + 12;
+            let left = rect.left + scrollX;
+            
+            if (top + popover.offsetHeight > document.documentElement.scrollHeight) {
+                top = rect.top + scrollY - popover.offsetHeight - 12;
+            }
+            
+            if (left + 320 > window.innerWidth) {
+                left = window.innerWidth - 340;
+            }
+            if (left < 10) left = 10;
+            
+            popover.style.top = top + 'px';
+            popover.style.left = left + 'px';
+        };
+
+        // Light/Dark Neon Theme Toggle Logic
+        window.toggleLightTheme = function() {
+            const isLight = document.body.classList.toggle('light-theme');
+            localStorage.setItem('studentPortalLightTheme', isLight ? 'true' : 'false');
+            updateLightThemeButton(isLight);
+            playClickSound(800, 0.1);
+            showGreetingToast(
+                isLight ? "লাইট মোড সক্রিয় হয়েছে! ☀️" : "ডার্ক স্পেস মোড সক্রিয় হয়েছে! 🌌",
+                isLight ? "Light Mode Active" : "Dark Mode Active"
+            );
+        };
+
+        function updateLightThemeButton(isLight) {
+            const btn = document.getElementById('lightThemeToggleBtn');
+            if (btn) {
+                btn.innerHTML = isLight ? '<i class="fa-solid fa-sun mr-1"></i> Light Mode' : '<i class="fa-solid fa-moon mr-1"></i> Dark Mode';
+            }
+        }
+
+        // Global Multilingual Translate Logic (Refreshes dynamically without reload)
+        window.toggleLanguage = function() {
+            activeLanguage = activeLanguage === 'bn' ? 'en' : 'bn';
+            localStorage.setItem('studentPortalLang', activeLanguage);
+            applyLanguage(activeLanguage);
+            playClickSound(700, 0.08);
+            triggerHaptic(40);
+        };
+
+        function applyLanguage(lang) {
+            const isEn = lang === 'en';
+            document.getElementById('langToggleBtn').innerText = isEn ? 'বাংলা' : 'EN';
+            
+            // Toggle body classes to natively trigger CSS translation
+            if (isEn) {
+                document.body.classList.remove('lang-bn');
+                document.body.classList.add('lang-en');
+            } else {
+                document.body.classList.remove('lang-en');
+                document.body.classList.add('lang-bn');
+            }
+            
+            // Apply text translations for core UI bindings
+            const dictionary = TRANSLATION_MAPS[lang];
+            
+            const brandName = document.getElementById('instNameDisplay');
+            if (brandName) brandName.innerText = dictionary.brand;
+            
+            const brandLarge = document.getElementById('instNameDisplayLarge');
+            if (brandLarge) brandLarge.innerText = dictionary.brand;
+            
+            const activeMocks = document.querySelector('#statCard1Val + p');
+            if (activeMocks) activeMocks.innerText = dictionary.stat_tests;
+            
+            const secureExam = document.querySelector('#statCard2Val + p');
+            if (secureExam) secureExam.innerText = dictionary.stat_secure;
+            
+            const instantScore = document.querySelector('#statCard3Val + p');
+            if (instantScore) instantScore.innerText = dictionary.stat_instant;
+            
+            const ctaStart = document.getElementById('startExamHeroCta');
+            if (ctaStart) ctaStart.innerHTML = `<i class="fa-solid fa-play"></i> ${dictionary.start_btn}`;
+            
+            const appsNotice = document.querySelector('#adminDetailCard p');
+            if (appsNotice) appsNotice.innerText = dictionary.admin_help;
+        }
+
+        // 3D Glass tilt logic (Runs on mousemove for Desktop)
+        function initCardTiltEffects() {
+            document.querySelectorAll('.glass-panel-3d').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const rotateX = ((y / rect.height) - 0.5) * -15; // max tilt 15deg
+                    const rotateY = ((x / rect.width) - 0.5) * 15;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+                    
+                    const shine = card.querySelector('.holographic-shine');
+                    if (shine) {
+                        const pctX = (x / rect.width) * 100;
+                        const pctY = (y / rect.height) * 100;
+                        shine.style.backgroundPosition = `${pctX}% ${pctY}%`;
+                    }
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+                    const shine = card.querySelector('.holographic-shine');
+                    if (shine) {
+                        shine.style.backgroundPosition = '0% 0%';
+                    }
+                });
+            });
+        }
+
+        // Gyroscope Sensor tilt logic (Runs on DeviceOrientation for Mobile/Tablet)
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener('deviceorientation', (e) => {
+                const gamma = e.gamma; // tilt left/right (-90 to 90)
+                const beta = e.beta;   // tilt front/back (-180 to 180)
+                if (Math.abs(gamma) > 2 || Math.abs(beta) > 2) {
+                    document.querySelectorAll('.glass-panel-3d').forEach(card => {
+                        const rotateY = Math.max(-10, Math.min(10, gamma / 3));
+                        const rotateX = Math.max(-10, Math.min(10, (beta - 45) / 4));
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                    });
+                }
+            });
+        }
+
+        // Premium Time-sensitive Slide-in Toast Notice
+        function showGreetingToast(titleBn, titleEn) {
+            let container = document.getElementById('toastWrapper');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'toastWrapper';
+                container.className = 'fixed bottom-6 right-6 z-[100000] flex flex-col gap-2 pointer-events-auto';
+                document.body.appendChild(container);
+            }
+            
+            const isEn = activeLanguage === 'en';
+            const titleText = isEn ? titleEn : titleBn;
+            const subText = isEn ? "Hitech Jirat Student Portal" : "হাইটেক জিরাট স্টুডেন্ট পোর্টাল";
+            
+            const toast = document.createElement('div');
+            toast.className = 'toast-notification glass-panel p-4 rounded-2xl border-white/10 flex items-center gap-3 shadow-2xl relative overflow-hidden';
+            toast.innerHTML = `
+                <div class="w-2 h-2 rounded-full bg-blue-500 live-pulse"></div>
+                <div>
+                    <h5 class="text-xs font-black text-white uppercase tracking-wider">${titleText}</h5>
+                    <p class="text-[9px] text-slate-400 font-bold">${subText}</p>
+                </div>
+            `;
+            container.appendChild(toast);
+            
+            // Auto remove after 5s
+            setTimeout(() => {
+                toast.classList.add('hide');
+                setTimeout(() => toast.remove(), 400);
+            }, 5000);
+        }
+
+        // Custom Welcome Personalization Engine
+        function renderWelcomeDashboard() {
+            const welcomeTextMain = document.getElementById('welcomeTextMain');
+            const welcomeLastMockText = document.getElementById('welcomeLastMockText');
+            const welcomeTextSub = document.getElementById('welcomeTextSub');
+            
+            // Fetch name from attempted history or roll database
+            const attemptedStr = localStorage.getItem('attemptedExams');
+            let attempted = [];
+            if (attemptedStr) {
+                try { attempted = JSON.parse(attemptedStr); } catch(e) {}
+            }
+            
+            let studentName = "শিক্ষার্থী";
+            let studentNameEn = "Student";
+            
+            // Check if there is an active session profile
+            const profileStr = localStorage.getItem('studentProfileData');
+            if (profileStr) {
+                try {
+                    const prof = JSON.parse(profileStr);
+                    if (prof.name) {
+                        studentName = prof.name;
+                        studentNameEn = prof.name;
+                    }
+                } catch(e) {}
+            }
+            
+            // Custom Time of Day personalized message
+            const hour = new Date().getHours();
+            let greeting = "স্বাগতম";
+            let greetingEn = "Welcome";
+            
+            if (hour >= 5 && hour < 12) {
+                greeting = "শুভ সকাল";
+                greetingEn = "Good Morning";
+            } else if (hour >= 12 && hour < 16) {
+                greeting = "শুভ দুপুর";
+                greetingEn = "Good Afternoon";
+            } else if (hour >= 16 && hour < 20) {
+                greeting = "শুভ সন্ধ্যা";
+                greetingEn = "Good Evening";
+            } else {
+                greeting = "শুভ রাত্রি";
+                greetingEn = "Good Night";
+            }
+            
+            if (welcomeTextMain) {
+                welcomeTextMain.innerHTML = `
+                    <span class="lang-txt-en">${greetingEn}, ${studentNameEn}! 👋</span>
+                    <span class="lang-txt-bn">${greeting}, ${studentName}! 👋</span>
+                `;
+            }
+            
+            if (welcomeLastMockText && attempted.length > 0) {
+                const lastExam = attempted[attempted.length - 1];
+                const dateStr = new Date(lastExam.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                welcomeLastMockText.innerHTML = `
+                    <span class="lang-txt-en">Last Mock: ${lastExam.examTitle.substring(0,18)}... (${lastExam.percentage}%) 📊</span>
+                    <span class="lang-txt-bn">শেষ মক: ${lastExam.examTitle.substring(0,18)}... (${lastExam.percentage}%) 📊</span>
+                `;
+            }
+            
+            // Dynamic circular Progress calculations
+            const totalSyllabusExams = 17;
+            const attemptedCategories = new Set(attempted.map(e => e.category)).size;
+            const progressPct = Math.min(100, Math.round((attemptedCategories / totalSyllabusExams) * 100));
+            
+            const circle = document.getElementById('syllabusProgressRing');
+            const pctText = document.getElementById('syllabusProgressText');
+            if (circle) {
+                const radius = circle.r.baseVal.value;
+                const circumference = radius * 2 * Math.PI;
+                const offset = circumference - (progressPct / 100) * circumference;
+                circle.style.strokeDasharray = `${circumference} ${circumference}`;
+                circle.style.strokeDashoffset = offset;
+            }
+            if (pctText) pctText.innerText = progressPct + '%';
+            
+            // Trigger Time-sensitive greeting toast alert
+            setTimeout(() => {
+                showGreetingToast(`${greeting}, ${studentName}! 🌟`, `${greetingEn}, ${studentNameEn}! 🌟`);
+            }, 1000);
+        }
+
+
+        // Daily Sync Leaderboard Widget Logic (24 Hour Cache Protection)
+        async function loadLeaderboardWidget() {
+            const listContainer = document.getElementById('homeLeaderboardList');
+            if (!listContainer) return;
+            
+            const LEADERBOARD_CACHE_KEY = 'fj_leaderboard_cache';
+            const LEADERBOARD_SYNC_KEY = 'fj_leaderboard_sync_time'; // Stores the lastResultPublished timestamp we synced
+            
+            const now = Date.now();
+            const GITHUB_LEADERBOARD_URL = "https://hitechjirat.github.io/Live-Exam/leaderboard.json?t=" + now;
+            
+            // Default fallback rankings
+            const fallbackRankings = [
+                { name: "Rohan Das", score: 98.4, mocks: 48, avatar: "assets/photos/software_logo.jpg" },
+                { name: "Priya Sen", score: 95.8, mocks: 45, avatar: "assets/photos/software_logo.jpg" },
+                { name: "Amit Halder", score: 92.1, mocks: 40, avatar: "assets/photos/software_logo.jpg" }
+            ];
+            
+            // 1. Render cache immediately if it exists
+            const cachedList = localStorage.getItem(LEADERBOARD_CACHE_KEY);
+            let cachedRankings = null;
+            if (cachedList) {
+                try {
+                    cachedRankings = JSON.parse(cachedList);
+                    renderRankList(cachedRankings);
+                } catch(e) {}
+            }
+            
+            try {
+                // 2. Fetch leaderboard.json from GitHub (CDN served, no API limits)
+                const ghRes = await fetch(GITHUB_LEADERBOARD_URL);
+                if (ghRes.ok) {
+                    const ghData = await ghRes.json();
+                    const lastPublished = parseInt(ghData.lastResultPublished) || 0;
+                    const lastSync = parseInt(localStorage.getItem(LEADERBOARD_SYNC_KEY) || "0");
+                    
+                    // 3. If a new result was published, trigger Google Sheets API fetch
+                    if (lastPublished > lastSync || !cachedRankings) {
+                        try {
+                            const res = await fetch(GOOGLE_APP_URL + "?action=getPerformers&t=" + now);
+                            if (res.ok) {
+                                const json = await res.json();
+                                if (json && json.status === "success" && json.monthly && json.monthly.length > 0) {
+                                    const freshRankings = json.monthly.map((item, idx) => {
+                                        return {
+                                            name: item.name,
+                                            score: parseFloat(item.score) || 0,
+                                            mocks: 48 - (idx * 4),
+                                            avatar: "assets/photos/software_logo.jpg"
+                                        };
+                                    });
+                                    
+                                    // Update cache and sync time
+                                    localStorage.setItem(LEADERBOARD_CACHE_KEY, JSON.stringify(freshRankings));
+                                    localStorage.setItem(LEADERBOARD_SYNC_KEY, lastPublished.toString());
+                                    renderRankList(freshRankings);
+                                    return;
+                                }
+                            }
+                        } catch(err) {
+                            console.warn("Apps Script leaderboard query failed:", err);
+                        }
+                    }
+                    
+                    // If no new result published, or Google Sheets fetch failed, fallback to GitHub rankings or local cache
+                    if (!cachedRankings) {
+                        const ghRankings = ghData.rankings || fallbackRankings;
+                        renderRankList(ghRankings);
+                        localStorage.setItem(LEADERBOARD_CACHE_KEY, JSON.stringify(ghRankings));
+                    }
+                } else if (!cachedRankings) {
+                    renderRankList(fallbackRankings);
+                }
+            } catch(err) {
+                console.warn("GitHub leaderboard check failed:", err);
+                if (!cachedRankings) {
+                    renderRankList(fallbackRankings);
+                }
+            }
+        }
+            
+            function renderRankList(list) {
+                listContainer.innerHTML = '';
+                const crowns = ['👑', '🥈', '🥉'];
+                const colors = ['text-yellow-400', 'text-slate-300', 'text-amber-500'];
+                
+                list.slice(0, 3).forEach((item, index) => {
+                    const row = document.createElement('div');
+                    row.className = 'flex items-center justify-between p-2 rounded-xl bg-white/5 border border-white/5 indian-flag-hover transition';
+                    row.innerHTML = `
+                        <div class="flex items-center gap-2.5">
+                            <span class="text-xs font-black ${colors[index]}">${crowns[index]}</span>
+                            <div class="w-8 h-8 rounded-full border border-white/10 overflow-hidden bg-slate-800 flex items-center justify-center">
+                                <img src="${item.avatar}" class="w-full h-full object-cover" onerror="this.src='assets/photos/software_logo.jpg'">
+                            </div>
+                            <div>
+                                <h5 class="text-[10px] font-black text-white truncate max-w-[110px]">${item.name}</h5>
+                                <p class="text-[8px] text-slate-400 font-bold uppercase tracking-wider">${item.mocks} Mocks Attempted</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs font-black text-blue-400 font-mono">${item.score}%</span>
+                            <p class="text-[7px] text-slate-500 font-bold uppercase tracking-widest">Avg Accuracy</p>
+                        </div>
+                    `;
+                    listContainer.appendChild(row);
+                });
+            }
+        }
+
+        // Live Countdown Exam Clock Widget
+        let countdownInterval = null;
+        function initCountdownWidget(examsList) {
+            const clockHours = document.getElementById('countdownHours');
+            const clockMins = document.getElementById('countdownMins');
+            const clockSecs = document.getElementById('countdownSecs');
+            const titleEl = document.getElementById('countdownExamTitle');
+            const badgeEl = document.getElementById('countdownExamBadge');
+            
+            if (!clockHours || !clockMins || !clockSecs) return;
+            
+            // Find next upcoming Live exam schedule
+            const now = new Date();
+            let nextExam = null;
+            
+            if (examsList && examsList.length > 0) {
+                const liveExams = examsList.filter(e => {
+                    if (e.type !== "Live" || !e.liveSchedule) return false;
+                    const startTime = new Date(e.liveSchedule.startTime);
+                    return startTime > now;
+                }).sort((a,b) => new Date(a.liveSchedule.startTime) - new Date(b.liveSchedule.startTime));
+                
+                if (liveExams.length > 0) {
+                    nextExam = liveExams[0];
+                }
+            }
+            
+            let targetDate = null;
+            if (nextExam) {
+                targetDate = new Date(nextExam.liveSchedule.startTime);
+                titleEl.innerText = nextExam.examTitle;
+                badgeEl.innerText = activeLanguage === 'bn' ? "লাইভ পরীক্ষা আসন্ন ⚡" : "Live Exam Scheduled ⚡";
+                badgeEl.className = 'text-[8px] font-black uppercase px-2 py-0.5 rounded bg-red-500/10 border border-red-500/20 text-red-400 block w-max mb-2 animate-pulse';
+            } else {
+                // Default weekly test schedule fallback: Next Sunday 10:00 AM
+                targetDate = new Date();
+                targetDate.setDate(targetDate.getDate() + (7 - targetDate.getDay()) % 7);
+                targetDate.setHours(10, 0, 0, 0);
+                if (targetDate <= now) {
+                    targetDate.setDate(targetDate.getDate() + 7);
+                }
+                titleEl.innerText = activeLanguage === 'bn' ? "সাপ্তাহিক প্রিমিয়াম মক টেস্ট" : "WEEKLY MOCK ASSESSMENT";
+                badgeEl.innerText = activeLanguage === 'bn' ? "সাপ্তাহিক রুটিন 📅" : "WEEKLY SCHEDULE 📅";
+                badgeEl.className = 'text-[8px] font-black uppercase px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 block w-max mb-2';
+            }
+            
+            if (countdownInterval) clearInterval(countdownInterval);
+            
+            function updateCountdown() {
+                const timeDiff = targetDate - new Date();
+                if (timeDiff <= 0) {
+                    clockHours.innerText = "00";
+                    clockMins.innerText = "00";
+                    clockSecs.innerText = "00";
+                    clearInterval(countdownInterval);
+                    return;
+                }
+                
+                const hrs = Math.floor(timeDiff / (1000 * 60 * 60));
+                const mns = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const scs = Math.floor((timeDiff % (1000 * 60)) / 1000);
+                
+                clockHours.innerText = hrs.toString().padStart(2, '0');
+                clockMins.innerText = mns.toString().padStart(2, '0');
+                clockSecs.innerText = scs.toString().padStart(2, '0');
+            }
+            
+            updateCountdown();
+            countdownInterval = setInterval(updateCountdown, 1000);
+        }
+
+        // Custom Study Timer (Pomodoro Widget) Logic with Immersive Focus Overlay
+        let pomodoroTimerId = null;
+        let pomodoroTotalSecs = 0;
+        let pomodoroRemainingSecs = 0;
+        let pomodoroIsPaused = false;
+
+        window.startPomodoroTimer = function() {
+            playClickSound(800, 0.1);
+            triggerHaptic(40);
+            
+            const hoursSel = document.getElementById('pomodoroHours');
+            const minsSel = document.getElementById('pomodoroMinutes');
+            
+            if (!pomodoroIsPaused) {
+                const hrs = parseInt(hoursSel.value);
+                const mns = parseInt(minsSel.value);
+                pomodoroTotalSecs = (hrs * 3600) + (mns * 60);
+                pomodoroRemainingSecs = pomodoroTotalSecs;
+            }
+            
+            if (pomodoroRemainingSecs <= 0) return;
+            
+            document.getElementById('pomodoroInputControls').classList.add('hidden');
+            document.getElementById('pomodoroTimeDisplay').classList.remove('hidden');
+            document.getElementById('pomodoroStartBtn').classList.add('hidden');
+            document.getElementById('pomodoroPauseBtn').classList.remove('hidden');
+            
+            // Show full-screen focus overlay
+            const overlay = document.getElementById('pomodoroFocusOverlay');
+            if (overlay) {
+                overlay.classList.replace('hidden', 'flex');
+                
+                // Fetch a random quote for overlay focus motivation
+                const overlayQuote = document.getElementById('overlayQuoteText');
+                if (overlayQuote && MOTIVATIONAL_QUOTES.length > 0) {
+                    const now = new Date();
+                    const quoteIndex = (now.getDate() + now.getMinutes()) % MOTIVATIONAL_QUOTES.length;
+                    overlayQuote.innerText = `"${MOTIVATIONAL_QUOTES[quoteIndex].text}"`;
+                }
+            }
+            
+            pomodoroIsPaused = false;
+            if (pomodoroTimerId) clearInterval(pomodoroTimerId);
+            
+            // Update display immediately to block 1s default text lag
+            updatePomodoroDisplay();
+            
+            pomodoroTimerId = setInterval(() => {
+                pomodoroRemainingSecs--;
+                updatePomodoroDisplay();
+                
+                if (pomodoroRemainingSecs <= 0) {
+                    clearInterval(pomodoroTimerId);
+                    pomodoroTimerId = null;
+                    playClickSound(1000, 0.5); // long tone completion
+                    triggerHaptic(100);
+                    showGreetingToast("পড়াশোনা সম্পন্ন! প্রিমিয়াম ফোকাস সমাপ্ত 🎓⏰", "Study session completed! Great job.");
+                    
+                    const overlay = document.getElementById('pomodoroFocusOverlay');
+                    if (overlay) overlay.classList.replace('flex', 'hidden');
+                    
+                    resetPomodoroTimer();
+                }
+            }, 1000);
+        };
+
+        window.pausePomodoroTimer = function() {
+            playClickSound(500, 0.08);
+            if (pomodoroTimerId) {
+                clearInterval(pomodoroTimerId);
+                pomodoroTimerId = null;
+            }
+            pomodoroIsPaused = true;
+            document.getElementById('pomodoroStartBtn').classList.remove('hidden');
+            document.getElementById('pomodoroPauseBtn').classList.add('hidden');
+        };
+
+        window.togglePomodoroFromOverlay = function() {
+            if (pomodoroTimerId) {
+                // Pause
+                clearInterval(pomodoroTimerId);
+                pomodoroTimerId = null;
+                pomodoroIsPaused = true;
+                const btn = document.getElementById('overlayPauseBtn');
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                
+                document.getElementById('pomodoroStartBtn').classList.remove('hidden');
+                document.getElementById('pomodoroPauseBtn').classList.add('hidden');
+                playClickSound(500, 0.08);
+            } else {
+                // Resume
+                const btn = document.getElementById('overlayPauseBtn');
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                startPomodoroTimer();
+            }
+        };
+
+        window.stopPomodoroTimer = function() {
+            playClickSound(400, 0.08);
+            resetPomodoroTimer();
+            const overlay = document.getElementById('pomodoroFocusOverlay');
+            if (overlay) {
+                overlay.classList.replace('flex', 'hidden');
+            }
+        };
+
+        window.resetPomodoroTimer = function() {
+            if (pomodoroTimerId) {
+                clearInterval(pomodoroTimerId);
+                pomodoroTimerId = null;
+            }
+            pomodoroIsPaused = false;
+            pomodoroRemainingSecs = 0;
+            pomodoroTotalSecs = 0;
+            
+            document.getElementById('pomodoroInputControls').classList.remove('hidden');
+            document.getElementById('pomodoroTimeDisplay').classList.add('hidden');
+            document.getElementById('pomodoroStartBtn').classList.remove('hidden');
+            document.getElementById('pomodoroPauseBtn').classList.add('hidden');
+            
+            document.getElementById('pomodoroDigits').innerText = "00:25:00";
+            
+            const btn = document.getElementById('overlayPauseBtn');
+            if (btn) btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        };
+
+        function updatePomodoroDisplay() {
+            const h = Math.floor(pomodoroRemainingSecs / 3600);
+            const m = Math.floor((pomodoroRemainingSecs % 3600) / 60);
+            const s = pomodoroRemainingSecs % 60;
+            const timeStr = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+            
+            const digits = document.getElementById('pomodoroDigits');
+            const overlayDigits = document.getElementById('overlayDigits');
+            if (digits) digits.innerText = timeStr;
+            if (overlayDigits) overlayDigits.innerText = timeStr;
+            
+            // Circular progress calculations for the overlay progress ring
+            const ring = document.getElementById('overlayProgressRing');
+            if (ring && pomodoroTotalSecs > 0) {
+                const circumference = 110 * 2 * Math.PI; // radius 110 -> 691.15
+                const fraction = pomodoroRemainingSecs / pomodoroTotalSecs;
+                const offset = circumference - (fraction * circumference);
+                ring.style.strokeDasharray = `${circumference} ${circumference}`;
+                ring.style.strokeDashoffset = offset;
+            }
+        }
+
+        // Daily Motivational Quote display (Calculated locally from bank)
+        function renderDailyQuote() {
+            const quoteText = document.getElementById('homeQuoteText');
+            const quoteAuthor = document.getElementById('homeQuoteAuthor');
+            if (!quoteText || !quoteAuthor) return;
+            
+            const now = new Date();
+            const start = new Date(now.getFullYear(), 0, 0);
+            const diff = now - start;
+            const oneDay = 1000 * 60 * 60 * 24;
+            const dayOfYear = Math.floor(diff / oneDay);
+            
+            const dailyQuote = MOTIVATIONAL_QUOTES[dayOfYear % MOTIVATIONAL_QUOTES.length];
+            quoteText.innerText = `"${dailyQuote.text}"`;
+            quoteAuthor.innerText = `— ${dailyQuote.author}`;
+        }
+
+        window.shareQuoteToWhatsapp = function() {
+            playClickSound(800, 0.08);
+            const text = document.getElementById('homeQuoteText').innerText;
+            const author = document.getElementById('homeQuoteAuthor').innerText;
+            const shareString = encodeURIComponent(`💡 আজকের অনুপ্রেরণা (Hitech Jirat Portal):\n\n${text}\n${author}\n\nঅনলাইন প্রস্তুতি নিতে প্রবেশ করুন: https://hitechjirat.blogspot.com/`);
+            window.open(`https://wa.me/?text=${shareString}`, '_blank');
+        };
+
+
+
+        // News Ticker Render updates
+        function loadTickerAnnouncements(examsList) {
+            const ticker = document.getElementById('ticker-content');
+            if (!ticker) return;
+            
+            const fallbackMsg = "🕒 যেকোনো কারিগরি সমস্যার জন্য নিচে বাম পাশের হোয়াটসঅ্যাপ বাটনে ক্লিক করে অ্যাডমিনের সাথে যোগাযোগ করুন। 💬";
+            if (!examsList || examsList.length === 0) {
+                ticker.innerHTML = `<span>${fallbackMsg}</span>`;
+                return;
+            }
+            
+            let contentStr = "";
+            const recentResults = examsList.filter(e => e.publishResult === "Yes" && e.resultPublishTime);
+            recentResults.slice(0, 3).forEach(r => {
+                contentStr += `<span>🎉 রেজাল্ট প্রকাশিত হয়েছে: ${r.examTitle} (Scorecard Available) 🏆</span> <span class="w-16"></span>`;
+            });
+            
+            const liveExams = examsList.filter(e => e.type === "Live" && e.liveSchedule);
+            liveExams.slice(0, 2).forEach(l => {
+                contentStr += `<span>⚡ লাইভ পরীক্ষা শিডিউলড: ${l.examTitle} (তারিখ: ${l.liveSchedule.startTime}) ⏳</span> <span class="w-16"></span>`;
+            });
+            
+            contentStr += `<span>${fallbackMsg}</span>`;
+            ticker.innerHTML = contentStr;
+        }
+
+        // Clock time capsules updates
+        function updateClock() {
+            const now = new Date();
+            const dateOptions = { month: 'short', day: 'numeric', year: 'numeric' };
+            const dateString = now.toLocaleDateString('en-US', dateOptions);
+            const timeString = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+            
+            const dateEl = document.getElementById('liveDate');
+            const timeEl = document.getElementById('liveTime');
+            if (dateEl) dateEl.innerText = dateString;
+            if (timeEl) timeEl.innerText = timeString;
+        }
+
+        // Live connection indicator logic (desktop and mobile synced)
+        function updateConnectionStatus() {
+            const isOnline = navigator.onLine;
+            const dot = document.getElementById('connectionDot');
+            const mDot = document.getElementById('mobileConnectionDot');
+            const text = document.getElementById('connectionText');
+            
+            if (dot) {
+                dot.className = `w-2.5 h-2.5 rounded-full live-pulse ${isOnline ? 'bg-emerald-500' : 'bg-red-500'}`;
+            }
+            if (mDot) {
+                mDot.className = `w-2 h-2 rounded-full live-pulse ${isOnline ? 'bg-emerald-500' : 'bg-red-500'}`;
+            }
+            if (text) {
+                text.innerText = isOnline ? "Online" : "Offline";
+                text.className = `text-[9px] uppercase tracking-wider font-bold ${isOnline ? 'text-slate-400' : 'text-red-400'}`;
+            }
+            
+            // Show floating indicator alert toasts
+            showGreetingToast(
+                isOnline ? "ইন্টারনেট সংযোগ চালু হয়েছে! 🟢" : "ইন্টারনেট সংযোগ বিচ্ছিন্ন! অফলাইন মোড সক্রিয় 🔴",
+                isOnline ? "Connected back online!" : "Internet Disconnected! Offline Mode"
+            );
+        }
+
+        // Counter Up counting animation routines
+        window.animateCounter = function(elementId, target, suffix = '') {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            
+            let start = 0;
+            const duration = 1000; // 1s
+            const startTime = performance.now();
+            
+            function step(timestamp) {
+                const elapsed = timestamp - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Ease out cubic
+                const value = Math.floor(progress * (2 - progress) * target);
+                
+                el.innerText = value + suffix;
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    el.innerText = target + suffix;
+                }
+            }
+            window.requestAnimationFrame(step);
+        };
+
+        function triggerDynamicCounters(examsList) {
+            const totalExamsCount = examsList.length || 50;
+            animateCounter('statCard1Val', totalExamsCount, '+ 📚');
+            animateCounter('statCard2Val', 100, '% 🛡️');
+            animateCounter('statCard3Val', 98, '% ⚡');
+        }
+
+        // Gamified achievements rendered panel
+        window.renderHomeAchievements = function() {
+            const grid = document.getElementById('homeAchievementsGrid');
+            const scoreEl = document.getElementById('homeAchievementScore');
+            if (!grid) return;
+            
+            const badges = [
+                { key: "firstMock", name: "First Step", descBn: "১ম মক সম্পূর্ণ", descEn: "1st Mock solved", icon: "fa-seedling", color: "from-blue-500 to-cyan-500", condition: (data) => data.attemptedCount >= 1 },
+                { key: "practiceKing", name: "Practice King", descBn: "৫টি মক সম্পূর্ণ", descEn: "5 Mocks solved", icon: "fa-fire", color: "from-orange-500 to-red-500", condition: (data) => data.attemptedCount >= 5 },
+                { key: "starHunter", name: "Star Hunter", descBn: "১টি স্টার দেওয়া", descEn: "Starred an exam", icon: "fa-star", color: "from-yellow-400 to-amber-500", condition: (data) => data.starredCount >= 1 },
+                { key: "liveWarrior", name: "Live Warrior", descBn: "১টি লাইভ পরীক্ষা", descEn: "1 Live Exam solved", icon: "fa-bolt", color: "from-purple-500 to-pink-500", condition: (data) => data.liveCount >= 1 },
+                { key: "nightOwl", name: "Night Owl", descBn: "রাত ১২টায় পরীক্ষা", descEn: "Solved after 12AM", icon: "fa-moon", color: "from-indigo-600 to-purple-800", condition: (data) => data.nightOwl === true },
+                { key: "consistent", name: "Consistent Scholar", descBn: "৩টি ভিন্ন দিনে ভিজিট", descEn: "Visited 3 diff days", icon: "fa-calendar-check", color: "from-green-500 to-emerald-500", condition: (data) => data.activeDates >= 3 }
+            ];
+            
+            // Read storage stats
+            const attemptedStr = localStorage.getItem('attemptedExams') || '[]';
+            const starredStr = localStorage.getItem('starredExams') || '[]';
+            const activeDatesStr = localStorage.getItem('portalActiveDates') || '[]';
+            const nightOwlStr = localStorage.getItem('achievementNightOwl') || 'false';
+            
+            let attempted = [];
+            let starred = [];
+            let activeDates = [];
+            try { attempted = JSON.parse(attemptedStr); } catch(e) {}
+            try { starred = JSON.parse(starredStr); } catch(e) {}
+            try { activeDates = JSON.parse(activeDatesStr); } catch(e) {}
+            
+            const stats = {
+                attemptedCount: attempted.length,
+                starredCount: starred.length,
+                liveCount: attempted.filter(e => e.type === "Live").length,
+                nightOwl: nightOwlStr === 'true',
+                activeDates: activeDates.length
+            };
+            
+            let unlockedCount = 0;
+            grid.innerHTML = '';
+            
+            badges.forEach(b => {
+                const unlocked = b.condition(stats);
+                if (unlocked) unlockedCount++;
+                
+                const card = document.createElement('div');
+                card.className = `flex flex-col items-center gap-1.5 p-3 rounded-2xl glass-panel relative group ${unlocked ? 'border-blue-500/20' : 'opacity-40 filter grayscale'}`;
+                card.innerHTML = `
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr ${unlocked ? b.color : 'from-slate-700 to-slate-800'} flex items-center justify-center text-white text-base shadow-lg shadow-blue-500/5">
+                        <i class="fa-solid ${b.icon}"></i>
+                    </div>
+                    <span class="text-[9px] font-black text-white uppercase tracking-wider block mt-1">${b.name}</span>
+                    <!-- Hover Tooltip -->
+                    <div class="absolute bottom-full mb-2 hidden group-hover:block w-36 bg-slate-950 border border-white/10 p-2 rounded-xl text-center shadow-xl z-50 pointer-events-none">
+                        <span class="text-[8px] font-black text-blue-400 uppercase tracking-widest block">${b.name}</span>
+                        <p class="text-[8px] text-slate-300 font-bold mt-1 lang-txt-en">${b.descEn}</p>
+                        <p class="text-[8px] text-slate-300 font-bold mt-1 lang-txt-bn">${b.descBn}</p>
+                        <span class="text-[7px] font-bold block mt-1 ${unlocked ? 'text-emerald-400' : 'text-red-400'}">${unlocked ? '✔ Unlocked' : '❌ Locked'}</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            
+            if (scoreEl) scoreEl.innerText = `Unlocks: ${unlockedCount}/6`;
+        };
+
+        // Auto-Updating Daily Quiz Box from Cached bank
+        let quizCorrectIndex = -1;
+        let quizExplanation = "";
+        
+        window.initializeHomeDailyQuiz = function() {
+            const wrapper = document.getElementById('dailyQuizCardWrapper');
+            const panel = document.getElementById('homeAchievementsPanel');
+            const badge = document.getElementById('quizSubjectBadge');
+            const question = document.getElementById('quizQuestionText');
+            const container = document.getElementById('quizOptionsContainer');
+            
+            if (!wrapper) return;
+            
+            const qbankStr = localStorage.getItem('qb_cached_bank_data');
+            let questionsList = [];
+            
+            if (qbankStr) {
+                try {
+                    questionsList = JSON.parse(qbankStr);
+                } catch(e) {}
+            }
+            
+            // Safe fallback layout if cache is empty: Hide quiz
+            if (!questionsList || questionsList.length === 0 || !Array.isArray(questionsList)) {
+                wrapper.style.display = 'none';
+                return;
+            }
+            
+            wrapper.style.display = 'flex';
+            
+            // Select question dynamically based on day of year
+            const now = new Date();
+            const start = new Date(now.getFullYear(), 0, 0);
+            const diff = now - start;
+            const oneDay = 1000 * 60 * 60 * 24;
+            const dayOfYear = Math.floor(diff / oneDay);
+            
+            const qIndex = dayOfYear % questionsList.length;
+            const q = questionsList[qIndex];
+            
+            if (badge) badge.innerText = q.subject || "General Study";
+            if (question) question.innerText = q.question;
+            
+            quizCorrectIndex = parseInt(q.correctIndex);
+            quizExplanation = q.explanation || "কুইজটি সঠিকভাবে সমাধান করার জন্য ধন্যবাদ।";
+            
+            if (container) {
+                container.innerHTML = '';
+                q.options.forEach((opt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'w-full text-left p-2.5 rounded-xl bg-white/5 border border-white/5 hover:border-white/10 text-[10px] font-bold text-slate-350 hover:text-white transition active:scale-98 flex items-center justify-between';
+                    btn.innerHTML = `<span>${opt}</span> <i class="fa-regular fa-circle text-[10px] text-slate-500"></i>`;
+                    btn.onclick = () => selectQuizOption(btn, idx);
+                    container.appendChild(btn);
+                });
+            }
+            
+            // Check if solved today
+            const solvedDate = localStorage.getItem('fj_daily_quiz_solved_date');
+            const todayStr = now.toDateString();
+            if (solvedDate === todayStr) {
+                disableQuizOptions();
+                const savedCorrect = localStorage.getItem('fj_daily_quiz_was_correct') === 'true';
+                const footer = document.getElementById('quizResultFooter');
+                const footerText = document.getElementById('quizExplanationText');
+                if (footer && footerText) {
+                    footer.classList.remove('hidden');
+                    footerText.innerHTML = `🌟 <b>${savedCorrect ? 'Solved Correctly' : 'Already Attempted'}</b><br>${quizExplanation}`;
+                }
+            }
+        };
+
+        function selectQuizOption(button, index) {
+            disableQuizOptions();
+            
+            const isCorrect = (index === quizCorrectIndex);
+            playClickSound(isCorrect ? 800 : 300, isCorrect ? 0.15 : 0.25);
+            triggerHaptic(isCorrect ? 50 : 100);
+            
+            const icon = button.querySelector('i');
+            const footer = document.getElementById('quizResultFooter');
+            const footerText = document.getElementById('quizExplanationText');
+            
+            // Save state
+            localStorage.setItem('fj_daily_quiz_solved_date', new Date().toDateString());
+            localStorage.setItem('fj_daily_quiz_was_correct', isCorrect ? 'true' : 'false');
+            
+            if (isCorrect) {
+                button.classList.replace('border-white/5', 'border-emerald-500/30');
+                button.classList.add('bg-emerald-500/10', 'text-emerald-400');
+                if (icon) icon.className = "fa-solid fa-circle-check text-emerald-500";
+                
+                // Explode Confetti
+                triggerCSSConfetti();
+            } else {
+                button.classList.replace('border-white/5', 'border-red-500/30');
+                button.classList.add('bg-red-500/10', 'text-red-400', 'animate-shake');
+                if (icon) icon.className = "fa-solid fa-circle-xmark text-red-500";
+                
+                // Highlight correct one
+                const correctBtn = document.querySelectorAll('#quizOptionsContainer button')[quizCorrectIndex];
+                if (correctBtn) {
+                    correctBtn.classList.replace('border-white/5', 'border-emerald-500/30');
+                    correctBtn.classList.add('bg-emerald-500/10', 'text-emerald-400');
+                    const cIcon = correctBtn.querySelector('i');
+                    if (cIcon) cIcon.className = "fa-solid fa-circle-check text-emerald-500";
+                }
+            }
+            
+            if (footer && footerText) {
+                footer.classList.remove('hidden');
+                footerText.innerHTML = `🌟 <b>${isCorrect ? 'Correct Answer!' : 'Incorrect Answer'}</b><br>${quizExplanation}`;
+            }
+        }
+
+        function disableQuizOptions() {
+            document.querySelectorAll('#quizOptionsContainer button').forEach(b => {
+                b.disabled = true;
+                b.classList.remove('hover:border-white/10', 'hover:text-white');
+            });
+        }
+
+        // CSS Confetti Generation (100% Offline)
+        function triggerCSSConfetti() {
+            for (let i = 0; i < 40; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti-particle';
+                
+                // Randomize positions, colors, speed
+                const colors = ['#3b82f6', '#10b981', '#ec4899', '#f59e0b', '#8b5cf6', '#ef4444'];
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                confetti.style.left = (Math.random() * 100) + 'vw';
+                confetti.style.top = '-10px';
+                
+                const size = (Math.random() * 6 + 6) + 'px';
+                confetti.style.width = size;
+                confetti.style.height = size;
+                
+                confetti.style.setProperty('--drift', (Math.random() * 200 - 100) + 'px');
+                confetti.style.setProperty('--rotation', (Math.random() * 360 + 360) + 'deg');
+                
+                confetti.style.animationDelay = (Math.random() * 0.8) + 's';
+                confetti.style.animationDuration = (Math.random() * 1.5 + 1.5) + 's';
+                
+                document.body.appendChild(confetti);
+                
+                // Auto Clean up
+                setTimeout(() => confetti.remove(), 2500);
+            }
+        }
+
+        // Fetch Live updates dynamically from exams API (Smart local cache strategy)
+        async function loadDynamicTicker() {
+            const tickerContent = document.getElementById('ticker-content');
+            if (!tickerContent) return;
+            
+            const adminNotice = "🕒 যেকোনো কারিগরি সমস্যার জন্য নিচে বাম পাশের হোয়াটসঅ্যাপ বাটনে ক্লিক করে অ্যাডমিনের সাথে যোগাযোগ করুন। 💬";
+            
+            const LOCAL_CACHE_KEY = 'fj_homepage_exams_local_cache';
+            
+            let cachedExams = [];
+            const cachedDataStr = localStorage.getItem(LOCAL_CACHE_KEY);
+            if (cachedDataStr) {
+                try {
+                    cachedExams = JSON.parse(cachedDataStr);
+                } catch(e) {
+                    localStorage.removeItem(LOCAL_CACHE_KEY);
+                }
+            }
+            
+            if (cachedExams && cachedExams.length > 0) {
+                renderNotices(cachedExams);
+                initCountdownWidget(cachedExams);
+            }
+            
+            try {
+                const now = Date.now();
+                const res = await fetch("https://HitechJirat.github.io/Live-Exam/exams_index.json?t=" + now);
+                const githubExams = await res.json();
+                
+                let listChanged = false;
+                if (!cachedExams || cachedExams.length === 0 || !Array.isArray(githubExams)) {
+                    listChanged = true;
+                } else {
+                    if (githubExams.length !== cachedExams.length) {
+                        listChanged = true;
+                    } else {
+                        let cachedIds = cachedExams.map(e => e.examId).sort().join(",");
+                        let githubIds = githubExams.map(e => e.examId).sort().join(",");
+                        if (cachedIds !== githubIds) {
+                            listChanged = true;
+                        }
+                    }
+                }
+                
+                if (listChanged) {
+                    console.log("New exam or result detected! Syncing live data from Apps Script...");
+                    const appsRes = await fetch(GOOGLE_APP_URL + "?action=getPublishedExams").then(r => r.json());
+                    let apiExams = (appsRes && appsRes.status === "success" && appsRes.data) ? appsRes.data : [];
+                    
+                    let mergedMap = new Map();
+                    apiExams.forEach(e => mergedMap.set(e.examId, e));
+                    githubExams.forEach(e => {
+                        if (e.type === "Live") {
+                            let existing = mergedMap.get(e.examId) || {};
+                            mergedMap.set(e.examId, { ...existing, ...e });
+                        }
+                    });
+                    
+                    let mergedExams = Array.from(mergedMap.values());
+                    localStorage.setItem(LOCAL_CACHE_KEY, JSON.stringify(mergedExams));
+                    
+                    renderNotices(mergedExams);
+                    initCountdownWidget(mergedExams);
+                    
+                    // Re-render Dynamic Counters since data updated
+                    triggerDynamicCounters(mergedExams);
+                } else {
+                    console.log("No new mock updates detected. Keeping local cache.");
+                }
+            } catch(err) {
+                console.error("Error checking background notices update:", err);
+            }
+            
+            function renderNotices(examsList) {
+                let activeResults = [];
+                let liveUpcomingExams = [];
+                const currentDate = new Date();
+                const CUTOFF_DATE = new Date("2026-06-28T00:00:00+05:30");
+                
+                examsList.forEach(exam => {
+                    let publishTimeStr = exam.resultPublishTime || (exam.liveSchedule && exam.liveSchedule.endTime);
+                    let publishDate = publishTimeStr ? new Date(publishTimeStr) : null;
+                    
+                    if (publishDate && publishDate < CUTOFF_DATE) return;
+                    
+                    let startTimeStr = exam.liveSchedule && exam.liveSchedule.startTime;
+                    let endTimeStr = exam.liveSchedule && exam.liveSchedule.endTime;
+                    
+                    let startDate = startTimeStr ? new Date(startTimeStr) : null;
+                    let endDate = endTimeStr ? new Date(endTimeStr) : null;
+                    
+                    if (startDate && endDate) {
+                        if (currentDate < startDate) {
+                            let startDateText = startDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+                            let startTimeText = startDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+                            liveUpcomingExams.push({
+                                time: startDate,
+                                text: `📢 [Upcoming Exam] ${exam.title} (Mock #${exam.mockNumber || 1}) পরীক্ষাটি ${startDateText} তারিখ ${startTimeText} টায় শুরু হবে! ⚡`
+                            });
+                        } else if (currentDate >= startDate && currentDate <= endDate) {
+                            let diffMs = endDate - currentDate;
+                            let diffHrs = Math.floor(diffMs / (3600 * 1000));
+                            let diffMins = Math.floor((diffMs % (3600 * 1000)) / (60 * 1000));
+                            let timeText = diffHrs > 0 ? `${diffHrs} ঘণ্টা ${diffMins} মিনিট` : `${diffMins} মিনিট`;
+                            liveUpcomingExams.push({
+                                time: startDate,
+                                text: `🔥 [Live Now] ${exam.title} (Mock #${exam.mockNumber || 1}) পরীক্ষাটি বর্তমানে লাইভ চলছে! আর মাত্র ${timeText} বাকি! দ্রুত অংশ নিন! 🚀`
+                            });
+                        }
+                    }
+                    
+                    if (publishDate && currentDate >= publishDate) {
+                        let pubDateText = publishDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+                        activeResults.push({
+                            time: publishDate,
+                            text: `🏆 [Result Out] ${exam.title} (Mock #${exam.mockNumber || 1}) এর রেজাল্ট প্রকাশিত হয়েছে! আপনার স্কোর চেক করুন! 📊`
+                        });
+                    }
+                });
+                
+                liveUpcomingExams.sort((a, b) => b.time - a.time);
+                activeResults.sort((a, b) => b.time - a.time);
+                
+                let top3Results = activeResults.slice(0, 3).map(r => r.text);
+                let liveUpcomingNotices = liveUpcomingExams.map(e => e.text);
+                
+                let combinedNotices = [...liveUpcomingNotices, ...top3Results];
+                let finalNotices = combinedNotices.slice(0, 5);
+                finalNotices.push(adminNotice);
+                
+                let renderText = finalNotices.join(" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ");
+                tickerContent.innerHTML = `<span>${renderText}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>${renderText}</span>`;
+            }
+        }
+
+        // Live Connection Indicator Update
+        function updateConnectionStatus() {
+            const isOnline = navigator.onLine;
+            const dot = document.getElementById('connectionDot');
+            const mDot = document.getElementById('mobileConnectionDot');
+            const text = document.getElementById('connectionText');
+            
+            if (isOnline) {
+                if (dot) {
+                    dot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500 live-pulse";
+                    dot.title = "Internet Connected";
+                }
+                if (mDot) {
+                    mDot.className = "w-2 h-2 rounded-full bg-emerald-500 live-pulse";
+                    mDot.title = "Internet Connected";
+                }
+                if (text) text.innerText = "Online";
+            } else {
+                if (dot) {
+                    dot.className = "w-2.5 h-2.5 rounded-full bg-red-500";
+                    dot.title = "Offline - Check Internet";
+                }
+                if (mDot) {
+                    mDot.className = "w-2 h-2 rounded-full bg-red-500";
+                    mDot.title = "Offline - Check Internet";
+                }
+                if (text) text.innerText = "Offline";
+            }
+        }
+
+        // Theme and Glow Control functions
+        function populateThemeSelection() {
+            const grid = document.getElementById('homeThemeGrid');
+            if (!grid) return;
+            
+            grid.innerHTML = '';
+            Object.keys(PORTAL_THEMES).forEach(key => {
+                const t = PORTAL_THEMES[key];
+                const emoji = THEME_EMOJIS[key];
+                const isSelected = (key === activeThemeKey);
+                
+                const btn = document.createElement('button');
+                btn.className = `p-2 rounded-xl glass-panel border ${isSelected ? 'border-blue-400' : 'border-white/5'} text-sm hover:bg-white/5 active:scale-90 transition-all flex flex-col items-center justify-center gap-1`;
+                btn.title = t.name;
+                btn.innerHTML = `
+                    <span class="text-base">${emoji}</span>
+                    <span class="text-[7px] font-black uppercase tracking-wider block truncate w-full text-slate-400">${t.name.split(' ')[0]}</span>
+                `;
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    selectHomeTheme(key);
+                };
+                grid.appendChild(btn);
+            });
+        }
+
+        function selectHomeTheme(themeKey) {
+            activeThemeKey = themeKey;
+            const theme = PORTAL_THEMES[themeKey];
+            if (!theme) return;
+            
+            const root = document.documentElement;
+            root.style.setProperty('--theme-bg-1', theme.bg1);
+            root.style.setProperty('--theme-bg-2', theme.bg2);
+            root.style.setProperty('--theme-bg-3', theme.bg3);
+            root.style.setProperty('--theme-bg-4', theme.bg4);
+            root.style.setProperty('--theme-accent-rgb', theme.accentRgb);
+            root.style.setProperty('--theme-accent-text', theme.accentText);
+            root.style.setProperty('--theme-accent-dark', theme.accentDark);
+            root.style.setProperty('--theme-accent-darker', theme.accentDarker);
+            
+            const intensity = localStorage.getItem('studentPortalGlow') || "100";
+            applyHomeGlowIntensity(intensity, theme.accentRgb);
+            
+            localStorage.setItem('studentPortalTheme', themeKey);
+            populateThemeSelection();
+        }
+
+        function applyHomeGlowIntensity(val, accentRgb) {
+            const multiplier = parseFloat(val) / 100;
+            const alpha = 0.15 * multiplier;
+            const glowVal = `rgba(${accentRgb}, ${alpha})`;
+            document.documentElement.style.setProperty('--theme-glow', glowVal);
+        }
+
+        window.updateHomeGlowIntensity = function(val) {
+            const text = document.getElementById('homeGlowValText');
+            if (text) text.innerText = val + "%";
+            localStorage.setItem('studentPortalGlow', val);
+            const theme = PORTAL_THEMES[activeThemeKey];
+            if (theme) {
+                applyHomeGlowIntensity(val, theme.accentRgb);
+            }
+        }
+
+        // Stats Counters Animation
+        function animateCounter(elementId, target, suffix = "") {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            
+            let start = 0;
+            const duration = 1000; // ms
+            const stepTime = Math.abs(Math.floor(duration / target));
+            
+            const timer = setInterval(() => {
+                start++;
+                el.innerHTML = `${start}${suffix}`;
+                if (start >= target) {
+                    el.innerHTML = `${target}${suffix}`;
+                    clearInterval(timer);
+                }
+            }, Math.max(stepTime, 12));
+        }
+
+        function triggerDynamicCounters(examsList) {
+            let activeCount = 50;
+            let premiumCount = 15;
+            if (Array.isArray(examsList) && examsList.length > 0) {
+                activeCount = examsList.length;
+                premiumCount = examsList.filter(e => e.pricing === "Premium" || e.premium || e.type === "Premium").length;
+                if (premiumCount === 0) premiumCount = Math.max(5, Math.floor(activeCount * 0.3));
+            }
+            animateCounter('statCard1Val', activeCount, "+ 📚");
+            animateCounter('statCard2Val', 100, "% 🛡️");
+            animateCounter('statCard3Val', premiumCount, "+ ⚡");
+        }
+
+        // Achievements Medals Renderer
+        window.renderHomeAchievements = function() {
+            const grid = document.getElementById('homeAchievementsGrid');
+            const scoreEl = document.getElementById('homeAchievementScore');
+            if (!grid || !scoreEl) return;
+
+            const attempted = JSON.parse(localStorage.getItem('attemptedExams') || '[]');
+            const starred = JSON.parse(localStorage.getItem('starredExams') || '[]');
+            const activeDates = JSON.parse(localStorage.getItem('portalActiveDates') || '[]');
+
+            const totalAttempted = attempted.length;
+            const totalStarred = starred.length;
+
+            const nightOwl = localStorage.getItem('achievementNightOwl') === 'true';
+            const consistentScholar = activeDates.length >= 3;
+
+            let liveWarrior = false;
+            const cachedExamsStr = localStorage.getItem('fj_homepage_exams_local_cache');
+            if (cachedExamsStr) {
+                try {
+                    const allExams = JSON.parse(cachedExamsStr);
+                    if (Array.isArray(allExams)) {
+                        liveWarrior = attempted.some(id => {
+                            let e = allExams.find(ex => (ex.id || ex.examId || '').toString() === id.toString());
+                            return e && e.type === "Live";
+                        });
+                    }
+                } catch(e) {}
+            }
+
+            const achievements = [
+                { id: 'first_step', name: 'First Step', icon: 'fa-award', color: 'text-amber-500', desc: 'Attempted at least 1 mock exam', unlocked: totalAttempted >= 1, progress: `${totalAttempted}/1` },
+                { id: 'practice_king', name: 'Practice King', icon: 'fa-crown', color: 'text-yellow-400', desc: 'Attempted at least 10 mock exams', unlocked: totalAttempted >= 10, progress: `${totalAttempted}/10` },
+                { id: 'star_hunter', name: 'Star Hunter', icon: 'fa-star', color: 'text-yellow-300', desc: 'Starred at least 5 exams', unlocked: totalStarred >= 5, progress: `${totalStarred}/5` },
+                { id: 'live_warrior', name: 'Live Warrior', icon: 'fa-shield-halved', color: 'text-red-400', desc: 'Attempted at least 1 Live Contest', unlocked: liveWarrior, progress: liveWarrior ? '1/1' : '0/1' },
+                { id: 'night_owl', name: 'Night Owl', icon: 'fa-owl', color: 'text-indigo-400', desc: 'Attempted a test between 10 PM - 4 AM', unlocked: nightOwl, progress: nightOwl ? '1/1' : '0/1' },
+                { id: 'consistent_scholar', name: 'Consistent Scholar', icon: 'fa-book-open', color: 'text-emerald-400', desc: 'Practiced on 3 different days', unlocked: consistentScholar, progress: `${Math.min(activeDates.length, 3)}/3` }
+            ];
+
+            let unlockedCount = achievements.filter(a => a.unlocked).length;
+            scoreEl.innerText = `Unlocks: ${unlockedCount}/6`;
+
+            grid.innerHTML = '';
+            achievements.forEach(a => {
+                const el = document.createElement('div');
+                el.className = "flex flex-col items-center justify-center gap-1 group/medal relative cursor-pointer flex-shrink-0 w-24 lg:w-auto";
+                
+                const stateClass = a.unlocked ? `${a.color} drop-shadow-[0_0_8px_rgba(245,158,11,0.4)]` : 'text-slate-700 opacity-40 grayscale';
+                
+                el.innerHTML = `
+                    <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xl transition-all duration-300 group-hover/medal:scale-110 active:scale-95 ${stateClass}">
+                        <i class="fa-solid ${a.icon}"></i>
+                        ${!a.unlocked ? `<i class="fa-solid fa-lock text-[8px] text-slate-500 absolute bottom-3 right-3 bg-slate-950 rounded-full p-0.5 border border-white/10"></i>` : ''}
+                    </div>
+                    <span class="text-[8px] font-black uppercase text-slate-500 tracking-wider text-center group-hover/medal:text-slate-300 transition-colors truncate w-full">${a.name}</span>
+                    
+                    <div class="absolute bottom-16 bg-slate-950/95 border border-white/10 p-2.5 rounded-xl shadow-2xl w-36 hidden group-hover/medal:flex flex-col gap-1 text-center z-50 pointer-events-none">
+                        <span class="text-[9px] font-black uppercase tracking-wider text-white">${a.name}</span>
+                        <span class="text-[8px] font-bold text-slate-400 leading-normal">${a.desc}</span>
+                        <span class="text-[9px] font-black text-blue-400 mt-1">${a.unlocked ? '✅ UNLOCKED' : `🔒 LOCKED (${a.progress})`}</span>
+                    </div>
+                `;
+                
+                el.addEventListener('mouseenter', () => {
+                    const tip = el.querySelector('.absolute');
+                    if (tip) tip.classList.remove('hidden');
+                });
+                el.addEventListener('mouseleave', () => {
+                    const tip = el.querySelector('.absolute');
+                    if (tip) tip.classList.add('hidden');
+                });
+                
+                el.onclick = () => {
+                    const quote = a.unlocked ? `সাবাশ ভাইয়া! আপনি "${a.name}" ব্যাজটি আনলক করেছেন। এভাবে এগিয়ে যান! 🚀` : `এই ব্যাজটি লক রয়েছে। এটি আনলক করতে: "${a.desc}" (অগ্রগতি: ${a.progress}) 🏆`;
+                    showHomeMotivationToast(quote);
+                };
+                
+                grid.appendChild(el);
+            });
+        };
+
+        // Floating dynamic motivational toast
+        function showHomeMotivationToast(message) {
+            const oldToast = document.getElementById('homeMsgToast');
+            if (oldToast) oldToast.remove();
+            
+            const toast = document.createElement('div');
+            toast.id = 'homeMsgToast';
+            toast.className = 'fixed bottom-24 right-6 z-50 glass-panel border border-white/10 px-5 py-3 rounded-2xl shadow-2xl max-w-sm text-xs font-semibold text-white flex items-center gap-3 transition-all duration-300 transform translate-y-10 opacity-0';
+            toast.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center flex-shrink-0 text-sm">
+                    <i class="fa-solid fa-lightbulb animate-pulse"></i>
+                </div>
+                <div>${message}</div>
+            `;
+            document.body.appendChild(toast);
+            
+            toast.offsetHeight;
+            toast.classList.remove('translate-y-10', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-10', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 5000);
+        }
+
+        // Daily Assessment - Mini Quiz logic (Pulleys from cached bank)
+        window.initializeHomeDailyQuiz = function() {
+            const wrapper = document.getElementById('dailyQuizCardWrapper');
+            const achievementsPanel = document.getElementById('homeAchievementsPanel');
+            if (!wrapper || !achievementsPanel) return;
+            
+            try {
+                const cachedDataStr = localStorage.getItem('qb_cached_bank_data');
+                if (!cachedDataStr) {
+                    wrapper.classList.add('hidden');
+                    achievementsPanel.classList.remove('lg:col-span-5');
+                    achievementsPanel.classList.add('lg:col-span-12');
+                    return;
+                }
+                
+                const questionsList = JSON.parse(cachedDataStr);
+                if (!Array.isArray(questionsList) || questionsList.length === 0) {
+                    wrapper.classList.add('hidden');
+                    achievementsPanel.classList.remove('lg:col-span-5');
+                    achievementsPanel.classList.add('lg:col-span-12');
+                    return;
+                }
+                
+                // Show quiz layout
+                wrapper.classList.remove('hidden');
+                wrapper.classList.add('flex');
+                achievementsPanel.classList.remove('lg:col-span-12');
+                achievementsPanel.classList.add('lg:col-span-5');
+                
+                const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+                const qIndex = dayOfYear % questionsList.length;
+                const question = questionsList[qIndex];
+                
+                const subBadge = document.getElementById('quizSubjectBadge');
+                const lvlBadge = document.getElementById('quizLevelBadge');
+                const qText = document.getElementById('quizQuestionText');
+                const optionsBox = document.getElementById('quizOptionsContainer');
+                const resultFooter = document.getElementById('quizResultFooter');
+                const explText = document.getElementById('quizExplanationText');
+                
+                if (subBadge) subBadge.innerText = question.topic || "General Study";
+                if (lvlBadge) {
+                    const level = question.level || "Moderate";
+                    lvlBadge.innerText = level;
+                    if (level.toLowerCase() === 'easy') {
+                        lvlBadge.className = "text-[8px] font-black uppercase px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400";
+                    } else if (level.toLowerCase() === 'hard') {
+                        lvlBadge.className = "text-[8px] font-black uppercase px-2 py-0.5 rounded bg-red-500/10 border border-red-500/20 text-red-400";
+                    } else {
+                        lvlBadge.className = "text-[8px] font-black uppercase px-2 py-0.5 rounded bg-yellow-500/10 border border-yellow-500/20 text-yellow-400";
+                    }
+                }
+                
+                const questionBn = question.qBn || "";
+                const questionEn = question.qEn || "";
+                if (qText) qText.innerHTML = `${questionBn} <span class="text-[10px] text-slate-400 font-light block mt-1">(${questionEn})</span>`;
+                
+                optionsBox.innerHTML = '';
+                resultFooter.classList.add('hidden');
+                
+                const dailyQuizAttemptKey = `fj_daily_quiz_attempt_${new Date().toDateString()}`;
+                const prevAnswer = localStorage.getItem(dailyQuizAttemptKey);
+                
+                const correctIds = Array.isArray(question.correctIds) ? question.correctIds.map(id => String(id).trim().toUpperCase()) : [];
+                
+                question.options.forEach(opt => {
+                    const optIdClean = opt.id ? String(opt.id).replace(')', '').trim().toUpperCase() : "";
+                    const isCorrect = correctIds.includes(optIdClean);
+                    
+                    const optBtn = document.createElement('button');
+                    optBtn.className = "w-full text-left p-3 rounded-2xl glass-panel border border-white/5 hover:border-white/15 active:scale-95 transition-all text-xs font-medium text-slate-300 flex justify-between items-center gap-3";
+                    optBtn.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-lg bg-white/5 flex items-center justify-center font-bold text-slate-400 border border-white/10 group-hover:bg-blue-500/10 option-index-box">${opt.id || '•'}</span>
+                            <span>${opt.bn || ""} <span class="text-[10px] text-slate-500 font-normal">(${opt.en || ""})</span></span>
+                        </div>
+                        <span class="tick-cross-box text-sm"></span>
+                    `;
+                    
+                    if (prevAnswer !== null) {
+                        optBtn.disabled = true;
+                        if (optIdClean === prevAnswer) {
+                            if (isCorrect) {
+                                optBtn.className = "w-full text-left p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 flex justify-between items-center gap-3";
+                                optBtn.querySelector('.tick-cross-box').innerHTML = "✓";
+                            } else {
+                                optBtn.className = "w-full text-left p-3 rounded-2xl bg-red-500/10 border border-red-500/40 text-red-400 flex justify-between items-center gap-3";
+                                optBtn.querySelector('.tick-cross-box').innerHTML = "✗";
+                            }
+                        } else if (isCorrect) {
+                            optBtn.className = "w-full text-left p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 flex justify-between items-center gap-3 opacity-80";
+                        }
+                    } else {
+                        optBtn.onclick = () => {
+                            localStorage.setItem(dailyQuizAttemptKey, optIdClean);
+                            Array.from(optionsBox.children).forEach(btn => btn.disabled = true);
+                            
+                            if (isCorrect) {
+                                optBtn.className = "w-full text-left p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 flex justify-between items-center gap-3";
+                                optBtn.querySelector('.tick-cross-box').innerHTML = "✓";
+                                triggerCSSConfetti();
+                                showHomeMotivationToast("🎉 অসাধারণ! আপনার উত্তরটি সঠিক হয়েছে! 🌟");
+                            } else {
+                                optBtn.className = "w-full text-left p-3 rounded-2xl bg-red-500/10 border border-red-500/40 text-red-400 flex justify-between items-center gap-3";
+                                optBtn.querySelector('.tick-cross-box').innerHTML = "✗";
+                                showHomeMotivationToast("😔 দুঃখিত, ভুল উত্তর! সঠিক উত্তরটি নিচে দেখে নিন।");
+                                
+                                Array.from(optionsBox.children).forEach(btn => {
+                                    const optSpan = btn.querySelector('.option-index-box');
+                                    if (optSpan && correctIds.includes(optSpan.innerText.trim().toUpperCase())) {
+                                        btn.className = "w-full text-left p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 flex justify-between items-center gap-3 opacity-80";
+                                    }
+                                });
+                            }
+                            showQuizExplanation(question);
+                        };
+                    }
+                    optionsBox.appendChild(optBtn);
+                });
+                
+                if (prevAnswer !== null) {
+                    showQuizExplanation(question);
+                }
+                
+            } catch(e) {
+                console.error("Error loading home daily quiz:", e);
+                wrapper.classList.add('hidden');
+                achievementsPanel.classList.remove('lg:col-span-5');
+                achievementsPanel.classList.add('lg:col-span-12');
+            }
+        };
+
+        function showQuizExplanation(question) {
+            const footer = document.getElementById('quizResultFooter');
+            const text = document.getElementById('quizExplanationText');
+            if (!footer || !text) return;
+            
+            const solBn = question.solBn || question.sol || "সchnitt উত্তর হাইলাইট করা হয়েছে।";
+            const solEn = question.solEn ? ` (${question.solEn})` : "";
+            
+            text.innerHTML = `📚 <strong>ব্যাখ্যা (Explanation):</strong> ${solBn}${solEn}`;
+            footer.classList.remove('hidden');
+        }
+
+        // CSS Particles Confetti
+        function triggerCSSConfetti() {
+            const colors = ['#f472b6', '#3b82f6', '#10b981', '#fbbf24', '#f87171', '#a78bfa'];
+            for(let i=0; i<80; i++) {
+                const p = document.createElement('div');
+                p.className = 'confetti-particle';
+                p.style.left = (Math.random() * 100) + 'vw';
+                p.style.top = '-20px';
+                p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                p.style.borderRadius = Math.random() > 0.5 ? '50%' : '0px';
+                p.style.width = p.style.height = (Math.random() * 6 + 4) + 'px';
+                
+                p.style.setProperty('--drift', (Math.random() * 300 - 150) + 'px');
+                p.style.setProperty('--rotation', (Math.random() * 720 - 360) + 'deg');
+                p.style.animationDelay = (Math.random() * 0.5) + 's';
+                p.style.animationDuration = (Math.random() * 1.5 + 1.5) + 's';
+                
+                document.body.appendChild(p);
+                setTimeout(() => p.remove(), 2500);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Setup Branding
+            let savedBranding = localStorage.getItem('fjBrandingData');
+            if (savedBranding) {
+                let data = JSON.parse(savedBranding);
+                if(data.instName) {
+                    document.getElementById('instNameDisplay').innerText = data.instName;
+                    document.getElementById('instNameDisplayLarge').innerText = data.instName;
+                }
+            }
+            
+            // Sync saved theme and glow intensity
+            const savedTheme = localStorage.getItem('studentPortalTheme') || "space";
+            activeThemeKey = savedTheme;
+            const theme = PORTAL_THEMES[savedTheme];
+            if (theme) {
+                const root = document.documentElement;
+                root.style.setProperty('--theme-bg-1', theme.bg1);
+                root.style.setProperty('--theme-bg-2', theme.bg2);
+                root.style.setProperty('--theme-bg-3', theme.bg3);
+                root.style.setProperty('--theme-bg-4', theme.bg4);
+                root.style.setProperty('--theme-accent-rgb', theme.accentRgb);
+                root.style.setProperty('--theme-accent-text', theme.accentText);
+                root.style.setProperty('--theme-accent-dark', theme.accentDark);
+                root.style.setProperty('--theme-accent-darker', theme.accentDarker);
+                
+                const intensity = localStorage.getItem('studentPortalGlow') || "100";
+                applyHomeGlowIntensity(intensity, theme.accentRgb);
+                
+                const slider = document.getElementById('homeGlowSlider');
+                const glowText = document.getElementById('homeGlowValText');
+                if (slider) slider.value = intensity;
+                if (glowText) glowText.innerText = intensity + "%";
+            }
+            populateThemeSelection();
+            
+            // Generate Larger Particles & Floating Letters B, I, P, U, L
+            const container = document.getElementById('particles-container');
+            const letters = ['B', 'I', 'P', 'U', 'L'];
+            const colors = ['#ff2a5f', '#ff9f1c', '#2ec4b6', '#00b4d8', '#9d4edd'];
+            
+            for(let i=0; i<35; i++) {
+                let p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.width = p.style.height = (Math.random() * 12 + 6) + 'px';
+                p.style.animationDelay = Math.random() * 12 + 's';
+                p.style.setProperty('--duration', (Math.random() * 12 + 10) + 's');
+                container.appendChild(p);
+            }
+            
+            const zones = [
+                { min: 5, max: 20 },
+                { min: 23, max: 40 },
+                { min: 43, max: 60 },
+                { min: 63, max: 80 },
+                { min: 83, max: 95 }
+            ];
+            for(let i=0; i<15; i++) {
+                let lp = document.createElement('div');
+                lp.className = 'letter-particle';
+                let letterIndex = i % letters.length;
+                lp.innerText = letters[letterIndex];
+                
+                let zone = zones[letterIndex];
+                let randomLeft = Math.random() * (zone.max - zone.min) + zone.min;
+                lp.style.left = randomLeft + 'vw';
+                
+                lp.style.setProperty('--font-size', (Math.random() * 12 + 12) + 'px');
+                lp.style.setProperty('--color', colors[Math.floor(Math.random() * colors.length)]);
+                lp.style.animationDelay = Math.random() * 15 + 's';
+                lp.style.setProperty('--duration', (Math.random() * 12 + 12) + 's');
+                container.appendChild(lp);
+            }
+            
+            // Live Date & Time Clock
+            function updateClock() {
+                const now = new Date();
+                const dateOptions = { month: 'short', day: 'numeric', year: 'numeric' };
+                const dateString = now.toLocaleDateString('en-US', dateOptions);
+                const timeString = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+                
+                const dateEl = document.getElementById('liveDate');
+                const timeEl = document.getElementById('liveTime');
+                if (dateEl) dateEl.innerText = dateString;
+                if (timeEl) timeEl.innerText = timeString;
+            }
+            updateClock();
+            setInterval(updateClock, 1000);
+
+            // Connection Dot Status check
+            updateConnectionStatus();
+            window.addEventListener('online', updateConnectionStatus);
+            window.addEventListener('offline', updateConnectionStatus);
+
+            // Populate Counter Stats initially
+            const cacheKey = 'fj_homepage_exams_local_cache';
+            const localDataStr = localStorage.getItem(cacheKey);
+            let examsData = [];
+            if (localDataStr) {
+                try { examsData = JSON.parse(localDataStr); } catch(e) {}
+            }
+            triggerDynamicCounters(examsData);
+            initCountdownWidget(examsData);
+
+            // Load announcements ticker dynamically
+            loadDynamicTicker();
+
+            // Load all interactive dashboard panels
+            renderWelcomeDashboard();
+            renderHomeAchievements();
+            initializeHomeDailyQuiz();
+            loadLeaderboardWidget();
+            renderDailyQuote();
+
+            // Auto start tour once if not seen
+            setTimeout(() => {
+                if (!localStorage.getItem('fj_seen_home_tour')) {
+                    startPortalTour();
+                    localStorage.setItem('fj_seen_home_tour', 'true');
+                }
+            }, 2000);
+
+            // Mobile Menu Drawer Logic
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenuClose = document.getElementById('mobileMenuClose');
+            const mobileDrawer = document.getElementById('mobileDrawer');
+
+            toggleMobileMenu = function() {
+                if (mobileDrawer) {
+                    const isOpen = mobileDrawer.classList.contains('opacity-100');
+                    if (isOpen) {
+                        mobileDrawer.classList.replace('opacity-100', 'opacity-0');
+                        mobileDrawer.classList.add('pointer-events-none');
+                    } else {
+                        mobileDrawer.classList.replace('opacity-0', 'opacity-100');
+                        mobileDrawer.classList.remove('pointer-events-none');
+                    }
+                }
+            }
+
+            if (mobileMenuToggle) mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+            if (mobileMenuClose) mobileMenuClose.addEventListener('click', toggleMobileMenu);
+            
+            const mobileLinks = mobileDrawer ? mobileDrawer.querySelectorAll('a') : [];
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    toggleMobileMenu();
+                });
+            });
+
+            // Settings Gear Popover Logic
+            const homeSettingsBtn = document.getElementById('homeSettingsBtn');
+            const homeSettingsPopover = document.getElementById('homeSettingsPopover');
+            
+            if (homeSettingsBtn && homeSettingsPopover) {
+                homeSettingsBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isHidden = homeSettingsPopover.classList.contains('hidden');
+                    if (isHidden) {
+                        homeSettingsPopover.classList.remove('hidden');
+                        homeSettingsPopover.offsetHeight; // force reflow
+                        homeSettingsPopover.classList.remove('opacity-0', 'scale-95');
+                        homeSettingsPopover.classList.add('opacity-100', 'scale-100');
+                    } else {
+                        homeSettingsPopover.classList.remove('opacity-100', 'scale-100');
+                        homeSettingsPopover.classList.add('opacity-0', 'scale-95');
+                        setTimeout(() => {
+                            homeSettingsPopover.classList.add('hidden');
+                        }, 250);
+                    }
+                });
+                
+                document.addEventListener('click', (e) => {
+                    if (homeSettingsPopover && !homeSettingsPopover.contains(e.target) && !homeSettingsBtn.contains(e.target)) {
+                        homeSettingsPopover.classList.remove('opacity-100', 'scale-100');
+                        homeSettingsPopover.classList.add('opacity-0', 'scale-95');
+                        setTimeout(() => {
+                            homeSettingsPopover.classList.add('hidden');
+                        }, 250);
+                    }
+                });
+            }
+
+            // WhatsApp Floating Button & Admin Detail Card Interaction
+            const whatsappTriggerBtn = document.getElementById('whatsappTriggerBtn');
+            const adminDetailCard = document.getElementById('adminDetailCard');
+            const adminContactContainer = document.getElementById('adminContactContainer');
+            let closeTimer = null;
+
+            function openAdminCard() {
+                if (closeTimer) {
+                    clearTimeout(closeTimer);
+                    closeTimer = null;
+                }
+                if (adminDetailCard) {
+                    adminDetailCard.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+                    adminDetailCard.classList.add('opacity-100', 'scale-100', 'pointer-events-auto');
+                }
+                if (whatsappTriggerBtn) {
+                    whatsappTriggerBtn.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
+                    whatsappTriggerBtn.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+                }
+            }
+
+            function closeAdminCard() {
+                if (adminDetailCard) {
+                    adminDetailCard.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
+                    adminDetailCard.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                }
+                if (whatsappTriggerBtn) {
+                    whatsappTriggerBtn.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
+                    whatsappTriggerBtn.classList.add('opacity-100', 'scale-100', 'pointer-events-auto');
+                }
+            }
+
+            if (whatsappTriggerBtn) {
+                whatsappTriggerBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openAdminCard();
+                });
+            }
+
+            if (adminContactContainer) {
+                adminContactContainer.addEventListener('mouseleave', () => {
+                    closeTimer = setTimeout(() => {
+                        closeAdminCard();
+                    }, 1000);
+                });
+
+                adminContactContainer.addEventListener('mouseenter', () => {
+                    if (closeTimer) {
+                        clearTimeout(closeTimer);
+                        closeTimer = null;
+                    }
+                });
+            }
+
+            document.addEventListener('click', (e) => {
+                if (adminContactContainer && !adminContactContainer.contains(e.target)) {
+                    closeAdminCard();
+                }
+            });
+        });
+    </script>
+
+    <!-- Immersive Full-Screen Pomodoro Focus Overlay -->
+    <div id="pomodoroFocusOverlay" class="fixed inset-0 z-[99999] bg-slate-950/95 backdrop-blur-3xl flex-col items-center justify-center text-center p-6 hidden transition-all duration-300 overflow-hidden">
+        <!-- Floating Neon Glow Ambient Orbs -->
+        <div class="absolute -top-12 -left-12 w-96 h-96 bg-pink-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
+        <div class="absolute -bottom-12 -right-12 w-96 h-96 bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[150px] pointer-events-none"></div>
+
+        <div class="max-w-md flex flex-col items-center gap-8 relative z-10">
+            <div class="relative w-64 h-64 flex items-center justify-center">
+                <!-- SVG Progress Circle -->
+                <svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 256 256">
+                    <circle class="text-white/5 stroke-current" stroke-width="6" fill="transparent" r="110" cx="128" cy="128"/>
+                    <circle id="overlayProgressRing" class="text-pink-500 stroke-current progress-ring-circle" stroke-width="6" stroke-linecap="round" fill="transparent" r="110" cx="128" cy="128" stroke-dasharray="691.15" stroke-dashoffset="691.15"/>
+                </svg>
+                <span id="overlayDigits" class="text-3xl font-black text-pink-500 font-mono tracking-wide" style="text-shadow: 0 0 15px rgba(236, 72, 153, 0.75);">00:25:00</span>
+            </div>
+            
+            <div class="space-y-3">
+                <h3 class="text-xl font-black text-white uppercase tracking-wider">
+                    <span class="lang-txt-en">Focus Mode Active 🎯</span>
+                    <span class="lang-txt-bn">মনোযোগ মোড সক্রিয় 🎯</span>
+                </h3>
+                <p id="overlayQuoteText" class="text-xs text-slate-300 font-bold leading-normal italic px-6 max-w-sm mx-auto" style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);"></p>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <!-- Pause/Resume Button -->
+                <button id="overlayPauseBtn" onclick="togglePomodoroFromOverlay()" class="w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 flex items-center justify-center text-white active:scale-95 transition-all text-xl shadow-lg shadow-white/5 hover:border-pink-500/30" title="Pause / Resume">
+                    <i class="fa-solid fa-pause"></i>
+                </button>
+                <!-- Exit/Stop Button -->
+                <button id="overlayExitBtn" onclick="stopPomodoroTimer()" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-xs font-black uppercase tracking-wider active:scale-95 transition-all shadow-lg shadow-red-500/25 border border-red-500/20" title="Exit Focus Mode">
+                    <span class="lang-txt-en">Exit Focus Mode 🚪</span>
+                    <span class="lang-txt-bn">ফোকাস মোড বন্ধ করুন 🚪</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
