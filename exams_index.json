@@ -195,5 +195,28 @@
     "timestamp": "2026-07-01T08:26:41.059Z",
     "unlockCode": "",
     "resultPublishTime": ""
+  },
+  {
+    "filename": "All_India_Mock_12.html",
+    "examId": "QWxsIEluZGlhXzEy",
+    "title": "All India Mock 12",
+    "mockNumber": "12",
+    "categoryPath": [
+      "LIVE EXAM",
+      "FULL MOCK"
+    ],
+    "type": "Live",
+    "visibility": "Listed",
+    "pricing": "Free",
+    "questionsCount": 100,
+    "duration": 90,
+    "fullMarks": 100,
+    "timestamp": "2026-07-04T19:03:46.306Z",
+    "unlockCode": "BIPUL12",
+    "resultPublishTime": "2026-07-05T20:00",
+    "liveSchedule": {
+      "startTime": "2026-07-05T08:00",
+      "endTime": "2026-07-05T19:59"
+    }
   }
 ]
