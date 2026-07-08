@@ -218,5 +218,29 @@
       "startTime": "2026-07-05T08:00",
       "endTime": "2026-07-05T19:59"
     }
+  },
+  {
+    "filename": "KOLKATA_POLICE_MAINS_Mock_1.html",
+    "examId": "S09MS0FUQSBQT0xJQ0UgTUFJTlNfMQ==",
+    "title": "KOLKATA POLICE MAINS Mock 1",
+    "mockNumber": "1",
+    "categoryPath": [
+      "KOLKATA POLICE",
+      "MAINS"
+    ],
+    "type": "Live",
+    "visibility": "Listed",
+    "pricing": "Free",
+    "questionsCount": 85,
+    "duration": 55,
+    "fullMarks": 85,
+    "timestamp": "2026-07-08T11:20:29.196Z",
+    "unlockCode": "KP1",
+    "resultPublishTime": "2026-07-10T22:00",
+    "repo": "Live-Exam",
+    "liveSchedule": {
+      "startTime": "2026-07-10T07:00",
+      "endTime": "2026-07-10T21:55"
+    }
   }
 ]
