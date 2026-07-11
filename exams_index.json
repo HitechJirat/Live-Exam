@@ -222,5 +222,29 @@
       "startTime": "2026-07-10T07:00",
       "endTime": "2026-07-10T21:55"
     }
+  },
+  {
+    "filename": "RRB_GROUP_D_Mock_1.html",
+    "examId": "UlJCIEdST1VQIERfMQ==",
+    "title": "RRB GROUP D Mock 1",
+    "mockNumber": "1",
+    "categoryPath": [
+      "RRB",
+      "GROUP D"
+    ],
+    "type": "Live",
+    "visibility": "Listed",
+    "pricing": "Free",
+    "questionsCount": 100,
+    "duration": 90,
+    "fullMarks": 100,
+    "timestamp": "2026-07-11T02:36:18.194Z",
+    "unlockCode": "GROUPD1",
+    "resultPublishTime": "2026-07-11T22:00",
+    "repo": "Live-Exam",
+    "liveSchedule": {
+      "startTime": "2026-07-11T09:00",
+      "endTime": "2026-07-11T22:00"
+    }
   }
 ]
