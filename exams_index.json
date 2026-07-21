@@ -317,5 +317,29 @@
       "startTime": "2026-07-19T07:00",
       "endTime": "2026-07-19T22:00"
     }
+  },
+  {
+    "filename": "WB_EXAM_Mock_2.html",
+    "examId": "V0IgRVhBTV8y",
+    "title": "WB EXAM Mock 2",
+    "mockNumber": "2",
+    "categoryPath": [
+      "LIVE EXAM",
+      "FULL MOCK"
+    ],
+    "type": "Live",
+    "visibility": "Listed",
+    "pricing": "Free",
+    "questionsCount": 100,
+    "duration": 90,
+    "fullMarks": 100,
+    "timestamp": "2026-07-21T22:31:26.842Z",
+    "unlockCode": "WB2",
+    "resultPublishTime": "2026-07-26T22:00",
+    "repo": "Live-Exam",
+    "liveSchedule": {
+      "startTime": "2026-07-26T07:00",
+      "endTime": "2026-07-26T22:00"
+    }
   }
 ]
