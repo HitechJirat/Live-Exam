@@ -365,5 +365,29 @@
       "startTime": "2026-07-25T07:00",
       "endTime": "2026-07-25T22:00"
     }
+  },
+  {
+    "filename": "WBPSC_MISCELLANEOUS_SERVICES_PRELIMINARY_Mock_1.html",
+    "examId": "V0JQU0MgTUlTQ0VMTEFORU9VUyBTRVJWSUNFUyBQUkVMSU1JTkFSWV8x",
+    "title": "WBPSC MISCELLANEOUS SERVICES PRELIMINARY Mock 1",
+    "mockNumber": "1",
+    "categoryPath": [
+      "WBPSC",
+      "MISCELLANEOUS"
+    ],
+    "type": "Live",
+    "visibility": "Listed",
+    "pricing": "Free",
+    "questionsCount": 100,
+    "duration": 90,
+    "fullMarks": 100,
+    "timestamp": "2026-07-21T23:13:12.643Z",
+    "unlockCode": "MISCELLANEOUS1",
+    "resultPublishTime": "2026-07-22T22:00",
+    "repo": "Live-Exam",
+    "liveSchedule": {
+      "startTime": "2026-07-22T07:00",
+      "endTime": "2026-07-22T22:00"
+    }
   }
 ]
