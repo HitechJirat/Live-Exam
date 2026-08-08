@@ -413,5 +413,29 @@
       "startTime": "2026-07-23T07:00",
       "endTime": "2026-07-23T22:30"
     }
+  },
+  {
+    "filename": "KOLKATA_POLICE_CONSTABLE_MAINS_Mock_3.html",
+    "examId": "S09MS0FUQSBQT0xJQ0UgQ09OU1RBQkxFIE1BSU5TXzM=",
+    "title": "KOLKATA POLICE CONSTABLE MAINS Mock 3",
+    "mockNumber": "3",
+    "categoryPath": [
+      "KOLKATA POLICE",
+      "MAINS"
+    ],
+    "type": "Live",
+    "visibility": "Listed",
+    "pricing": "Free",
+    "questionsCount": 85,
+    "duration": 60,
+    "fullMarks": 85,
+    "timestamp": "2026-08-08T21:54:27.164Z",
+    "unlockCode": "KP3",
+    "resultPublishTime": "2026-08-09T22:00",
+    "repo": "Live-Exam",
+    "liveSchedule": {
+      "startTime": "2026-08-09T07:00",
+      "endTime": "2026-08-09T22:00"
+    }
   }
 ]
